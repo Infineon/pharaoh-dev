@@ -1,0 +1,6 @@
+{{ h1("Title") }}
+
+{% for index_rst in fglob("index_*.rst") %}
+.. include:: {{ index_rst }}
+
+{% endfor %}

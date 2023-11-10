@@ -261,5 +261,4 @@ dist
 build
 junit-*.xml
 ci/*.json
-tests
 tmp_results

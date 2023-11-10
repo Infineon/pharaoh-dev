@@ -1,0 +1,30 @@
+{{ heading("Title", 1) }}
+
+{% if "subdir/dynamic_content.rst"|exists %}
+{{ heading("Dynamic Content", 2) }}
+
+.. note::
+    Below content is included via ``toctree`` directive.
+    It is rendered as table of contents of a separate file and and contains links to its headings.
+
+    ::
+
+        .. toctree::
+
+            subdir/dynamic_content
+
+.. toctree::
+
+    subdir/dynamic_content
+
+.. note::
+    Below content is inlined via the Jinja templating ``render_template`` function.
+
+    ::
+
+        .. include:: subdir/dynamic_content.rst
+
+
+.. include:: subdir/dynamic_content.rst
+
+{% endif %}

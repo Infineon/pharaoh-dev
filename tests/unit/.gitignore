@@ -1,0 +1,7 @@
+*.html
+*.svg
+*.json
+*.png
+_example_assets/raw.rst
+_example_assets/raw.html
+_example_assets/raw.txt

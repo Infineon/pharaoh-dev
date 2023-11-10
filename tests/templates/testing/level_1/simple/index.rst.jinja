@@ -1,0 +1,24 @@
+{{ heading(ctx.local.test.test_name|req, 1) }}
+
+{{ h2("Some plots") }}
+
+.. pharaoh-asset::
+    [% if all_components|default(True) %]
+    :components: _all_
+    [% endif %]
+    :filter: label == "PLOTLY"
+
+
+As iframe (default size)
+
+.. pharaoh-asset::
+    :filter: label == "PLOTLY"
+    :template: iframe
+
+As iframe (500x500)
+
+.. pharaoh-asset::
+    :filter: label == "PLOTLY"
+    :template: iframe
+    :iframe-width: 500px
+    :iframe-height: 500px

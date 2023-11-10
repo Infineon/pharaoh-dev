@@ -1,0 +1,15 @@
+{{ heading(ctx.local.test.test_name|req, 1) }}
+
+{{ heading("Some plots", 2) }}
+
+.. pharaoh-asset::
+    [% if all_components|default(True) %]
+    :components: _all_
+    [% endif %]
+    :filter: label == "PLOTLY"
+
+.. pharaoh-asset::
+    [% if all_components|default(True) %]
+    :components: _all_
+    [% endif %]
+    :filter: label == "PLOTLY2"
