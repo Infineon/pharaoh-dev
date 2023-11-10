@@ -6,7 +6,7 @@
 [![image](https://github.com/Infineon/pharaoh-dev/actions/workflows/documentation.yml/badge.svg)](https://github.com/Infineon/pharaoh-dev/actions/workflows/documentation.yml)
 [![image](https://github.com/Infineon/pharaoh-dev/actions/workflows/matrix_tests.yml/badge.svg)](https://github.com/Infineon/pharaoh-dev/actions/workflows/matrix_tests.yml)
 
-<img src="docs/_static/icon.png" height="200">
+<img src="https://github.com/Infineon/pharaoh-dev/blob/main/docs/_static/icon.png" height="200">
 
 Pharaoh is a [Sphinx](https://www.sphinx-doc.org/en/master/)-based Python framework
 for generating reports in various formats by combining the
@@ -15,4 +15,4 @@ templates and Python scripts for asset generation.
 
 Please refer to the [official documentation](https://infineon.github.io/pharaoh-dev/).
 
-<img src="docs/_static/overview.png">
+<img src="https://github.com/Infineon/pharaoh-dev/blob/main/docs/_static/overview.png">
