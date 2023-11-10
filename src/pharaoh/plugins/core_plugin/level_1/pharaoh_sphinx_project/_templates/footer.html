@@ -1,0 +1,7 @@
+{% extends "!footer.html" %}
+{# sphinx_rtd_theme/footer.html #}
+
+  {% block contentinfo %}{{ super() }}{% endblock %}
+  {% block extrafooter %}
+    Built with <a href="{{ pharaoh_homepage }}">Pharaoh v{{ pharaoh_version }}</a>
+  {% endblock %}

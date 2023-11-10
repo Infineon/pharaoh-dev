@@ -1,0 +1,5 @@
+.. dropdown:: :octicon:`bug;2em;sd-text-danger` ``PharaohDirectiveError: {{ error }}``
+
+    .. code-block:: none
+
+{{ content|indent(8) }}

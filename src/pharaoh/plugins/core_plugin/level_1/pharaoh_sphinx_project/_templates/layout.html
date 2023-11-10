@@ -1,0 +1,67 @@
+{% extends "!layout.html" %}
+{# sphinx_rtd_theme/layout.html #}
+
+{%- block htmltitle %}
+    <!--  Block referrer header so no internal URLs are leaked outside  -->
+    <meta name="referrer" content="no-referrer" />
+    <title>{{ title|striptags|e }}</title>
+{%- endblock -%}
+
+{% block scripts %}
+    {{ super() }}
+
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.datatables.net/v/dt/jq-3.6.0/jszip-2.5.0/dt-1.13.1/b-2.3.3/b-colvis-2.3.3/b-html5-2.3.3/b-print-2.3.3/cr-1.6.1/date-1.2.0/fc-4.2.1/fh-3.3.1/kt-2.8.0/r-2.4.0/rg-1.3.0/rr-1.3.1/sc-2.0.7/sb-1.4.0/sp-2.1.0/sl-1.5.0/sr-1.2.0/datatables.min.css"/>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script type="text/javascript"
+            src="https://cdn.datatables.net/v/dt/jq-3.6.0/jszip-2.5.0/dt-1.13.1/b-2.3.3/b-colvis-2.3.3/b-html5-2.3.3/b-print-2.3.3/cr-1.6.1/date-1.2.0/fc-4.2.1/fh-3.3.1/kt-2.8.0/r-2.4.0/rg-1.3.0/rr-1.3.1/sc-2.0.7/sb-1.4.0/sp-2.1.0/sl-1.5.0/sr-1.2.0/datatables.min.js"></script>
+
+    <!--  The "sd-btn-new-tab" class can be added by the :class: option of the Sphinx Design button-link directive   -->
+    <script>
+        $(document).ready(function () {
+            $('a.sd-btn-new-tab').attr('target', '_blank');
+        });
+    </script>
+
+{% endblock %}
+
+{%- block sidebartitle %}
+
+    {# the logo helper function was removed in Sphinx 6 and deprecated since Sphinx 4 #}
+    {# the master_doc variable was renamed to root_doc in Sphinx 4 (master_doc still exists in later Sphinx versions) #}
+    {%- set _logo_url = logo_url|default(pathto('_static/' + (logo or ""), 1)) %}
+    {%- set _root_doc = root_doc|default(master_doc) %}
+    <h1>
+        {% if pharaoh_show_logo %}
+        <div id="pharaoh_logo" style="padding-bottom: 20px; text-align: center;">
+            <a id="pharaoh_logo_ref" href="{{ pharaoh_homepage }}">
+                {%- if pharaoh_logo %}
+                    <img src="{{ pathto(pharaoh_logo, 1) }}" class="logo" alt="{{ _('Logo') }}"/>
+                {%- endif %}
+            </a>
+        </div>
+        {% endif %}
+        <div id="pharaoh_logo_title" style="padding-bottom: 10px; text-align: center;">
+            <a href="{{ pathto(_root_doc) }}">
+                {% if not theme_logo_only %}{{ project }}{% endif %}
+                {%- if logo or logo_url %}
+                    <img src="{{ _logo_url }}" class="logo" alt="{{ _('Logo') }}"/>
+                {%- endif %}
+            </a>
+        </div>
+    </h1>
+
+    {%- include "searchbox.html" %}
+{%- endblock %}
+
+{%- block navigation %}{{ super() }}{%- endblock %}
+
+{% block extrahead %}{{ super() }}{% endblock %}
+
+{% block extrabody %}{{ super() }}{% endblock %}
+
+{% block body %}{{ super() }}{% endblock %}
+
+{% block footer %}{{ super() }}{% endblock %}

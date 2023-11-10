@@ -1,0 +1,49 @@
+{#
+Renders Bokeh models into a basic .html file.
+
+:param title: value for ``<title>`` tags
+:type title: str
+
+:param plot_resources: typically the output of RESOURCES
+:type plot_resources: str
+
+:param plot_script: typically the output of PLOT_SCRIPT
+:type plot_script: str
+
+Users can customize the file output by providing their own Jinja2 template
+that accepts these same parameters.
+
+Render Context Example:
+    {'base': <Template 'file.html'>,
+     'bokeh_css': '',
+     'bokeh_js': '    <script type="text/javascript" '
+                 'src="https://cdn.bokeh.org/bokeh/release/bokeh-2.4.3.min.js"></script>\n'
+                 '    <script type="text/javascript">\n'
+                 '        Bokeh.set_log_level("info");\n'
+                 '    </script>\n',
+     'doc': <bokeh.embed.util.RenderItem object at 0x00000235285DCDF0>,
+     'docs': [<bokeh.embed.util.RenderItem object at 0x00000235285DCDF0>],
+     'macros': <Template 'macros.html'>,
+     'plot_div': '\n'
+                 '  <div class="bk-root" id="d70f740c-22db-43b2-a9c9-c04884ba5152" '
+                 'data-root-id="1002"></div>\n',
+     'plot_script': '\n'
+                    '<script type="application/json" id="1171">\n'
+                    '  '
+                    '{"4f020dc0-0c7d-434b-8135-697d241e06a9":{"defs":[{"extends":null,"module":null,"name":"ReactiveHTML1","overrides":[],"properties":[]},{"extends":null,"module":null,"name":"FlexBox1","overrides":[],"properties":[{"default":"flex-start","kind":null,"name":"align_content"},{"default":"flex-start","kind":null,"name":"align_items"},{"default":"row","kind":null,"name":"flex_direction"},{"default":"wrap","kind":null,"name":"flex_wrap"},{"default":"flex-start","kind":null,"name":"justify_content"}]},{"extends":null,"module":null,"name":"GridStack1","overrides":[],"properties":[{"default":"warn","kind":null,"name":"mode"},{"default":null,"kind":null,"name":"ncols"},{"default":null,"kind":null,"name":"nrows"},{"default":true,"kind":null,"name":"allow_resize"},{"default":true,"kind":null,"name":"allow_drag"},{"default":[],"kind":null,"name":"state"}]},{"extends":null,"module":null,"name":"click1","overrides":[],"properties":[{"default":"","kind":null,"name":"terminal_output"},{"default":"","kind":null,"name":"debug_name"},{"default":0,"kind":null,"name":"clears"}]},{"extends":null,"module":null,"name":"NotificationAreaBase1","overrides":[],"properties":[{"default":"bottom-right","kind":null,"name":"position"},{"default":0,"kind":null,"name":"_clear"}]},{"extends":null,"module":null,"name":"NotificationArea1","overrides":[],"properties":[{"default":[],"kind":null,"name":"notifications"},{"default":"bottom-right","kind":null,"name":"position"},{"default":0,"kind":null,"name":"_clear"},{"default":[{"background":"#ffc107","icon":{"className":"fas '
+                    ...
+     'roots': {Figure(id='1002', ...): 'd70f740c-22db-43b2-a9c9-c04884ba5152'},
+     'title': ''}
+-#}
+{% from macros import embed %}
+<div>
+    {{- bokeh_css if bokeh_css }}
+    {{ bokeh_js if bokeh_js }}
+    {% for doc in docs %}
+        {{ embed(doc) if doc.elementid }}
+        {%- for root in doc.roots %}
+            {{ embed(root) }}
+        {% endfor %}
+    {% endfor %}
+    {{ plot_script | indent(4) }}
+</div>

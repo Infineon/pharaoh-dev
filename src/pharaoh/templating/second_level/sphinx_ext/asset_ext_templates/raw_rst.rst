@@ -1,0 +1,1 @@
+{{ asset.read_text() }}

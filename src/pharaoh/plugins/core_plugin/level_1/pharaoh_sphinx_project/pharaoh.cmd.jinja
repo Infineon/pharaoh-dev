@@ -1,0 +1,8 @@
+REM Pharaoh CLI. Use "pharaoh.cmd --help" for help.
+@echo off
+set exe=pharaoh.exe
+if exist "[[ pharaoh_cli_path ]]" (
+    set exe="[[ pharaoh_cli_path ]]"
+)
+@echo on
+call %exe% %*

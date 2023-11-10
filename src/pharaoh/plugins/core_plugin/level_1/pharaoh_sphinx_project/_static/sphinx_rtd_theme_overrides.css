@@ -1,0 +1,84 @@
+/* This line is theme specific - it includes the base theme CSS */
+
+@import 'css/theme.css';       /* for the Read the Docs theme */
+
+
+/* Styling stuff from _templates/layout.html */
+#pharaoh_logo_ref:hover {
+    /* Overwrite hover background color */
+    background-color: white !important;
+}
+
+#pharaoh_logo_title a {
+    /* Set fixed title color */
+    color: #404040;
+}
+
+
+/* Disable page width limit */
+.wy-nav-content {
+   max-width: None
+}
+
+.wy-side-nav-search img {
+    display: block;
+    margin: auto auto .809em;
+    height:auto;
+    width:auto;
+    background-color: #2980b9;
+    padding: 5px;
+    border-radius:0%;
+}
+
+.wy-table-responsive td, th {
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    padding-left: 5px !important;
+    padding-right: 8px !important;
+}
+
+.wy-table-responsive thead th {
+    background-color: #9BC3B7;
+    color: #404040 !important;
+    padding-right: 28px !important;
+}
+
+.wy-table-responsive tr:nth-child(odd) td {
+    background-color: #ededed;
+}
+
+.wy-table-responsive td:hover {
+    color: #fcfcfc !important;
+    background-color: #597a8d !important;
+}
+
+
+/*  */
+.ph-pd-t {
+    visibility: hidden;
+    position: absolute;
+    z-index: 1;
+    border: 1px solid #9BC3B7;
+    background-color: white;
+    color: black;
+    font-size: 1em;
+    width: 300px;
+    /*
+    Move the tooltip to the left and add a fixed size,
+    since we can't do auto-positioning via CSS.
+     */
+    transform: translate(-300px, 20px);
+    padding: 0.6em;
+    border-radius: 0;
+}
+
+/* Needed for wrapping at newlines for table cell tooltips */
+.ph-pd-t::after {
+    white-space: pre-wrap;
+    font-family: monospace;
+}
+
+/* Reduce the max size of the TOC scroll area to 60% of viewport, instead of 70% */
+.col-nav .wy-menu-vertical {
+    max-height: 60vh;
+}

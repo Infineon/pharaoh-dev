@@ -1,0 +1,9 @@
+asset_scripts/*.svg
+asset_scripts/*.html
+asset_scripts/*.png
+asset_scripts/*.jpg
+asset_scripts/*.jpeg
+asset_scripts/*.json
+asset_scripts/*.txt
+asset_scripts/*.rst
+asset_scripts/*.md

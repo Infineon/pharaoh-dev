@@ -1,0 +1,69 @@
+logging:
+  # The logging level for the Pharaoh logger, one of DEBUG, INFO, WARNING, ERROR
+  level: "INFO"
+
+report:
+  # The report output format. Currently supported are:
+  # - html and all other Sphinx default builders; see https://www.sphinx-doc.org/en/master/usage/builders/index.html
+  # - confluence, singleconfluence; see https://sphinxcontrib-confluencebuilder.readthedocs.io/en/stable/builders/
+  builder: "html"
+  # Verbosity of the Sphinx build. 0: INFO, 1: VERBOSE, 2: DEBUG
+  # VERBOSE: Will enable debug output of .. pharaoh-asset:: directive
+  verbosity: 0
+  # The report title displayed on the index page
+  title: "Pharaoh Report"
+  # The report author
+  author: "${oc.env:USERNAME,unknown}"
+  # Name of the ZIP archive. For available resolvers consult documentation
+  archive_name: "pharaoh_report_${utcnow.strf:%Y%m%d_%H%M%S}.zip"
+  # Options for HTML builder
+  html:
+    # Show Pharaoh logo on HTML report. Kindly let this enabled for branding, unless it's for external customers ;)
+    show_pharaoh_logo: true
+
+asset_gen:
+  # Create static (png, svg) assets instead of dynamic (html) ones where possible.
+  # This only has effect on the patched functions of frameworks like pandas, bokeh, plotly, ... .
+  # For more info refer to the documentation: todo
+  force_static: false
+  # How many worker processes (CPUs) to use for parallel asset generation. "auto" or some integer value.
+  # Use 0 to execute all asset scripts sequentially in the current process.
+  # Using multiprocessing only outperforms single-process if there are a large amount of asset scripts.
+  # The proof is in the pudding ;)
+  worker_processes: 0
+  # Regular expression (case-insensitive). If matches on file name with extension, the script is not executed during
+  # asset generation
+  script_ignore_pattern: "_.*"  # ignore scripts that start with underscore
+  # The default width of embedded iframes. (html attribute)
+  default_iframe_width: "100%"
+  # The default height of embedded iframes. (html attribute)
+  default_iframe_height: "500px"
+  # Show all datatables per default with an interactive search function
+  default_datatable_extended_search: false
+
+# Options for toolkit patches
+toolkits:
+  bokeh:
+    export_png:
+      width: 720
+      height: 480
+  matplotlib:
+    savefig:
+      dpi: 150
+      facecolor: "auto"
+      edgecolor: "auto"
+  plotly:
+    write_image:
+      width: 1000
+      height: 600
+      scale: 1
+      validate: true
+    write_html:
+      default_width: "100%"
+      default_height: "100%"
+  holoviews:
+    save:
+      dpi: 300
+  pandas:
+    to_html:
+      na_rep: ""
