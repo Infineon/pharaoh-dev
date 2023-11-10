@@ -1,0 +1,214 @@
+[build-system]
+build-backend = "hatchling.build"
+requires = ["hatchling>=1.18"]
+
+[project]
+name = "pharaoh-report"
+version = "0.1.0"
+description = """Pharaoh is a Sphinx-based Python framework
+for generating reports in various formats by combining the
+power of configurable Jinja templates and Python scripts
+for asset generation."""
+readme.content-type = "text/markdown"
+readme.file = "README.md"
+# todo: change email
+authors = [{ name = "Johannes Loibl", email = "" }]
+license = { text = "MIT" }
+keywords = [
+    "reporting",
+    "sphinx",
+]
+
+requires-python = ">=3.9.2, <3.12"
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+#  "Operating System :: MacOS :: MacOS X",
+  "Operating System :: Microsoft :: Windows",
+#  "Operating System :: POSIX",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Topic :: Software Development :: Libraries",
+  "Topic :: Utilities",
+]
+
+dependencies = [
+    "attrs",
+    "click", # CLI
+    "omegaconf", # yaml R/W
+    "natsort", # sorting paths naturally
+    "pyyaml",
+    "pluggy",
+    "nbconvert", # used to programmatically execute asset notebooks",
+    "mistletoe", # Markdown to HTML
+    # Sphinx, theme & extensions
+    "sphinx >=7.2.5, <8.0",
+    "sphinxcontrib-jquery",
+    "sphinx-design",
+    "sphinx-rtd-theme",
+    #    "sphinx-toolbox",
+    #    "sphinx-data-viewer",
+    # Jinja & extensions
+    "jinja2",
+    "jinja2-git",
+    "jinja2-ansible-filters",
+    "numpy<2.0", # transitive dependency only # todo: remove this requirement once compatibility with 2.x is tested
+]
+
+[project.optional-dependencies]
+bokeh = [
+    "bokeh>=3.0.0,<3.3.0; python_version>='3.9'",
+    "bokeh>=3.1.0,<3.3.0; python_version>='3.11'",
+    "selenium>=4.11",
+]
+holoviews = [
+    "holoviews",
+    "holoviews>=1.16; python_version>='3.11'",
+]
+matplotlib = ["matplotlib"]
+plotly = [
+    "plotly",
+    # Newer kaleido versions leads to deadlocks, see https://github.com/plotly/Kaleido/issues/110"
+    "kaleido==0.1.0.post1",
+]
+jupyter = [
+    "jupyter",
+    "jupyter_contrib_nbextensions",
+]
+pandas = [
+    "pandas>=1.5", # reset_index(names=...)
+]
+pdf = [
+    "sphinxcontrib-svg2pdfconverter", # https://pypi.org/project/sphinxcontrib-svg2pdfconverter/
+]
+all-plotting = [
+    "pharaoh-report[pandas,bokeh,holoviews,matplotlib,plotly,jupyter]",
+]
+docs = [
+    "sphinx<8",
+    "sphinx-rtd-theme",
+    "sphinx-design",
+    "sphinxcontrib-jquery",
+    "sphinx-jinja",
+    "sphinx-copybutton",
+    "numpy<2.0",
+]
+dev = [
+    "tox",
+    "pytest",
+    "pytest-sugar",
+    "pytest-cov",
+    "pytest-mock",
+    "pytest-session2file",
+    "pytest-timeout",
+    "pytest-xdist",
+    "pytest-randomly",
+    "diff-cover>=7.7",
+    "pharaoh-report[all-plotting]",
+]
+
+[project.scripts]
+pharaoh = "pharaoh.cli:cli"
+
+[tool.hatch]
+build.dev-mode-dirs = ["src"]
+build.targets.sdist.packages = ["src/pharaoh"]
+build.targets.wheel.packages = ["src/pharaoh"]
+
+
+[tool.pytest.ini_options]
+# timeout = 30
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "--tb=auto -ra --showlocals"
+testpaths = [
+    "tests/unit",
+    "tests/integration",
+]
+
+[tool.coverage]
+
+
+[tool.coverage.run]
+branch = true
+parallel = true
+
+[tool.coverage.html]
+directory = "dist/coverage"
+
+[tool.coverage.report]
+show_missing = true
+# fail_under = 90
+precision = 2
+omit = [
+    "*/pharaoh/plugins/core_plugin/*",
+]
+exclude_lines = [
+    "pragma: no cover",
+    "pragma: nocover",
+    "def __repr__",
+    "def __str__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+]
+
+[tool.ruff]
+src = ["src", "tests"]
+preview = false
+select = [
+    "E",  # pycodestyle errors
+    "F",  # pyflakes
+    "I001",   # isort
+    "UP",  # pyupgrade
+    "B",  # bugbear
+    "C4",  # flake8-comprehensions
+    "DTZ",  # flake8-datetimez
+    "EM",  # flake8-errmsg
+    "FA",  # flake8-future-annotations
+    "PIE",  # flake8-pie
+    "PT",  # flake8-pytest-style
+    "RSE",  # flake8-raise
+    "RET",  # flake8-return
+    "SIM",  # flake8-simplify
+    "TID252",  # flake8-tidy-imports -> convert relative-imports (makes absolufiy-imports hook redundant)
+    "TCH",  # flake8-type-checking
+    "PLE",  # Pylint - errors
+    "PLW",  # Pylint - warnings
+    "PLC",  # Pylint - conventions
+    "RUF",  # Ruff-specific rules
+
+    # Enable those later maybe when there's time to fix those errors
+    # "BLE",  # flake8-blind-except
+    # "PTH",  # flake8-use-pathlib
+    # "NPY",  # NumPy-specific rules
+]
+ignore = [
+    "PLW2901",  # Pylint - warnings: redefined-loop-name
+    "E501", # https://docs.astral.sh/ruff/faq/#is-the-ruff-linter-compatible-with-black
+]
+exclude = []
+fix = true  # Allow autofix for all enabled rules (when `--fix`) is provided.
+unsafe-fixes = true
+show-fixes = true
+line-length = 120  # Same as Black.
+
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+isort = {known-first-party = ["pharaoh", "tests"], required-imports = ["from __future__ import annotations"]}
+
+
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["F401"]
+"api.py" = ["F401"]
+
+
+[tool.ruff.flake8-tidy-imports]
+# Whether to ban all relative imports ("all"),
+# or only those imports that extend into the parent module or beyond ("parents").
+ban-relative-imports = "parents"
