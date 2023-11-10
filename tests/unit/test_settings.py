@@ -117,8 +117,10 @@ def test_resolvers(new_proj):
     now = new_proj.get_setting("now")
     assert timestamp_regex.fullmatch(now) is not None
     now_parsed = datetime.strptime(now, "%Y%m%d_%H%M%S").astimezone()
-
-    assert (now_parsed - utcnow_parsed).total_seconds() != 0
+    if now_parsed == utcnow_parsed:
+        assert (now_parsed - utcnow_parsed).total_seconds() == 0
+    else:
+        assert (now_parsed - utcnow_parsed).total_seconds() != 0
 
     new_proj.put_setting(
         "test",
