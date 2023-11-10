@@ -57,7 +57,7 @@ class PharaohPluginManager:
         """
         Temporarily disable loaded plugins::
 
-            with PM.disable_plugins("pharaoh_contrib.ifx", "..."):
+            with PM.disable_plugins("plugin_abc", "..."):
                 ...
 
         :param names: Names of the loaded plugins

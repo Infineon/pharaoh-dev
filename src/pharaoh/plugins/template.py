@@ -26,7 +26,7 @@ class L1Template:
     :ivar str name: The template's name. Used for referencing: ``<plugin-name>.<template-name>``
     :ivar str|Path path: The path to the template directory
     :ivar list[str] needs: A list of templates this template depends on.
-        E.g. ["pyverify.glossary"]. Pharaoh uses this information to verify if all dependent templates are at least
+        E.g. ["plugin_abc.template_xyz"]. Pharaoh uses this information to verify if all dependent templates are at least
         used once by any component.
     :ivar list[ContextVar] vars: A list of required context variables and their potential defaults.
     """

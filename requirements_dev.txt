@@ -1,3 +1,1 @@
---index-url https://artifactory.intra.infineon.com/artifactory/api/pypi/pypi-pyverify-vir/simple
-
 -e .[dev]

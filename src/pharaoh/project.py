@@ -346,7 +346,7 @@ class PharaohProject:
             proj.add_component(
                 component_name="component_ABC",
                 templates=[
-                    "pyverify.test_report",                 # plugin template
+                    "plugin_abc.template_xyz",              # plugin template
                     "path/to/template/directory",           # template directory
                     "path/to/template/file/tmpl.pharaoh.py" # template file
                 ],
@@ -359,7 +359,7 @@ class PharaohProject:
 
         :param component_name: The name of the component. Must be a valid Python identifier.
         :param templates: A list of component templates to use for creating the components project files.
-            Those may be the template identifier (e.g. ``pyverify.glossary``) of a registered plugin template,
+            Those may be the template identifier (e.g. ``plugin_abc.template_xyz``) of a registered plugin template,
             a path to a template directory or a path to a template file (single-file template).
 
             Since multiple template may be specified, their order matters in cases where different templates
@@ -915,7 +915,7 @@ class PharaohProject:
         Checks if the used templates of all components are have dependencies to templates that are not used in any
         component.
 
-        E.g. "pyverify.test_report" requires an additional component that renders the "pyverify.glossary" template,
+        E.g. "plugin_abc.template_A" requires an additional component that renders the "plugin_abc.template_B" template,
         in order for all glossary references to work properly.
         """
         l1_templates = PM.pharaoh_collect_l1_templates()
