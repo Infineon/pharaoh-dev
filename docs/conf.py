@@ -41,7 +41,7 @@ master_doc = "index"
 project = "Pharaoh"
 year = str(datetime.datetime.now(tz=datetime.timezone.utc).year)
 
-version = release = "Pharaoh v0.1.0"
+version = release = "Pharaoh v0.1.1"
 
 add_function_parentheses = True
 add_module_names = False

@@ -4,7 +4,7 @@ requires = ["hatchling>=1.18"]
 
 [project]
 name = "pharaoh-report"
-version = "0.1.0"
+version = "0.1.1"
 description = """Pharaoh is a Sphinx-based Python framework
 for generating reports in various formats by combining the
 power of configurable Jinja templates and Python scripts
