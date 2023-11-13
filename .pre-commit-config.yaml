@@ -5,13 +5,13 @@ exclude: |
     tests/templates/.*|
   )$
 repos:
-  - repo: https://github.com/astral-sh/ruff-pre-commit
+  - repo: https://gitlab.intra.infineon.com/public-mirror/github.com/astral-sh/ruff-pre-commit.git
     rev: v0.1.4
     hooks:
       - id: ruff
         args: [--fix, --exit-non-zero-on-fix, --unsafe-fixes]
       - id: ruff-format
-  - repo: https://github.com/pre-commit/pre-commit-hooks
+  - repo: https://gitlab.intra.infineon.com/public-mirror/github.com/pre-commit/pre-commit-hooks.git
     rev: v4.5.0
     hooks:
       - id: trailing-whitespace

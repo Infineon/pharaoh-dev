@@ -5,14 +5,6 @@ set -e
 # use shared error handling boilerplate
 source ci/errorhandling
 
-# put any quirks required for this repo into ci/quirks, like environment variables which are specific to this repos package
-if [[ -f ci/quirks ]]; then
-    echo "Executing: ci/quirks"
-    source ci/quirks
-    echo "Finished with quirks"
-else
-    echo "No ci/quirks found. Skipping"
-fi
 
 ###################
 ###  Constants  ###
@@ -33,11 +25,7 @@ if [[ $EXECUTOR_NUMBER ]]; then
     mkdir -p $PIP_CACHE_DIR
 fi
 
-TOXPYTHON_VERSIONS=("TOXPYTHON39" "TOXPYTHON310" "TOXPYTHON311")
 INTERPRETERS=("python.3.9.7" "python.3.10.7" "python.3.11.3")
-
-# Following env variables will be passed on by tox and be available inside tox.ini
-TOX_TESTENV_PASSENV="TWINE_USERNAME TWINE_PASSWORD TOX_PARALLEL_NO_SPINNER TOXPYTHON LOGNAME PIP_CACHE_DIR JENKINSTOXWORKDIR RDDL_USER_NAME RDDL_USER_PASSWORD"
 
 pushd ci
     if [[ ! -f 7za.exe ]]; then
@@ -51,8 +39,6 @@ pushd ci
         PYTHON_ROOT="$(pwd)/${PYTHON_BASENAME}/tools"
         PYTHON_BIN="${PYTHON_ROOT}/python.exe"
         PYTHON_SCRIPTS="${PYTHON_ROOT}/Scripts"
-        # We have to use Windows paths here otherwise TOX crashes, see https://github.com/tox-dev/tox/issues/2431
-        PYTHON_BIN_WINPATH=$(echo "$PYTHON_BIN" | sed 's#/#\\#g')
         # Append PATH
         PATH="${PYTHON_ROOT}:${PYTHON_SCRIPTS}:${PATH}"
 
@@ -69,9 +55,7 @@ pushd ci
     done
 popd
 
-export TOX_TESTENV_PASSENV  # Use the last unpacked Python interpreter for tox execution
 export TOX_PARALLEL_NO_SPINNER="1"  # Disable rotating spinner in parallel mode
-export TOXPYTHON=${PYTHON_BIN_WINPATH}
 # overwrite the static username that will be returned by getpass.getuser().
 # Jenkins slaves sometimes have a domain prefix inside the username like eu\... which may lead to problems
 # if the username is used inside file paths
