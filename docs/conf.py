@@ -85,7 +85,6 @@ extlinks = {
 }
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3", None),
-    "packaging": ("https://packaging.pypa.io/en/latest", None),
 }
 intersphinx_timeout = 5
 
