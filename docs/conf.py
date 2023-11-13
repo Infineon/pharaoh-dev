@@ -2,10 +2,10 @@ import datetime
 
 import sphinx
 
-from pharaoh import __version__
 from pharaoh.assetlib.resource import collect_resources
 from pharaoh.cli import cli
 from pharaoh.templating.second_level import env_filters, env_globals, env_tests
+from pharaoh.version import __version__
 
 assert sphinx.version_info[0] == 7
 
@@ -42,7 +42,7 @@ master_doc = "index"
 project = "Pharaoh"
 year = str(datetime.datetime.now(tz=datetime.timezone.utc).year)
 
-version = release = f"Pharaoh v{__version__}"
+release, version = __version__, "Pharaoh v" + ".".join(__version__.split(".")[:3])
 
 add_function_parentheses = True
 add_module_names = False
