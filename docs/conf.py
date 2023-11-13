@@ -73,8 +73,19 @@ html_use_smartypants = True
 html_last_updated_fmt = "%b %d, %Y"
 html_short_title = f"{project}-{version}"
 
+# https://www.sphinx-doc.org/en/master/usage/extensions/extlinks.html
+extlinks = {
+    "issue": ("https://github.com/Infineon/pharaoh-dev/issues/%s", "#%s"),
+    "pull": ("https://github.com/Infineon/pharaoh-dev/pull/%s", "PR #%s"),
+    "discussion": ("https://github.com/Infineon/pharaoh-dev/discussions/%s", "#%s"),
+    "user": ("https://github.com/%s", "@%s"),
+    "gh_repo": ("https://github.com/%s", "%s"),
+    "gh": ("https://github.com/%s", "%s"),
+    "pypi": ("https://pypi.org/project/%s", "%s"),
+}
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3", None),
+    "packaging": ("https://packaging.pypa.io/en/latest", None),
 }
 intersphinx_timeout = 5
 
@@ -86,9 +97,6 @@ rst_epilog = """
 """
 
 linkcheck_workers = 25
-
-# https://www.sphinx-doc.org/en/master/usage/extensions/extlinks.html
-extlinks = {}
 
 # https://www.sphinx-doc.org/en/master/usage/extensions/autosectionlabel.html
 autosectionlabel_prefix_document = True
