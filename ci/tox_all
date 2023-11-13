@@ -1,0 +1,6 @@
+#!/bin/bash
+
+. ./ci/set_env
+
+echo "Running tox..."
+tox run-parallel --result-json ./ci/$(basename $BASH_SOURCE).json --skip-missing-interpreter false --recreate

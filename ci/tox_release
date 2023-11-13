@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# TWINE_USERNAME and TWINE_PASSWORD has to be set in Jenkins as credentials
+[[ -z "${TWINE_USERNAME}" ]] && { echo "Env variable TWINE_USERNAME is empty" ; exit 1; }
+[[ -z "${TWINE_PASSWORD}" ]] && { echo "Env variable TWINE_PASSWORD is empty" ; exit 1; }
+
+. ./ci/set_env
+echo "Removing dist directory"
+rm -rf dist
+
+echo "Running tox..."
+tox run --result-json ./ci/$(basename $BASH_SOURCE).json -m release

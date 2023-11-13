@@ -1,0 +1,7 @@
+#!/bin/bash
+
+. ./ci/set_env
+
+echo "Running tox..."
+tox run-parallel --skip-missing-interpreter false -m static
+tox run --skip-missing-interpreter false -m test -- -n auto

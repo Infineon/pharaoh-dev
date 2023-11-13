@@ -14,7 +14,6 @@ power of configurable Jinja templates and Python scripts
 for asset generation."""
 readme.content-type = "text/markdown"
 readme.file = "README.md"
-# todo: change email
 authors = [{ name = "Johannes Loibl", email = "" }]
 license = { text = "MIT" }
 keywords = [
@@ -36,11 +35,11 @@ classifiers = [
   "Topic :: Software Development :: Libraries",
   "Topic :: Utilities",
 ]
-urls.Documentation = "https://infineon.github.io/pharaoh-dev/"
-urls.Homepage = "https://infineon.github.io/pharaoh-dev/"
-urls."Release Notes" = "https://infineon.github.io/pharaoh-dev/changelog.html"
-urls.Source = "https://github.com/Infineon/pharaoh-dev"
-urls.Tracker = "https://github.com/Infineon/pharaoh-dev/issues"
+#urls.Documentation = "https://infineon.github.io/pharaoh-dev/"
+#urls.Homepage = "https://infineon.github.io/pharaoh-dev/"
+#urls."Release Notes" = "https://infineon.github.io/pharaoh-dev/changelog.html"
+#urls.Source = "https://github.com/Infineon/pharaoh-dev"
+#urls.Tracker = "https://github.com/Infineon/pharaoh-dev/issues"
 
 dependencies = [
     "attrs",

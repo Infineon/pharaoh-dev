@@ -47,10 +47,12 @@ def create_release_branch(repo: Repo, version: Version) -> tuple[Remote, Head]:
 
 
 def get_upstream(repo: Repo) -> Remote:
+    # DEV_REPO = "Infineon/pharaoh-dev.git"
+    DEV_REPO = "pyveco/pharaoh-report.git"
     for remote in repo.remotes:
-        if any(url.endswith("Infineon/pharaoh-dev.git") for url in remote.urls):
+        if any(url.endswith(DEV_REPO) for url in remote.urls):
             return remote
-    msg = "could not find tox-dev/tox.git remote"
+    msg = f"could not find {DEV_REPO} remote"
     raise RuntimeError(msg)
 
 

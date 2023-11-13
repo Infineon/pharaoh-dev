@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# stop on error
+set -e
+
+echo "Before assembling"
+d=$(pwd)
+cd /tmp/src
+
+pip install --upgrade pip
+pip install tox
+
+# build coverage & docs
+tox -e docs
+
+mv dist/docs $d/

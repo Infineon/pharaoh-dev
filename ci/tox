@@ -1,0 +1,6 @@
+#!/bin/bash
+
+. ./ci/set_env
+
+echo "Running tox..."
+tox "$@"
