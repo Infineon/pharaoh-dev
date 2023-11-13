@@ -57,7 +57,7 @@ def get_upstream(repo: Repo) -> Remote:
 def release_changelog(repo: Repo, version: Version) -> Commit:
     print("generate release commit")
     check_call(["towncrier", "build", "--yes", "--version", version.public], cwd=str(ROOT_SRC_DIR))
-    return repo.index.commit(f"release {version} --no-verify")
+    return repo.index.commit(f"release {version}", skip_hooks=True)
 
 
 def tag_release_commit(release_commit: Commit, repo: Repo, version: Version) -> TagReference:
