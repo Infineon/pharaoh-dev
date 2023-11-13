@@ -262,4 +262,5 @@ build
 junit-*.xml
 ci/*.json
 tmp_results
+src/pharaoh/version.py
 src/pharaoh/_version.py

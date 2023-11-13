@@ -11,7 +11,7 @@ try:
 except (ImportError, LookupError):
     # As a fallback, use the version that is hard-coded in the file.
     try:
-        from ._version import __version__
+        from .version import __version__
     except ModuleNotFoundError:
         # The user is probably trying to run this without having installed
         # the package, so complain.

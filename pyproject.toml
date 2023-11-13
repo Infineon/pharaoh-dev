@@ -106,6 +106,7 @@ docs = [
 dev = [
     "tox",
     "gitpython",
+    "towncrier",
     "setuptools_scm",
     "pytest",
     "pytest-sugar",
@@ -217,3 +218,12 @@ isort = {known-first-party = ["pharaoh", "tests"], required-imports = ["from __f
 # Whether to ban all relative imports ("all"),
 # or only those imports that extend into the parent module or beyond ("parents").
 ban-relative-imports = "parents"
+
+
+[tool.towncrier]
+name = "tox"
+filename = "docs/changelog.rst"
+directory = "docs/changelog"
+title_format = false
+issue_format = ":issue:`{issue}`"
+template = "docs/changelog/template.jinja2"
