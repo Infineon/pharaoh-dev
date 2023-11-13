@@ -106,7 +106,6 @@ docs = [
 dev = [
     "tox",
     "gitpython",
-    "towncrier",
     "setuptools_scm",
     "pytest",
     "pytest-sugar",
