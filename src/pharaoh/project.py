@@ -750,7 +750,7 @@ class PharaohProject:
                         sources.append((comp_name, script))
                     break
 
-        workers = self.get_setting("asset_gen.worker_processes", "auto")
+        workers = self.get_setting("asset_gen.worker_processes", 0)
         if workers == 0:  # Run in same process - used for easier debugging
             results = []
             for component_name, asset_source in sources:
