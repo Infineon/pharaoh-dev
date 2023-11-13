@@ -1,10 +1,13 @@
 [build-system]
 build-backend = "hatchling.build"
-requires = ["hatchling>=1.18"]
+requires = [
+    "hatch-vcs>=0.3",
+    "hatchling>=1.18",
+]
 
 [project]
 name = "pharaoh-report"
-version = "0.1.1"
+dynamic = ["version"]
 description = """Pharaoh is a Sphinx-based Python framework
 for generating reports in various formats by combining the
 power of configurable Jinja templates and Python scripts
@@ -102,6 +105,8 @@ docs = [
 ]
 dev = [
     "tox",
+    "gitpython",
+    "setuptools_scm",
     "pytest",
     "pytest-sugar",
     "pytest-cov",
@@ -121,6 +126,8 @@ pharaoh = "pharaoh.cli:cli"
 build.dev-mode-dirs = ["src"]
 build.targets.sdist.packages = ["src/pharaoh"]
 build.targets.wheel.packages = ["src/pharaoh"]
+build.hooks.vcs.version-file = "src/pharaoh/version.py"
+version.source = "vcs"
 
 
 [tool.pytest.ini_options]

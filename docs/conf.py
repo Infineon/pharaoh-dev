@@ -2,6 +2,7 @@ import datetime
 
 import sphinx
 
+from pharaoh import __version__
 from pharaoh.assetlib.resource import collect_resources
 from pharaoh.cli import cli
 from pharaoh.templating.second_level import env_filters, env_globals, env_tests
@@ -41,7 +42,7 @@ master_doc = "index"
 project = "Pharaoh"
 year = str(datetime.datetime.now(tz=datetime.timezone.utc).year)
 
-version = release = "Pharaoh v0.1.1"
+version = release = f"Pharaoh v{__version__}"
 
 add_function_parentheses = True
 add_module_names = False
