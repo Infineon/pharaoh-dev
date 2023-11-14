@@ -1,7 +1,7 @@
 Release History
 ===============
 
-v0.3.0 (2023-11-13)
+v0.4.0 (2023-11-15)
 -------------------
 
-No significant changes.
+Add support for Linux
