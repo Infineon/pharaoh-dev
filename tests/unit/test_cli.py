@@ -1,5 +1,6 @@
 import json
 import os
+import platform
 from pathlib import Path
 
 import pytest
@@ -139,7 +140,10 @@ def test_cli_flow(tmp_cwd, invoke):
     plugins_text = invoke("print-plugins")
     print(plugins_text)
     assert "core_plugin" in plugins_text
-    assert rf"testing{os.sep}plugin.py" in plugins_text
+    if platform.system() == "Windows":
+        assert "testing\\\\plugin.py" in plugins_text
+    else:
+        assert "testing/plugin.py" in plugins_text
 
     invoke("new")
     invoke("add --name dummy1 -t pharaoh_testing.simple -c \"{'test_name':'dummy'}\"")
