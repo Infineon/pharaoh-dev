@@ -9,4 +9,4 @@ echo "Removing dist directory"
 rm -rf dist
 
 echo "Running tox..."
-tox run --result-json ./ci/$(basename $BASH_SOURCE).json -m release
+tox run --result-json ./ci/$(basename $BASH_SOURCE).json -e publish
