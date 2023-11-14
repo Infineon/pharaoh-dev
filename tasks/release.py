@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 from pathlib import Path
-from subprocess import check_call
 
 from git import Commit, Head, Remote, Repo, TagReference
 from packaging.version import Version
@@ -19,27 +18,26 @@ def main(version_str: str) -> None:
         raise RuntimeError(msg)
     upstream, release_branch = create_release_branch(repo, version)
     try:
-        release_commit = release_changelog(repo, version)
-        tag = tag_release_commit(release_commit, repo, version)
+        tag = tag_release_commit(repo.head.commit, repo, version)
         print("push release commit")
-        repo.git.push(upstream.name, f"{release_branch}:main", "-f")
+        repo.git.push(upstream.name, f"{release_branch}:master", "-f")
         print("push release tag")
         repo.git.push(upstream.name, tag, "-f")
     finally:
         print("checkout main to new release and delete release branch")
-        repo.heads.main.checkout()
+        repo.heads.master.checkout()
         repo.delete_head(release_branch, force=True)
         upstream.fetch()
-        repo.git.reset("--hard", "origin/main")
+        repo.git.reset("--hard", "origin/master")
     print("All done! ✨ 🍰 ✨")
 
 
 def create_release_branch(repo: Repo, version: Version) -> tuple[Remote, Head]:
-    print("create release branch from upstream main")
+    print("create release branch from upstream master")
     upstream = get_upstream(repo)
     upstream.fetch()
     branch_name = f"release-{version}"
-    release_branch = repo.create_head(branch_name, upstream.refs.main, force=True)
+    release_branch = repo.create_head(branch_name, upstream.refs.master, force=True)
     upstream.push(refspec=f"{branch_name}:{branch_name}", force=True)
     release_branch.set_tracking_branch(repo.refs[f"{upstream.name}/{branch_name}"])
     release_branch.checkout()
@@ -56,12 +54,6 @@ def get_upstream(repo: Repo) -> Remote:
     raise RuntimeError(msg)
 
 
-def release_changelog(repo: Repo, version: Version) -> Commit:
-    print("generate release commit")
-    check_call(["towncrier", "build", "--yes", "--version", version.public], cwd=str(ROOT_SRC_DIR))
-    return repo.index.commit(f"release {version}", skip_hooks=True)
-
-
 def tag_release_commit(release_commit: Commit, repo: Repo, version: Version) -> TagReference:
     print("tag release commit")
     existing_tags = [x.name for x in repo.tags]
@@ -69,7 +61,7 @@ def tag_release_commit(release_commit: Commit, repo: Repo, version: Version) -> 
         print(f"delete existing tag {version}")
         repo.delete_tag(version)
     print(f"create tag {version}")
-    return repo.create_tag(version, ref=release_commit, force=True)
+    return repo.create_tag(version, ref=release_commit, message=f"release {version}", force=True)
 
 
 if __name__ == "__main__":
