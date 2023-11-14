@@ -4,4 +4,5 @@
 
 echo "Running tox..."
 export PYTEST_XDIST_AUTO_NUM_WORKERS="0"
+export SPHINX_NO_LINKCHECK="1"
 tox run-parallel --result-json ./ci/$(basename $BASH_SOURCE).json --skip-missing-interpreter false --recreate
