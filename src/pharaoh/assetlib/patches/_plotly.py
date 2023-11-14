@@ -1,4 +1,5 @@
 import io
+import platform
 from contextlib import contextmanager
 from pathlib import Path
 
@@ -17,11 +18,12 @@ if PLOTLY_AVAIL:
     try:
         import kaleido  # noqa: F401
     except (ImportError, ModuleNotFoundError):
-        msg = (
-            "The 'kaleido' package is missing. It is required to export static PNGs from plotly plots. "
-            "Please install it into the current environment."
-        )
-        raise Exception(msg) from None
+        if platform.platform() == "Windows":
+            msg = (
+                "The 'kaleido' package is missing. It is required to export static PNGs from plotly plots. "
+                "Please install it into the current environment."
+            )
+            raise Exception(msg) from None
 
     # memorize the unpatched functions
     vanilla_px_show = plotly_io.show

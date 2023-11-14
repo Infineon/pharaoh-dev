@@ -78,7 +78,7 @@ matplotlib = ["matplotlib"]
 plotly = [
     "plotly",
     # Newer kaleido versions leads to deadlocks, see https://github.com/plotly/Kaleido/issues/110"
-    "kaleido==0.1.0.post1",
+    "kaleido==0.1.0.post1; platform_system=='Windows'",
 ]
 jupyter = [
     "jupyter",
