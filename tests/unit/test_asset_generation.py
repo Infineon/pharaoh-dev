@@ -1,5 +1,6 @@
 import json
 import os
+import platform
 import re
 import subprocess as sp
 import sys
@@ -204,9 +205,10 @@ def test_regenerate_assets_partially(new_proj):
     assert dummy_2_assets[0].context.asset.stem == dummy_2_assets_new[0].context.asset.stem
     assert len(dummy_1_assets) == len(dummy_2_assets) == len(dummy_1_assets_new) == len(dummy_2_assets_new)
 
-    with open(dummy_2_assets[0].context.asset.file), pytest.raises(PermissionError):
-        # block file from deletion to enforce error
-        new_proj.generate_assets(("dummy_2",))
+    if platform.system() == "Windows":
+        with open(dummy_2_assets[0].context.asset.file), pytest.raises(PermissionError):
+            # block file from deletion to enforce error
+            new_proj.generate_assets(("dummy_2",))
 
 
 def test_execute_asset_script_directly(new_proj):

@@ -1,4 +1,5 @@
 import datetime
+import getpass
 
 import omegaconf
 
@@ -20,6 +21,12 @@ omegaconf.OmegaConf.register_new_resolver(
     resolver=lambda fmt: datetime.datetime.now(
         tz=datetime.datetime.now(tz=datetime.timezone.utc).astimezone().tzinfo
     ).strftime(fmt),
+)
+
+
+omegaconf.OmegaConf.register_new_resolver(
+    name="user",
+    resolver=getpass.getuser,
 )
 
 omegaconf.OmegaConf.register_new_resolver(

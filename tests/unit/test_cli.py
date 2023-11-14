@@ -1,4 +1,5 @@
 import json
+import os
 from pathlib import Path
 
 import pytest
@@ -49,7 +50,7 @@ def test_new_with_templates_and_context(tmp_cwd, invoke):
     template_context = json.loads((tmp_cwd / "report-project/.template_context.json").read_text())
     assert template_context["a"] == 1
 
-    assert (tmp_cwd / r"report-project\asset_scripts\plotly_plots.py").exists()
+    assert (tmp_cwd / r"report-project/asset_scripts/plotly_plots.py").exists()
 
 
 def test_new_with_custom_settings(tmp_cwd, invoke):
@@ -136,8 +137,9 @@ def test_env_vars(tmp_cwd, invoke):
 
 def test_cli_flow(tmp_cwd, invoke):
     plugins_text = invoke("print-plugins")
+    print(plugins_text)
     assert "core_plugin" in plugins_text
-    assert "testing\\\\plugin.py" in plugins_text
+    assert rf"testing{os.sep}plugin.py" in plugins_text
 
     invoke("new")
     invoke("add --name dummy1 -t pharaoh_testing.simple -c \"{'test_name':'dummy'}\"")
@@ -163,10 +165,10 @@ def test_cli_flow(tmp_cwd, invoke):
     assert ".zip\n" in result
 
     result = invoke(f"-p {tmp_cwd.as_posix()} archive --dest archives")
-    assert "archives\\pharaoh_report_" in result
+    assert rf"archives{os.sep}pharaoh_report_" in result
 
     result = invoke(f"-p {tmp_cwd.as_posix()} archive -d archives/myarchive.zip")
-    assert "archives\\myarchive.zip" in result
+    assert rf"archives{os.sep}myarchive.zip" in result
 
     assert (get_project(tmp_cwd).sphinx_report_build / "index.html").exists()
 
@@ -184,6 +186,6 @@ def test_cli_command_chaining(tmp_cwd, invoke):
     assert "Building Sphinx" in result
     assert "Sphinx build finished successfully" in result
     assert "Created archive at" in result
-    assert "archives\\myarchive.zip" in result
+    assert rf"archives{os.sep}myarchive.zip" in result
 
     assert (get_project(tmp_cwd).sphinx_report_build / "index.html").exists()

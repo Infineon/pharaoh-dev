@@ -13,7 +13,7 @@ report:
   # The report title displayed on the index page
   title: "Pharaoh Report"
   # The report author
-  author: "${oc.env:USERNAME,unknown}"
+  author: "${user:}"
   # Name of the ZIP archive. For available resolvers consult documentation
   archive_name: "pharaoh_report_${utcnow.strf:%Y%m%d_%H%M%S}.zip"
   # Options for HTML builder
