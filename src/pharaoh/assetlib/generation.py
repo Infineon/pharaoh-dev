@@ -22,6 +22,7 @@ from pharaoh.assetlib.context import context_stack
 from pharaoh.assetlib.finder import Asset
 from pharaoh.templating.second_level.sphinx_ext.asset_ext_templates import find_template
 from pharaoh.util.contextlib_chdir import chdir
+from pharaoh.util.json_encoder import CustomJSONEncoder
 
 if TYPE_CHECKING:
     from collections.abc import Iterable
@@ -376,6 +377,7 @@ def register_templating_context(name: str, context: str | Path | dict | list, me
     component = kwargs.pop("component", None)
     metadata = metadata or {}
     metadata.pop("pharaoh_templating_context", None)
+    kwargs.setdefault("cls", CustomJSONEncoder)
 
     if not name:
         msg = "name must be a non-empty string!"
