@@ -1,6 +1,11 @@
 name: Matrix Tests - Linux
 on:
+  push:
+    tags-ignore: ["**"]
   workflow_dispatch:
+  pull_request:
+  schedule:
+    - cron: "0 8 * * *"
 
 concurrency:
   group: check-${{ github.ref }}
