@@ -25,6 +25,10 @@ jobs:
       - name: Sphinx build
         run: |
           sphinx-build -E -W -b html docs _build
+      - name: Link Check
+        continue-on-error: true
+        run: |
+          sphinx-build -b linkcheck docs _build
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
