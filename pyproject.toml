@@ -135,7 +135,7 @@ version.source = "vcs"
 python_files = ["test_*.py"]
 python_classes = ["Test*"]
 python_functions = ["test_*"]
-addopts = "--tb=auto -ra --showlocals"
+addopts = "--tb=auto -ra --showlocals -vv"
 testpaths = [
     "tests/unit",
     "tests/integration",
