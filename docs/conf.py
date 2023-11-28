@@ -1,4 +1,5 @@
 import datetime
+import os
 
 import sphinx
 
@@ -85,7 +86,6 @@ extlinks = {
 }
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3", None),
-    "packaging": ("https://packaging.pypa.io/en/latest", None),
 }
 intersphinx_timeout = 5
 
@@ -96,7 +96,11 @@ rst_epilog = """
 .. |assets| replace:: :ref:`assets <reference/assets:Assets>`
 """
 
-linkcheck_workers = 25
+if "SPHINX_NO_LINKCHECK" in os.environ:
+    linkcheck_ignore = [".*"]
+else:
+    linkcheck_workers = 25
+    linkcheck_timeout = 2
 
 # https://www.sphinx-doc.org/en/master/usage/extensions/autosectionlabel.html
 autosectionlabel_prefix_document = True

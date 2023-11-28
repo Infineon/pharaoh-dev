@@ -14,21 +14,21 @@ power of configurable Jinja templates and Python scripts
 for asset generation."""
 readme.content-type = "text/markdown"
 readme.file = "README.md"
-# todo: change email
 authors = [{ name = "Johannes Loibl", email = "" }]
 license = { text = "MIT" }
 keywords = [
     "reporting",
     "sphinx",
+    "jinja",
+    "templating",
 ]
 requires-python = ">=3.9.2, <3.12"
 classifiers = [
   "Development Status :: 5 - Production/Stable",
   "Intended Audience :: Developers",
   "License :: OSI Approved :: MIT License",
-#  "Operating System :: MacOS :: MacOS X",
   "Operating System :: Microsoft :: Windows",
-#  "Operating System :: POSIX",
+  "Operating System :: POSIX",
   "Programming Language :: Python :: 3 :: Only",
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
@@ -80,6 +80,7 @@ plotly = [
     "plotly",
     # Newer kaleido versions leads to deadlocks, see https://github.com/plotly/Kaleido/issues/110"
     "kaleido==0.1.0.post1; platform_system=='Windows'",
+    "kaleido; platform_system=='Linux'",
 ]
 jupyter = [
     "jupyter",
@@ -111,7 +112,6 @@ dev = [
     "pytest-sugar",
     "pytest-cov",
     "pytest-mock",
-    "pytest-session2file",
     "pytest-timeout",
     "pytest-xdist",
     "pytest-randomly",
@@ -217,12 +217,3 @@ isort = {known-first-party = ["pharaoh", "tests"], required-imports = ["from __f
 # Whether to ban all relative imports ("all"),
 # or only those imports that extend into the parent module or beyond ("parents").
 ban-relative-imports = "parents"
-
-
-[tool.towncrier]
-name = "tox"
-filename = "docs/changelog.rst"
-directory = "docs/changelog"
-title_format = false
-issue_format = ":issue:`{issue}`"
-template = "docs/changelog/template.jinja2"

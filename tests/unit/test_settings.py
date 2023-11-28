@@ -1,3 +1,4 @@
+import getpass
 import os
 import re
 from datetime import datetime
@@ -134,6 +135,6 @@ def test_resolvers(new_proj):
         "title": "${report.title}",
     }
     assert new_proj.get_setting("test", to_container=True, resolve=True) == {
-        "author": os.environ["USERNAME"],
+        "author": getpass.getuser(),
         "title": "Pharaoh Report",
     }
