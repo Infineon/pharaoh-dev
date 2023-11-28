@@ -34,7 +34,7 @@ if BOKEH_AVAIL:
 
         :raises RuntimeError: If msedgedriver.exe is not found in the library root folder.
         """
-        from bokeh.io import webdriver
+        from bokeh.io import export, webdriver
 
         def create_edge_webdriver():
             from selenium.webdriver.edge.options import Options
@@ -63,6 +63,25 @@ if BOKEH_AVAIL:
                 return None
 
         webdriver._try_create_chromium_webdriver = _try_create_chromium_webdriver
+
+        def _log_console(driver) -> None:
+            levels = {"WARNING", "ERROR", "SEVERE"}
+            try:
+                logs = driver.get_log("browser")
+            except Exception:
+                return
+            # loibljoh: Don't know why yet, but the Github runners for ubuntu and Python 3.9 and 3.10 return an integer
+            if isinstance(logs, int):
+                export.log.warning(f"Browser log was an integer: {logs}")
+                return
+
+            messages = [log.get("message") for log in logs if log.get("level") in levels]
+            if len(messages) > 0:
+                export.log.warning("There were browser warnings and/or errors that may have affected your export")
+                for message in messages:
+                    export.log.warning(message)
+
+        export._log_console = _log_console
 
     # memorize the unpatched functions
     vanilla_bokeh_io_show = bokeh_io.show

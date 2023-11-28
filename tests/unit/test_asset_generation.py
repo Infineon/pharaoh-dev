@@ -175,10 +175,11 @@ def test_parallel_asset_generation(new_proj):
         workers=2,
     )
     fails = [ex for _, ex in results if ex is not None]
-    print(fails)
-    assert len(fails) == 2
     assert any("failing.py" in str(ex) for ex in fails)
     assert any("failing.ipynb" in str(ex) for ex in fails)
+    for fail in fails:
+        print(fail)
+    assert len(fails) == 2
 
     files = sorted(new_proj.asset_build_dir.glob("*"))
     assert len(sorted(new_proj.asset_build_dir.glob("*.assetinfo"))) == 18
