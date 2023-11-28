@@ -54,3 +54,5 @@ jobs:
           name: pytest-results-${{ matrix.os }}-${{ matrix.py }}
           path: |
             .tox/py${{ matrix.py }}/tmp/pytest
+            !/**/*.zip
+            !/**/_static
