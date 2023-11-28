@@ -5,6 +5,8 @@
 [![image](https://img.shields.io/pypi/l/pharaoh-report.svg)](https://pypi.python.org/pypi/pharaoh-report)
 [![image](https://github.com/Infineon/pharaoh-dev/actions/workflows/documentation.yml/badge.svg)](https://github.com/Infineon/pharaoh-dev/actions/workflows/documentation.yml)
 [![image](https://github.com/Infineon/pharaoh-dev/actions/workflows/matrix_tests.yml/badge.svg)](https://github.com/Infineon/pharaoh-dev/actions/workflows/matrix_tests.yml)
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/Infineon/pharaoh-dev/main.svg)](https://results.pre-commit.ci/latest/github/Infineon/pharaoh-dev/main)
+
 
 <img src="https://github.com/Infineon/pharaoh-dev/blob/main/docs/_static/icon.png" height="200">
 
