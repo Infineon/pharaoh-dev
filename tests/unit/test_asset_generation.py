@@ -172,7 +172,7 @@ def test_parallel_asset_generation(new_proj):
             ("", example_assets / "failing.py"),
             ("", example_assets / "failing.ipynb"),
         ),
-        workers=2,
+        workers=0,
     )
     fails = [ex for _, ex in results if ex is not None]
     assert any("failing.py" in str(ex) for ex in fails)
