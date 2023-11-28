@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 from pathlib import Path
-from subprocess import check_call
 
 from git import Commit, Head, Remote, Repo, TagReference
 from packaging.version import Version
@@ -19,7 +18,7 @@ def main(version_str: str) -> None:
         raise RuntimeError(msg)
     upstream, release_branch = create_release_branch(repo, version)
     try:
-        release_commit = release_changelog(repo, version)
+        release_commit = repo.head.commit
         tag = tag_release_commit(release_commit, repo, version)
         print("push release commit")
         repo.git.push(upstream.name, f"{release_branch}:main", "-f")
@@ -52,12 +51,6 @@ def get_upstream(repo: Repo) -> Remote:
             return remote
     msg = "could not find tox-dev/tox.git remote"
     raise RuntimeError(msg)
-
-
-def release_changelog(repo: Repo, version: Version) -> Commit:
-    print("generate release commit")
-    check_call(["towncrier", "build", "--yes", "--version", version.public], cwd=str(ROOT_SRC_DIR))
-    return repo.index.commit(f"release {version}", skip_hooks=True)
 
 
 def tag_release_commit(release_commit: Commit, repo: Repo, version: Version) -> TagReference:
