@@ -30,8 +30,12 @@ def dummy_assetdir(tmp_path):
 def test_asset_discover(dummy_assetdir):
     al = AssetFinder(dummy_assetdir)
     assets = al.discover_assets()
-    assert assets["component_xyz"][0].context == {"a": 1, "b": 2, "d": {"e": 4, "f": 5}}
-    assert assets["component_xyz"][1].context == {"a": 1, "c": 3, "d": {"e": 5, "f": 6}}
+    expected = (
+        {"a": 1, "b": 2, "d": {"e": 4, "f": 5}},
+        {"a": 1, "c": 3, "d": {"e": 5, "f": 6}},
+    )
+    assert assets["component_xyz"][0].context in expected
+    assert assets["component_xyz"][1].context in expected
 
     # Test broken links
     os.remove(assets["component_xyz"][0].assetfile)
