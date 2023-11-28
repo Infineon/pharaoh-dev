@@ -28,10 +28,10 @@ def test_parse_signature_holoviews_util_save(tmp_path):
     [
         ("", []),
         ("a", ["a"]),
-        ("a\;b", ["a\;b"]),
+        (r"a\;b", [r"a\;b"]),
         (" a\n ", ["a"]),
         ("a;b", ["a", "b"]),
-        ("a;b\nc\;d", ["a", "b c\;d"]),
+        ("a;b\nc\\;d", ["a", "b c\\;d"]),
         ("a; b \n   c ", ["a", "b c"]),
     ],
 )
