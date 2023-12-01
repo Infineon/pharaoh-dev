@@ -93,8 +93,8 @@ Let's have a look on how a component template directory may look like:
     .. code-block:: none
 
         📁 my_template
-        ├── 📄 index.rst.jinja             # reST file with templated content
-        ├── 📄 test_context.py.jinja       # Python file with templated content
+        ├── 📄 index.rst.jinja2            # reST file with templated content
+        ├── 📄 test_context.py.jinja2      # Python file with templated content
         ├── 📁 asset_scripts               # folder copied as-is
         │   └── 📄 default_plots.py        # file copied as-is
         └── 📁 [[foo]]                     # folder with a templated name
@@ -106,7 +106,7 @@ Let's have a look on how a component template directory may look like:
     -   ``📁 asset_scripts`` and ``📄 default_plots.py`` are copied as-is without modifications.
     -   ``📄 *.jinja``
 
-        The content of all files with suffix ``.jinja`` are rendered using Jinja.
+        The content of all files with suffix ``.jinja2`` are rendered using Jinja.
     -   ``📁 [[foo]]`` and ``📄 [[ bar ]]_script.py``
 
         File or directory names using ``[[ <context-variable> ]]`` are rendered using Jinja while copying.
@@ -135,7 +135,7 @@ render file- or folder name as well as file content.
     files (only reST) again before passing it to
     Sphinx using curly-braces for blocks ``{% %}`` and statements ``{{ }}``.
 
-    So imagine an extreme case of a file ``index.rst.jinja`` with following content::
+    So imagine an extreme case of a file ``index.rst.jinja2`` with following content::
 
         {{ h1("[[heading_prefix]]%s"|format(ctx.project.component_name)) }}
 

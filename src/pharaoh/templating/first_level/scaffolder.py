@@ -11,7 +11,7 @@ class Scaffolder:
         self.source_dir = source_dir
         self.target_dir = target_dir
         self.render_context = render_context or {}
-        self.template_suffix = ".jinja"
+        self.template_suffix = ".jinja2"
 
         self.env = Environment(
             autoescape=False,
