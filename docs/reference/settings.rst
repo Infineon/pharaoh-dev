@@ -130,4 +130,7 @@ but Pharaoh adds additional ones for your convenience:
 
     Usage: :code:`key: "${pharaoh.project_dir:}/somepath"` (note the trailing ``:``, without, it would be a reference).
 
-If you need additional resolvers or wish to implement your own, please get in contact with us.
+If you need additional resolvers just register them
+`like this <https://omegaconf.readthedocs.io/en/2.3_branch/custom_resolvers.html#custom-resolvers>`_.
+
+If you think others might benefit too, please add them to ``pharaoh.util.oc_resolvers`` and raise a PR.
