@@ -61,6 +61,7 @@ class Scaffolder:
                 The relative path to be rendered. Obviously, it can be templated.
         """
         is_template = relpath.name.endswith(self.template_suffix)
+        # If there is a sibling file in the same dir that is templated, skip the current file
         templated_sibling = self.source_dir / f"{relpath}{self.template_suffix}"
         # With an empty suffix, the templated sibling always exists.
         if templated_sibling.exists():
