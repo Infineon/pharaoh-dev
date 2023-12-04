@@ -20,3 +20,15 @@ repos:
         types: [text]
       - id: check-added-large-files
       - id: check-yaml
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.2.6
+    hooks:
+      - id: codespell
+        args: ["--ignore-words-list", "crate,releas", "--skip", "*.svg"]
+        additional_dependencies:
+          - tomli>=2.0.1
+  - repo: https://github.com/asottile/blacken-docs
+    rev: 1.16.0
+    hooks:
+      - id: blacken-docs
+        additional_dependencies: [ black==23.10.1 ]

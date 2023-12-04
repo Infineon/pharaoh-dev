@@ -58,11 +58,11 @@ class PharaohFileSystemLoader(jinja2.loaders.FileSystemLoader):
             finally:
                 f.close()
 
-            def uptodate() -> bool:
+            def up_to_date() -> bool:
                 return False
 
             # Use normpath to convert Windows altsep to sep.
-            return contents, os.path.normpath(filename), uptodate
+            return contents, os.path.normpath(filename), up_to_date
         raise jinja2.TemplateNotFound(template)
 
 

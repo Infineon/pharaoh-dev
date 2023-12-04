@@ -102,7 +102,7 @@ Let's have a look on how a component template directory may look like:
 
     -   ``📁 my_template``
 
-        The top-level directory. The name is arbitrary, it will be replaced by the name of the component during coyping.
+        The top-level directory. The name is arbitrary, it will be replaced by the name of the component during copying.
     -   ``📁 asset_scripts`` and ``📄 default_plots.py`` are copied as-is without modifications.
     -   ``📄 *.jinja``
 
@@ -292,7 +292,7 @@ Those lookup paths can be declared through:
 
         This is a list of absolute or relative (to conf.py parent directory) lookup paths for base templates.
 
-        Per default this is set to ``["user_templates"]``, which is an emtpy directory created by the default
+        Per default this is set to ``["user_templates"]``, which is an empty directory created by the default
         Pharaoh Sphinx project template.
 
         Base template inside those lookup paths can be referenced via their relative path to the lookup directory,

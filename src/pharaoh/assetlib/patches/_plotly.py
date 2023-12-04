@@ -38,7 +38,7 @@ if PLOTLY_AVAIL:
 
         The main goals:
             - retain original function call signature
-            - supress display of figures in GUI or browser
+            - suppress display of figures in GUI or browser
             - alter storage location of figures to the pharaoh build folder
             - deduplicate shared plot resources (js/css files)
             - convert all html plots into static image generation by the flick of a switch

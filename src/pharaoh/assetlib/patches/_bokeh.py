@@ -246,7 +246,7 @@ if BOKEH_AVAIL:
             raise Exception(msg)
 
         params["filename"] = str(file_path)
-        # Re-use get_env() and provide an already loaded template.
+        # Reuse get_env() and provide an already loaded template.
         # If a template is given as string, {% extends base %} will be prepended (base == file.html),
         # which will always add HTML tags to our output, but we JUST want the div to be able to embed later.
         params["template"] = get_env().from_string(

@@ -19,7 +19,7 @@ A component has following traits:
 
     Render Context
         An arbitrarily-nested dictionary that is available during generation-time templating.
-        This context enables the re-use of the templates for different purposes.
+        This context enables the reuse of the templates for different purposes.
 
     :ref:`reference/components:Resources`
         A list of resource definitions that let asset scripts easily access external data by using an alias instead of
@@ -59,7 +59,7 @@ Accessing resources in asset scripts can be done like this::
     ...
 
 
-To get a resource from a component or update a component's resource, use theses functions:
+To get a resource from a component or update a component's resource, use these functions:
 
     - :func:`PharaohProject.get_resource() <pharaoh.project.PharaohProject.get_resource>`
     - :func:`PharaohProject.update_resource() <pharaoh.project.PharaohProject.update_resource>`

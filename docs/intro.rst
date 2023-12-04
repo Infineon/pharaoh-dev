@@ -74,7 +74,7 @@ The standard Pharaoh workflow consists of following major steps:
 
     This is called **second-level templating** or **build-time templating** further on in the documentation.
 
-    Templates may inherit and extend existing or user-defined base-templates (for re-use purposes).
+    Templates may inherit and extend existing or user-defined base-templates (for reuse purposes).
 
     Templates may dynamically include other templates.
 

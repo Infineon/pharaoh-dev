@@ -27,7 +27,7 @@ if MPL_AVAIL:
 
         The main goals:
             - retain original function call signature
-            - supress display of figures in GUI or browser
+            - suppress display of figures in GUI or browser
             - alter storage location of figures to the pharaoh build folder
             - inject static image parameters via config file
         """

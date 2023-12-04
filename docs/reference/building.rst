@@ -44,7 +44,7 @@ A Pharaoh report may be built using the method :func:`PharaohProject.build_repor
 
 .. important::
     If your templates are accessing assets, make sure you call :func:`PharaohProject.generate_assets()
-    <pharaoh.project.PharaohProject.generate_assets>` everytime your asset scripts or resources changed.
+    <pharaoh.project.PharaohProject.generate_assets>` every time your asset scripts or resources changed.
 
 You can call the API within a Python script, as for example in the included ``report-project/debug.py`` script.
 

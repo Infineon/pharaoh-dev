@@ -366,7 +366,7 @@ class PharaohProject:
             create equally-named files, thus templates might overwrite files of the previous templates.
 
             This enables *template-composition*, where template designers can chunk their bigger templates into
-            smaller re-usable building blocks.
+            smaller reusable building blocks.
 
             If omitted, an empty default template is used.
 
