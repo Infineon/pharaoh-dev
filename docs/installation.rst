@@ -53,7 +53,7 @@ You can find more information about `virtual environments here
 Install
 -------
 
-After the virtual environment has been created, activate it and install ifx-pharaoh via pip::
+After the virtual environment has been created, activate it and install it via pip::
 
     pip install pharaoh-report[<extras>]
 

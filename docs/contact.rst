@@ -5,13 +5,14 @@ Contact
 Help!
 -----
 
-todo
+If you need help, please start a `discussion on GitHub <https://github.com/Infineon/pharaoh-dev/discussions>`_.
 
 
 Bug reports
 -----------
 
-If you think you found a bug, please provide following information when contacting us:
+If you think you found a bug, please provide following information when creating an
+`issue on GitHub <https://github.com/Infineon/pharaoh-dev/issues>`_:
 
     -   Your operating system name and version
     -   Infos about your Pharaoh installation:
