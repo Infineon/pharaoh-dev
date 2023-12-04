@@ -19,7 +19,7 @@ import pharaoh
 import pharaoh.project
 from pharaoh.templating.second_level.util import asset_rel_path_from_build, asset_rel_path_from_project
 
-from .asset_ext_templates import render_template
+from .asset_tmpl import render_asset_template
 
 if TYPE_CHECKING:
     from pharaoh.sphinx_app import PharaohSphinx
@@ -165,7 +165,7 @@ class PharaohAssetDirective(Directive):
             )
             logger.warning(textwrap.indent(msg, " " * 4))
 
-            error = render_template(
+            error = render_asset_template(
                 jinja_env=sphinx_app.pharaoh_te,
                 template="error",
                 error=repr(e),
@@ -272,7 +272,7 @@ class PharaohAssetDirective(Directive):
 
             logger.verbose(f"Rendering {asset} with template {template!r}")
 
-            content = render_template(
+            content = render_asset_template(
                 jinja_env=sphinx_app.pharaoh_te,
                 template=template,
                 opts=template_opts,
@@ -282,7 +282,7 @@ class PharaohAssetDirective(Directive):
                 asset_rel_path_from_build=partial(asset_rel_path_from_build, sphinx_app, Path(template_file)),
             )
 
-            result = render_template(
+            result = render_asset_template(
                 jinja_env=sphinx_app.pharaoh_te,
                 template="include_wrapper",
                 asset=asset,

@@ -64,6 +64,7 @@ dependencies = [
     "jinja2-git",
     "jinja2-ansible-filters",
     "numpy<2.0", # transitive dependency only # todo: remove this requirement once compatibility with 2.x is tested
+    "wrapt",
 ]
 
 [project.optional-dependencies]

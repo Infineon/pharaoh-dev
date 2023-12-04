@@ -45,13 +45,14 @@ def parse_obj(ctx, param, value):
 
 def parse_resources(ctx, param, value):
     from pharaoh.assetlib import resource
+    from pharaoh.plugins.plugin_manager import PM
 
     if not value:
         return []
     if not isinstance(value, (list, tuple)):
         value = [value]
 
-    eval_context = resource.collect_resources()
+    eval_context = PM.pharaoh_collect_resource_types()
     resources = []
     for descriptor in value:
         rsrc = eval(descriptor, {}, eval_context)

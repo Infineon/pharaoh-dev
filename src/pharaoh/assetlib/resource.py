@@ -27,12 +27,14 @@ class Resource:
 
     @staticmethod
     def from_dict(definition: dict | omegaconf.DictConfig) -> Resource:
+        from pharaoh.plugins.plugin_manager import PM
+
         if isinstance(definition, omegaconf.DictConfig):
             definition = omegaconf.OmegaConf.to_container(definition, resolve=True)
         else:
             definition = copy.deepcopy(definition)
         resource_class = definition.pop("__class__")
-        registry = collect_resources()
+        registry = PM.pharaoh_collect_resource_types()
         if resource_class not in registry:
             msg = (
                 f"No such resource type {resource_class!r} from definition of resource {definition}. "
@@ -45,18 +47,6 @@ class Resource:
         dikt = dict(**attrs.asdict(self, filter=lambda attr, value: not attr.name.startswith("_")))
         dikt["__class__"] = self.__class__.__name__
         return dikt
-
-
-_collected_resources_cache = None
-
-
-def collect_resources() -> dict[str, type[Resource]]:
-    global _collected_resources_cache  # noqa: PLW0603
-    if _collected_resources_cache is None:
-        from pharaoh.plugins.plugin_manager import PM
-
-        _collected_resources_cache = {type_.__name__: type_ for type_ in PM.pharaoh_collect_resource_types()}
-    return _collected_resources_cache
 
 
 @attrs.define

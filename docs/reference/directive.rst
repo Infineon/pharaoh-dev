@@ -171,15 +171,11 @@ There are 2 options how to specify the used template:
 
         As fallback, if ``template`` is not specified, a default template is chosen depending on the asset's file suffix:
 
-        - ``".html"``: **iframe**
-        - ``".rst"``: **raw_rst**
-        - ``".txt"``: **raw_txt**
-        - ``".svg"``: **image**
-        - ``".png"``: **image**
-        - ``".jpg"``: **image**
-        - ``".jpeg"``: **image**
-        - ``".gif"``: **image**
-        - ``".md"``: **markdown**
+        .. jinja:: default
+
+            {% for suffix, template_name in default_asset_template_mapping.items() %}
+            - ``"{{ suffix }}"``: **{{ template_name }}**
+            {% endfor %}
 
     -   Via the ``:template:`` option of the Pharaoh asset directive (has priority over setting in metadata).
 

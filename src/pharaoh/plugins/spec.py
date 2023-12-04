@@ -24,6 +24,17 @@ if TYPE_CHECKING:
 def pharaoh_collect_l1_templates() -> list[L1Template]:
     """
     Collects all first-level templates.
+
+    Example::
+
+        @impl
+        def pharaoh_collect_l1_templates():
+            return [
+                L1Template(
+                    name="myorg.default_project",
+                    path=Path(__file__).parent / "templates" / "level_1" / "default_project",
+                ),
+            ]
     """
 
 
@@ -37,7 +48,16 @@ def pharaoh_collect_l2_templates() -> list[PathLike]:
 @_spec
 def pharaoh_collect_resource_types() -> list[type[Resource]]:
     """
-    Collects resource types
+    Allows registering custom resource types.
+
+    Example::
+
+        @impl
+        def pharaoh_collect_resource_types():
+            from .resources import RemoteResource
+
+            return [RemoteResource]
+
     """
 
 
@@ -55,6 +75,20 @@ def pharaoh_asset_gen_prepare_resources(project: PharaohProject, resources: dict
     """
     This hook is called before asset generation for each component that is selected.
 
+    Example::
+
+        @impl
+        def pharaoh_asset_gen_prepare_resources(project: PharaohProject, resources: dict[str, Resource]):
+            from .resources import RemoteResource
+
+            # Transform resources
+            for r in resources.values():
+                if isinstance(r, RemoteResource):
+                    r.download(
+                        url=project.get_setting("cloud.url"),
+                        auth_credentials=project.get_setting("cloud.auth_credentials", to_container=True) or None,
+                    )
+
     :param project: The Pharaoh project instance
     :param resources: A mapping of all resources that are defined for the current component.
     """
@@ -66,6 +100,13 @@ def pharaoh_configure_sphinx(project: PharaohProject, config: dict[str, Any], co
     This hook is called at the end of :func:`pharaoh.project.PharaohProject.get_default_sphinx_configuration`
     when Sphinx is reading the ``conf.py`` file.
     It can update the default Sphinx configuration in-place.
+
+    Example::
+
+        @impl
+        def pharaoh_configure_sphinx(project: PharaohProject, config: dict, confdir: Path):
+            config["extensions"].append("sphinxcontrib.confluencebuilder")
+            config["html_style"] = "sphinx_rtd_theme_overrides.css"
 
     :param project: The Pharaoh project instance
     :param config: The default Sphinx config defined by Pharaoh.
@@ -81,6 +122,12 @@ def pharaoh_collect_default_settings() -> Path | dict:
     The collected results are loaded into ``omegaconf.dictconfig.DictConfig`` instances
     and merged in the same order as they are collected (first discovered may get overwritten,
     last discovered always wins).
+
+    Example::
+
+        @impl
+        def pharaoh_collect_default_settings():
+            return Path(__file__).with_name("my_own_setting.yaml")
 
     :return: A path to a YAML file or a dictionary
     """
@@ -107,7 +154,7 @@ def pharaoh_add_cli_commands(cli: click.Group):
 @_spec
 def pharaoh_build_started(project: PharaohProject, builder: str):
     """
-    This hook is when a Sphinx build is started.
+    This hook is called before a Sphinx build is started.
 
     :param project: The Pharaoh project instance
     :param builder: The name of the configured builder
@@ -142,4 +189,34 @@ def pharaoh_project_created(project: PharaohProject):
     This hook is called whenever a Pharaoh report has been generated
 
     :param project: The Pharaoh project instance
+    """
+
+
+@_spec
+def pharaoh_find_asset_render_template(template_name: str) -> str | Path:
+    """
+    This hook is called when an asset template is looked up by name and can customize the search behavior.
+    Per default the templates in package ``pharaoh.templating.second_level.sphinx_ext.asset_ext_templates`` are used.
+
+    This template is used to include an asset into a Sphinx document, e.g. the template for a picture asset
+    may be called ``image.rst.jinja2`` and would be using the ``image`` directive to embed it.
+    If found, the path to the template is returned.
+
+    .. seealso:: :ref:`reference/directive:Asset Templates`
+
+    .. note:: The template's file name should end with ``.jinja2``.
+
+    :param template_name: The name of the template
+    """
+
+
+@_spec
+def pharaoh_get_asset_render_template_mappings() -> dict[str, str]:
+    """
+    This hook maps file extensions of assets to names of templates (see hook ``pharaoh_find_asset_render_template``)
+    that are used to embed the asset into the Sphinx document.
+    The file extension is only taken into account if no ``template`` metadata key is present in the asset's metadata.
+
+    Pharaoh provides a default mapping (see :ref:`reference/directive:Asset Templates`) which may be updated by this
+    hook.
     """

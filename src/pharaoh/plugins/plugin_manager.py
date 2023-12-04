@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
 import pluggy
+import wrapt
 
 import pharaoh.plugins.core_plugin.plugin
 from pharaoh.plugins import NAME, spec
@@ -20,6 +21,26 @@ if TYPE_CHECKING:
 
     from pharaoh.api import PharaohProject, Resource
     from pharaoh.plugins.template import L1Template
+
+
+_plugin_result_cache: dict[str, dict] = {}
+
+
+@wrapt.decorator
+def cached(wrapped, instance, args, kwargs):
+    func = wrapped.__name__
+    key = (args, tuple(kwargs))
+    try:
+        return _plugin_result_cache[func][key]
+    except KeyError:
+        result = wrapped(*args, **kwargs)
+        _plugin_result_cache.setdefault(func, {})
+        _plugin_result_cache[func][key] = result
+        return result
+
+
+def clear_cache():
+    _plugin_result_cache.clear()
 
 
 class PharaohPluginManager:
@@ -46,6 +67,8 @@ class PharaohPluginManager:
         for name, plugin in self.pm.list_name_plugin():
             self.pm.unregister(plugin, name)
 
+        clear_cache()
+
         self.pm.load_setuptools_entrypoints(NAME)
         for name, plugin in self._discover_plugin_modules():
             self.pm.register(plugin, name=name)
@@ -66,9 +89,11 @@ class PharaohPluginManager:
         for _, plugin in plugins:
             if plugin is not None:
                 self.pm.unregister(plugin)
+        clear_cache()
         try:
             yield
         finally:
+            clear_cache()
             for name, plugin in plugins:
                 if plugin is not None:
                     self.pm.register(plugin, name)
@@ -105,17 +130,21 @@ class PharaohPluginManager:
 
             yield None, plugin_module
 
+    @cached
     def pharaoh_collect_l1_templates(self) -> dict[str, L1Template]:
         """
         Returns a mapping of first-level templates
         """
         return {t.name: t for templates in self.pm.hook.pharaoh_collect_l1_templates() for t in templates}
 
+    @cached
     def pharaoh_collect_l2_templates(self) -> list[Path]:
         return [path for paths in self.pm.hook.pharaoh_collect_l2_templates() for path in paths]
 
-    def pharaoh_collect_resource_types(self) -> list[type[Resource]]:
-        return [resource for resources in self.pm.hook.pharaoh_collect_resource_types() for resource in resources]
+    @cached
+    def pharaoh_collect_resource_types(self) -> dict[str, type[Resource]]:
+        resources = [resource for resources in self.pm.hook.pharaoh_collect_resource_types() for resource in resources]
+        return {type_.__name__: type_ for type_ in resources}
 
     def pharaoh_asset_gen_prepare_resources(self, project: PharaohProject, resources: dict[str, Resource]):
         return self.pm.hook.pharaoh_asset_gen_prepare_resources(project=project, resources=resources)
@@ -143,6 +172,18 @@ class PharaohPluginManager:
 
     def pharaoh_build_started(self, project: PharaohProject, builder: str):
         return self.pm.hook.pharaoh_build_started(project=project, builder=builder)
+
+    @cached
+    def pharaoh_find_asset_render_template(self, template_name: str) -> list[Path]:
+        templates = self.pm.hook.pharaoh_find_asset_render_template(template_name=template_name)
+        return list({Path(t) for t in templates})
+
+    @cached
+    def pharaoh_get_asset_render_template_mappings(self) -> dict[str, str]:
+        mapping = {}
+        for m in self.pm.hook.pharaoh_get_asset_render_template_mappings():
+            mapping.update(m)
+        return mapping
 
 
 PM = PharaohPluginManager()

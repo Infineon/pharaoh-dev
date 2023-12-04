@@ -3,8 +3,9 @@ import os
 
 import sphinx
 
-from pharaoh.assetlib.resource import collect_resources
 from pharaoh.cli import cli
+from pharaoh.plugins.core_plugin.plugin import DEFAULT_ASSET_TEMPLATE_MAPPING
+from pharaoh.plugins.plugin_manager import PM
 from pharaoh.templating.second_level import env_filters, env_globals, env_tests
 from pharaoh.version import __version__
 
@@ -110,11 +111,12 @@ autosectionlabel_maxdepth = None  # 1,2,3
 jinja_contexts = {}
 jinja_contexts["default"] = {
     # Filter out resources provided by plugins
-    "resources": {k: v for k, v in collect_resources().items() if v.__module__.startswith("pharaoh.")},
+    "resources": {k: v for k, v in PM.pharaoh_collect_resource_types().items() if v.__module__.startswith("pharaoh.")},
     "env_filters": env_filters,
     "env_globals": env_globals,
     "env_tests": env_tests,
     "cli_commands": list(cli.commands.keys()),
+    "default_asset_template_mapping": DEFAULT_ASSET_TEMPLATE_MAPPING,
 }
 assert len(jinja_contexts["default"]["cli_commands"]) > 0
 

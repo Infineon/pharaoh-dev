@@ -5,7 +5,7 @@ from unittest import mock
 import attrs
 import pytest
 
-from pharaoh.plugins.plugin_manager import PharaohPluginManager
+from pharaoh.plugins.plugin_manager import PharaohPluginManager, clear_cache
 from pharaoh.plugins.template import ContextVar, L1Template
 
 
@@ -27,8 +27,13 @@ def test_l1template_model():
 # PHARAOH_PLUGINS set in conftest.py
 @mock.patch.dict(os.environ, {"PHARAOH_PLUGINS": ""})
 def test_plugin_discovery():
-    pm = PharaohPluginManager()
-    l1 = pm.pharaoh_collect_l1_templates()
+    try:
+        pm = PharaohPluginManager()
+        l1 = pm.pharaoh_collect_l1_templates()
 
-    assert "pharaoh.default_project" in l1
-    assert "pharaoh_testing.test_project" not in l1
+        assert "pharaoh.default_project" in l1
+        assert "pharaoh_testing.test_project" not in l1
+    finally:
+        # Instantiating the plugin manager a second time will overwrite the caches of the global singleton, so
+        # we have to reset the cache here so following tests are working with the singleton plugin manager instance.
+        clear_cache()

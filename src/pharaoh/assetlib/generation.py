@@ -20,7 +20,7 @@ from pharaoh import project
 from pharaoh.assetlib import patches
 from pharaoh.assetlib.context import context_stack
 from pharaoh.assetlib.finder import Asset
-from pharaoh.templating.second_level.sphinx_ext.asset_ext_templates import find_template
+from pharaoh.templating.second_level.sphinx_ext.asset_tmpl import find_asset_template
 from pharaoh.util.contextlib_chdir import chdir
 from pharaoh.util.json_encoder import CustomJSONEncoder
 
@@ -272,20 +272,12 @@ def register_asset(
     file = Path(file)
     if not template:
         suffix = file.suffix.lower()
-        template = {
-            ".html": "iframe",  # todo: use raw_html if this is not a full HTML file, iframe otherwise
-            ".rst": "raw_rst",
-            ".txt": "raw_txt",
-            ".svg": "image",
-            ".png": "image",
-            ".jpg": "image",
-            ".jpeg": "image",
-            ".gif": "image",
-            ".md": "markdown",
-        }.get(suffix)
+        from pharaoh.plugins.plugin_manager import PM
+
+        template = PM.pharaoh_get_asset_render_template_mappings().get(suffix)
 
     if template is not None:
-        find_template(template)  # will fail if template does not exist
+        find_asset_template(template)  # will fail if template does not exist
 
     if template in ("iframe",):
         copy2build = True
