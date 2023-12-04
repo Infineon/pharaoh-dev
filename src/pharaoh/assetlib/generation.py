@@ -216,7 +216,7 @@ def module_from_file(path: str | Path) -> ModuleType:
     module_name = f"asset_module_{module_path.stem.replace(' ', '_').replace('-', '_')}"
     module = ModuleType(module_name)
     module.__dict__["__file__"] = str(module_path.absolute())
-    module.__path__ = [module_path.parent]
+    module.__path__ = [str(module_path.parent)]
     module.__dict__["__name__"] = "__main__"
     module.__dict__["__module_name__"] = module_name
 
@@ -242,7 +242,7 @@ def register_asset(
     data: io.BytesIO | None = None,
     copy2build: bool = False,
     **kwargs,
-) -> Asset:
+) -> Asset | None:
     """
     Register an asset manually. The file will be copied (if data is None and 'file' is a real file) or
     written (if data is given) to the asset build folder of the current Pharaoh project.

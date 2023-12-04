@@ -149,7 +149,7 @@ def new(
     if settings:
         kwargs["custom_settings"] = settings
 
-    p = PharaohProject(**kwargs)
+    p = PharaohProject(**kwargs)  # type: ignore[arg-type]
     p.save_settings(include_env=True)
     ctx.obj["project"] = p
 

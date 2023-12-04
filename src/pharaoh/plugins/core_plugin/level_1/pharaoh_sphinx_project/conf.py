@@ -8,6 +8,7 @@ https://www.sphinx-doc.org/en/master/usage/configuration.html
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any, Callable
 
 from pharaoh.api import PharaohProject
 
@@ -28,15 +29,15 @@ pharaoh_jinja_templates = ["user_templates"]
 
 # The default user context that may be used in all templates by accessing via {{ ctx.user.XYZ }}
 # E.g. pharaoh_jinja_context = dict(a=1, b=dict(c=2))  -->  {{ ctx.user.a }} or {{ ctx.user.b.c }}
-pharaoh_jinja_context = {}
+pharaoh_jinja_context: dict[str, Any] = {}
 
 # Add your custom Jinja filters here. Maps filter names to filter functions.
 # See https://jinja.palletsprojects.com/en/3.1.x/templates/#filters
-pharaoh_jinja_filters = {}
+pharaoh_jinja_filters: dict[str, Callable] = {}
 
 # Add your custom Jinja globals here. Maps global names to global functions.
-pharaoh_jinja_globals = {}
+pharaoh_jinja_globals: dict[str, Callable] = {}
 
 # Add your custom Jinja tests here. Maps test names to test functions.
 # See https://jinja.palletsprojects.com/en/3.1.x/templates/#tests
-pharaoh_jinja_tests = {}
+pharaoh_jinja_tests: dict[str, Callable] = {}

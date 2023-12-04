@@ -36,13 +36,12 @@ class Asset:
         assert info_file.suffix == ".assetinfo"
         self.id: str = "__ID__" + hashlib.md5(bytes(info_file.name, "utf-8")).hexdigest()
         self.infofile: Path = info_file
-        self.assetfile: Path | None = None
         self.context = omegaconf.OmegaConf.create(json.loads(self.infofile.read_text()))
         for file in self.infofile.parent.glob(f"{self.infofile.stem}*"):
             if file.suffix != ".assetinfo":
-                self.assetfile = file
+                self.assetfile: Path = file
                 break
-        if self.assetfile is None:
+        else:
             msg = f"There is no asset for inventory file {self.infofile}!"
             raise AssetFileLinkBrokenError(msg)
 
@@ -52,14 +51,18 @@ class Asset:
     def __repr__(self):
         return f"Asset[{self.infofile.stem}]"
 
-    def __eq__(self, other: Asset):
-        return self.id == other.id and self.infofile == other.infofile and self.assetfile == other.assetfile
+    def __eq__(self, other):
+        if isinstance(other, Asset):
+            return self.id == other.id and self.infofile == other.infofile and self.assetfile == other.assetfile
+        raise NotImplementedError
 
     def __hash__(self):
         return hash(self.infofile.name)
 
-    def __lt__(self, other: Asset):
-        return self.infofile < other.infofile
+    def __lt__(self, other):
+        if isinstance(other, Asset):
+            return self.infofile < other.infofile
+        raise NotImplementedError
 
     def copy_to(self, target_dir: Path) -> Path:
         """

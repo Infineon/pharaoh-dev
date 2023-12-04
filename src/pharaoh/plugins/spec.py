@@ -1,3 +1,4 @@
+# mypy: disable-error-code="empty-body"
 from __future__ import annotations
 
 from pathlib import Path

@@ -33,9 +33,9 @@ class PharaohDirectiveError(Exception):
 
 def setup(app: PharaohSphinx):
     app.pharaoh_proj = pharaoh.project.PharaohProject(os.path.dirname(app.confdir))
-    setup.app = app
-    setup.config = app.config
-    setup.confdir = app.confdir
+    setup.app = app  # type: ignore[attr-defined]
+    setup.config = app.config  # type: ignore[attr-defined]
+    setup.confdir = app.confdir  # type: ignore[attr-defined]
     app.add_directive("pharaoh-asset", PharaohAssetDirective)
     app.add_directive("pharao-asset", PharaohAssetDirective)
 
@@ -47,7 +47,7 @@ def setup(app: PharaohSphinx):
 
 
 def get_app() -> PharaohSphinx:
-    return setup.app
+    return setup.app  # type: ignore[attr-defined]
 
 
 INFO_TEMPLATE = """
@@ -121,7 +121,7 @@ class PharaohAssetDirective(Directive):
         "template": directives.unchanged,
     }
 
-    def run(self):
+    def run(self) -> list:
         """Run the plot directive."""
         sphinx_app: PharaohSphinx = get_app()
         rst_file = self.state_machine.document.attributes["source"]
@@ -165,6 +165,7 @@ class PharaohAssetDirective(Directive):
             )
             logger.warning(textwrap.indent(msg, " " * 4))
 
+            assert sphinx_app.pharaoh_te is not None
             error = render_asset_template(
                 jinja_env=sphinx_app.pharaoh_te,
                 template="error",
@@ -178,7 +179,7 @@ class PharaohAssetDirective(Directive):
             )
             return []
 
-    def _run(self):
+    def _run(self) -> list:
         arguments = self.arguments
         content = self.content
         state_machine = self.state_machine
@@ -186,7 +187,8 @@ class PharaohAssetDirective(Directive):
         options = self.options
         options = {k.replace("-", "_"): v for k, v in options.items()}
 
-        sphinx_app: PharaohSphinx = setup.app
+        sphinx_app: PharaohSphinx = setup.app  # type: ignore
+        assert sphinx_app.pharaoh_proj is not None
         pharaoh_proj: pharaoh.project.PharaohProject = sphinx_app.pharaoh_proj
         asset_finder = pharaoh_proj.asset_finder
 
@@ -232,7 +234,7 @@ class PharaohAssetDirective(Directive):
 
         # Parse index. Following style is possible: 1,2,4-8,9. Whitespace is ignored.
         index = str(options.pop("index", "")).replace(" ", "")
-        indices = []
+        indices: list[int] = []
         if index:
             for part in index.split(","):
                 if "-" in part:
@@ -272,6 +274,7 @@ class PharaohAssetDirective(Directive):
 
             logger.verbose(f"Rendering {asset} with template {template!r}")
 
+            assert sphinx_app.pharaoh_te is not None
             content = render_asset_template(
                 jinja_env=sphinx_app.pharaoh_te,
                 template=template,

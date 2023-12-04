@@ -113,7 +113,7 @@ env_globals = {
 }
 # Shortcuts for headings
 for i in range(1, 8):
-    env_globals[f"h{i}"] = partial(heading, level=i)
+    env_globals[f"h{i}"] = partial(heading, level=i)  # type: ignore[assignment]
 
 
 # Only document the functions defined in here

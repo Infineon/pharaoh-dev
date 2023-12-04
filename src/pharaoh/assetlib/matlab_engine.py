@@ -48,7 +48,7 @@ class Matlab:
 
     """
 
-    def __init__(self, start_options="-nodesktop"):
+    def __init__(self, start_options: str = "-nodesktop"):
         """
         Matlab engine for Pharaoh asset generation.
 
@@ -155,9 +155,7 @@ class Matlab:
             result = getattr(self.eng, function_name)(
                 *(args or []), background=False, nargout=max(0, int(nargout)), stdout=out, stderr=err
             )
-            out = out.getvalue()
-            err = err.getvalue()
-            return result, out, err
+            return result, out.getvalue(), err.getvalue()
         except Exception as e:
             log.error(f"Execution of Matlab function/script {function_name!r} failed: {e}", exc_info=True)
             raise

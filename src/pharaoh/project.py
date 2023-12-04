@@ -813,7 +813,7 @@ class PharaohProject:
                 confdir = sourcedir
                 outputdir = str(self.sphinx_report_build)
                 doctreedir = f"{outputdir}\\.doctrees"
-                confoverrides = {}
+                confoverrides: dict | None = {}
                 status = pharaoh.log.SphinxLogRedirector(logging.DEBUG)
                 warning = pharaoh.log.SphinxLogRedirector(logging.WARNING)
                 freshenv = True
@@ -891,7 +891,7 @@ class PharaohProject:
         if not self.sphinx_report_build.exists():
             msg = "Pharaoh report not built yet!"
             raise Exception(msg)
-        dest = Path(self.get_setting("report.archive_name")) if dest is None else Path(dest)
+        dest = Path(self.get_setting("report.archive_name") if dest is None else dest)
 
         if not dest.is_absolute():
             dest = (self.project_root / dest).absolute()
@@ -1016,7 +1016,7 @@ class PharaohProject:
                 )
                 raise TypeError(msg)
 
-        return functools.reduce(omegaconf.OmegaConf.unsafe_merge, loaded)
+        return functools.reduce(omegaconf.OmegaConf.unsafe_merge, loaded)  # type: ignore[return-value]
 
     def _update_template_env(self, env: jinja2.Environment):
         """
@@ -1067,7 +1067,7 @@ class Component:
 
     @staticmethod
     def from_dictconfig(cfg: omegaconf.DictConfig):
-        return Component(**omegaconf.OmegaConf.to_container(cfg, resolve=False))
+        return Component(**omegaconf.OmegaConf.to_container(cfg, resolve=False))  # type: ignore[arg-type]
 
 
 if __name__ == "__main__":

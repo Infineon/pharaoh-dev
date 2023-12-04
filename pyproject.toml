@@ -219,3 +219,18 @@ isort = {known-first-party = ["pharaoh", "tests"], required-imports = ["from __f
 # Whether to ban all relative imports ("all"),
 # or only those imports that extend into the parent module or beyond ("parents").
 ban-relative-imports = "parents"
+
+
+[tool.mypy]
+python_version = "3.11"
+show_error_codes = true
+ignore_missing_imports = true
+allow_untyped_defs = true
+allow_incomplete_defs = true
+allow_untyped_calls = true
+disable_error_code = [
+    "import-untyped",
+    "no-redef",
+    "union-attr",
+    "attr-defined",
+]

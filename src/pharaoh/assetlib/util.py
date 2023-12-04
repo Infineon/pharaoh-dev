@@ -98,7 +98,7 @@ def obj_groupby(
     :param default: If "key" is not an existing attribute, sort the items into this default group.
     :return: A dictionary that maps the group names (values of A.B.C) to a list of items out of the input iterable
     """
-    d = collections.defaultdict(lambda: [].append)
+    d: dict = collections.defaultdict(lambda: [].append)
     for item in seq:
         accessed_item = item
         if isinstance(attr, str):

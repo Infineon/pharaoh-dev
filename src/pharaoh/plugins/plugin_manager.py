@@ -152,7 +152,7 @@ class PharaohPluginManager:
     def pharaoh_configure_sphinx(self, project: PharaohProject, config: dict[str, Any], confdir: Path):
         return self.pm.hook.pharaoh_configure_sphinx(project=project, config=config, confdir=confdir)
 
-    def pharaoh_collect_default_settings(self) -> Path | dict:
+    def pharaoh_collect_default_settings(self) -> list[Path | dict]:
         return self.pm.hook.pharaoh_collect_default_settings()
 
     def pharaoh_add_cli_commands(self, cli: click.Group):
