@@ -1,4 +1,6 @@
-from pharaoh.cli import app
+from __future__ import annotations
+
+from pharaoh.cli import cli
 
 if __name__ == "__main__":
-    app()
+    cli(prog_name="pharaoh")

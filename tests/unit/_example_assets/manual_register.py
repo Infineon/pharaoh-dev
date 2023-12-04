@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import io
 
 from pharaoh.assetlib.api import get_asset_finder, register_asset

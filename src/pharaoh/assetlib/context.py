@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import copy
 from contextlib import AbstractContextManager
 from functools import partial, reduce
@@ -11,7 +13,7 @@ PathLike = Union[str, Path]
 
 
 class MetadataContext(AbstractContextManager):
-    def __init__(self, stack: "MetadataContextStack", context_name: str = "", **context):
+    def __init__(self, stack: MetadataContextStack, context_name: str = "", **context):
         self._stack = stack
         self._context = context
         self._context_name = context_name

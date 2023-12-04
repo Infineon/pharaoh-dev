@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from contextlib import ExitStack, contextmanager
 
 from pharaoh.assetlib.patches import _bokeh, _holoviews, _matplotlib, _pandas, _panel, _plotly

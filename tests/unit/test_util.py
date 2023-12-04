@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import pytest
 
 from pharaoh.assetlib.util import parse_signature

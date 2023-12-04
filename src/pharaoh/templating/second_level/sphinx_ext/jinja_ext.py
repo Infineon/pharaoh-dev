@@ -1,5 +1,11 @@
-from pharaoh.sphinx_app import PharaohSphinx
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 from pharaoh.templating.second_level.template_env import PharaohTemplateEnv
+
+if TYPE_CHECKING:
+    from pharaoh.sphinx_app import PharaohSphinx
 
 
 def setup(app: PharaohSphinx):

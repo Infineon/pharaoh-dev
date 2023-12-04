@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import io
 import platform
 from contextlib import contextmanager

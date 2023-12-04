@@ -1,4 +1,8 @@
-env_tests = {}
+from __future__ import annotations
+
+from typing import Callable
+
+env_tests: dict[str, Callable] = {}
 
 
 # Only document the functions defined in here

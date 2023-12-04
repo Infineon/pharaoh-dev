@@ -1,6 +1,10 @@
-from pathlib import Path
+from __future__ import annotations
 
-from pharaoh.templating.second_level.template_env import PharaohTemplateEnv
+from pathlib import Path
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from pharaoh.templating.second_level.template_env import PharaohTemplateEnv
 
 
 def find_asset_template(template_name: str) -> Path:

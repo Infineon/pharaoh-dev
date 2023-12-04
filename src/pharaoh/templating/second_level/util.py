@@ -1,9 +1,13 @@
+from __future__ import annotations
+
 import os
 from pathlib import Path
+from typing import TYPE_CHECKING
 
-from pharaoh.assetlib.finder import Asset
-from pharaoh.project import PharaohProject
-from pharaoh.sphinx_app import PharaohSphinx
+if TYPE_CHECKING:
+    from pharaoh.assetlib.finder import Asset
+    from pharaoh.project import PharaohProject
+    from pharaoh.sphinx_app import PharaohSphinx
 
 
 def asset_rel_path_from_build(sphinx_app: PharaohSphinx, template_file: Path, asset: Asset):

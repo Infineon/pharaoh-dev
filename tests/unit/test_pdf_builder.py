@@ -1,3 +1,6 @@
+from __future__ import annotations
+
+
 def test_pdf_builder(new_proj):
     new_proj._project_settings.asset_gen.force_static = True
     new_proj._project_settings.report.title = "Pharaoh PDF Report"

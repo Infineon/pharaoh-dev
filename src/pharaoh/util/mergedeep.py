@@ -1,3 +1,6 @@
+from __future__ import annotations
+
+
 def merge(a, b, safe=True, path=None):
     """
     Merges dict b into dict a.

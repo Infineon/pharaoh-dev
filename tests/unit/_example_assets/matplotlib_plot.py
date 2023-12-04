@@ -1,5 +1,5 @@
 # source: https://matplotlib.org/stable/gallery/lines_bars_and_markers/cohere.html#sphx-glr-gallery-lines-bars-and-markers-cohere-py
-
+from __future__ import annotations
 
 import matplotlib.pyplot as plt
 import numpy as np

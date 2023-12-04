@@ -1,12 +1,17 @@
+from __future__ import annotations
+
 import json
 import os
-from pathlib import Path
+from typing import TYPE_CHECKING
 
 import omegaconf
 import pytest
 
 from pharaoh.assetlib.finder import Asset, AssetFileLinkBrokenError, AssetFinder, obj_groupby
 from pharaoh.templating.second_level.env_filters import oc_get
+
+if TYPE_CHECKING:
+    from pathlib import Path
 
 
 def create_asset(basedir: Path, name: str, **context) -> Asset:

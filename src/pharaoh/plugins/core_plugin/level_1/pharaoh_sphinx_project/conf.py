@@ -5,6 +5,7 @@ This file only contains a selection of the most common options. For a full
 list see the documentation:
 https://www.sphinx-doc.org/en/master/usage/configuration.html
 """
+from __future__ import annotations
 
 from pathlib import Path
 
@@ -12,7 +13,7 @@ from pharaoh.api import PharaohProject
 
 THISDIR = Path(__file__).parent
 proj = PharaohProject(project_root=THISDIR.parent)
-extensions = []
+extensions: list[str] = []
 
 # Dynamic updates of local Sphinx configuration with defaults from Pharaoh project.
 locals().update(proj.get_default_sphinx_configuration(THISDIR))

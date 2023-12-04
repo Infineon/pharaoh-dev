@@ -1,12 +1,18 @@
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 import omegaconf
 import pytest
 from attr import asdict, astuple
-from pytest_mock import MockFixture
 
 import pharaoh.errors
 import pharaoh.log
 import pharaoh.project as pharaoh_proj
 from pharaoh.project import Component
+
+if TYPE_CHECKING:
+    from pytest_mock import MockFixture
 
 
 def test_get_app(tmp_path):

@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from bokeh.io import export_png, export_svg, save, show
 from bokeh.plotting import figure
 from bokeh.sampledata.iris import flowers

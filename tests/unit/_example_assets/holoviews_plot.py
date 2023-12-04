@@ -1,4 +1,5 @@
 # source: https://holoviews.org/reference/elements/plotly/HeatMap.html
+from __future__ import annotations
 
 import holoviews as hv
 

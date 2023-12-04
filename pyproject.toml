@@ -170,7 +170,7 @@ preview = false
 select = [
     "E",  # pycodestyle errors
     "F",  # pyflakes
-    "I001",   # isort
+    "I",   # isort
     "UP",  # pyupgrade
     "B",  # bugbear
     "C4",  # flake8-comprehensions

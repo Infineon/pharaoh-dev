@@ -1,4 +1,6 @@
 # Define the variable '__version__':
+from __future__ import annotations
+
 try:
     # See https://github.com/maresb/hatch-vcs-footgun-example
     # If setuptools_scm is installed (e.g. in a development environment with

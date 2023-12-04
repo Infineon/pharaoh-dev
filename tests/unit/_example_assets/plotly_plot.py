@@ -1,4 +1,5 @@
 # source: https://plotly.com/python/line-and-scatter/
+from __future__ import annotations
 
 import plotly.express as px
 
