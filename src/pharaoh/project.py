@@ -637,7 +637,7 @@ class PharaohProject:
             "copyright": f"{datetime.datetime.now(tz=datetime.timezone.utc).date()}",
             # The suffix(es) of source filenames.
             # You can specify multiple suffix as a list of string:
-            "source_suffix": [".rst", ".txt"],
+            "source_suffix": [".rst", ".rst.jinja2", ".txt"],
             "master_doc": "index",
             "templates_path": ["_templates"],
             # List of patterns, relative to source directory, that match files and
