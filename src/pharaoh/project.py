@@ -195,10 +195,12 @@ class PharaohProject:
         """
         Merges settings from all namespaces.
         """
-        self._merged_settings = omegaconf.OmegaConf.merge(
-            self._settings_map["default"],
-            self._settings_map["project"],
-            self._settings_map["env"],
+        self._merged_settings = omegaconf.OmegaConf.create(
+            omegaconf.OmegaConf.merge(
+                self._settings_map["default"],
+                self._settings_map["project"],
+                self._settings_map["env"],
+            )
         )  # type: ignore[assignment]
 
     def get_settings(self) -> omegaconf.DictConfig:
@@ -262,16 +264,14 @@ class PharaohProject:
             raise ValueError(msg)
         merged_settings = self.get_settings()
         key = key.lower()
+        ret = omegaconf.OmegaConf.to_container(merged_settings, resolve=resolve) if to_container else merged_settings
         try:
             paths = key.split(".")
-            ret = merged_settings
             for path in paths:
                 ret = ret[path]
 
-            if omegaconf.OmegaConf.is_config(ret) and to_container:
-                ret = omegaconf.OmegaConf.to_container(ret, resolve=resolve)  # type: ignore[assignment]
             return ret
-        except Exception:
+        except omegaconf.errors.ConfigKeyError:
             if default is DEFAULT_MISSING:
                 msg = f"No setting key called {key!r}!"
                 raise LookupError(msg) from None
@@ -801,10 +801,12 @@ class PharaohProject:
             pharaoh.log.log_version_info()
             log.info(f"Building Sphinx project using {builder.upper()} builder...")
 
-            resolved_settings = omegaconf.OmegaConf.merge(
-                self._settings_map["default"],
-                self._settings_map["project"],
-                self._settings_map["env"],
+            resolved_settings = omegaconf.OmegaConf.create(
+                omegaconf.OmegaConf.merge(
+                    self._settings_map["default"],
+                    self._settings_map["project"],
+                    self._settings_map["env"],
+                )
             )
             omegaconf.OmegaConf.resolve(resolved_settings)
             self.sphinx_report_build.mkdir(parents=True, exist_ok=True)
