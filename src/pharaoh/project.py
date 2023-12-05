@@ -33,13 +33,13 @@ if TYPE_CHECKING:
     import jinja2
 
 try:
-    PHARAOH_CLI_PATH = Path(shutil.which("pharaoh.exe")).as_posix()
-except Exception:
+    PHARAOH_CLI_PATH = Path(shutil.which("pharaoh.exe")).as_posix()  # type: ignore[arg-type]
+except TypeError:
     PHARAOH_CLI_PATH = "pharaoh.exe"
 
 PathLike = Union[str, Path]
 
-LRU_PHARAOH_PROJECT: PharaohProject = None
+LRU_PHARAOH_PROJECT: PharaohProject | None = None
 
 DEFAULT_MISSING = object()
 
@@ -108,7 +108,7 @@ class PharaohProject:
         self,
         project_root: PathLike,
         overwrite: bool = False,
-        templates: str | Iterable[str] = ("pharaoh.default_project",),
+        templates: str | list[str] | tuple[str] = ("pharaoh.default_project",),
         template_context: dict[str, Any] | None = None,
         **kwargs,
     ):
@@ -123,9 +123,10 @@ class PharaohProject:
         :param template_context: The Jinja rendering context for the selected project templates.
         :keyword custom_settings: A path to a YAML file containing settings to overwrite the default project settings.
         """
-        self._settings_map: dict[str, omegaconf.DictConfig] = {}
+        self._settings_map: omegaconf.DictConfig = omegaconf.DictConfig({})
+        self._merged_settings: omegaconf.DictConfig = omegaconf.DictConfig({})
         self._project_root: Path = Path(project_root).absolute().resolve()
-        self._asset_finder: finder.AssetFinder = None
+        self._asset_finder: finder.AssetFinder | None = None
 
         logging_add_filehandler = kwargs.pop("logging_add_filehandler", True)
         custom_settings = kwargs.pop("custom_settings", None)
@@ -141,7 +142,10 @@ class PharaohProject:
         if isinstance(templates, str):
             templates = [templates]
         self._ensure_project(
-            templates=templates, template_context=template_context, recreate=overwrite, custom_settings=custom_settings
+            templates=list(templates),
+            template_context=template_context,
+            recreate=overwrite,
+            custom_settings=custom_settings,
         )
 
         self.load_settings(namespace="all")
@@ -171,7 +175,7 @@ class PharaohProject:
         if namespace in ("all", "project"):
             project_settings = self._project_root / self.PROJECT_SETTINGS_YAML
             with open(project_settings) as fp:
-                self._settings_map["project"] = omegaconf.OmegaConf.load(fp)
+                self._settings_map["project"] = omegaconf.OmegaConf.load(fp)  # type: ignore[assignment]
 
         if namespace in ("all", "env"):
             dotlist = []
@@ -187,7 +191,7 @@ class PharaohProject:
                 self._settings_map["env"] = omegaconf.OmegaConf.create({})
         self._update_merged_settings()
 
-    def _update_merged_settings(self) -> omegaconf.DictConfig:
+    def _update_merged_settings(self):
         """
         Merges settings from all namespaces.
         """
@@ -195,7 +199,7 @@ class PharaohProject:
             self._settings_map["default"],
             self._settings_map["project"],
             self._settings_map["env"],
-        )
+        )  # type: ignore[assignment]
 
     def get_settings(self) -> omegaconf.DictConfig:
         """
@@ -265,7 +269,7 @@ class PharaohProject:
                 ret = ret[path]
 
             if omegaconf.OmegaConf.is_config(ret) and to_container:
-                ret = omegaconf.OmegaConf.to_container(ret, resolve=resolve)
+                ret = omegaconf.OmegaConf.to_container(ret, resolve=resolve)  # type: ignore[assignment]
             return ret
         except Exception:
             if default is DEFAULT_MISSING:
@@ -384,28 +388,28 @@ class PharaohProject:
 
         # Check if component with this name already added
         components = []
-        for comp in self.iter_components():
-            if comp["name"] == component_name:
+        for component in self.iter_components():
+            if component["name"] == component_name:
                 if overwrite:
                     pass
                 else:
                     msg = f"Component {component_name!r} already exists!"
                     raise KeyError(msg)
             else:
-                components.append(comp)
+                components.append(component)
 
         render_context = render_context or {}
         render_context["pharaoh_cli_path"] = PHARAOH_CLI_PATH
 
         if isinstance(templates, (str, Path)):
-            templates = [templates]
+            templates = [str(templates)]
         templates = [str(t) for t in templates]
 
         if not templates:
             msg = "No templates specified!"
             raise ValueError(msg)
 
-        comp = Component(
+        new_component = Component(
             name=component_name,
             templates=templates,
             render_context=render_context,
@@ -419,7 +423,7 @@ class PharaohProject:
 
         components.insert(
             index,
-            attrs.asdict(comp),
+            attrs.asdict(new_component),  # type: ignore[arg-type]
         )
 
         for templ in templates:
@@ -434,7 +438,7 @@ class PharaohProject:
             render_template(
                 template_path=template_path,
                 outputdir=self.sphinx_report_project_components / component_name,
-                context=comp.get_render_context(),
+                context=new_component.get_render_context(),
             )
 
         self._project_settings.components = components
@@ -442,7 +446,7 @@ class PharaohProject:
         log.info(f"Added component {component_name!r}. Saved project.")
 
     def add_template_to_component(
-        self, component_name: str, templates: str | (Path | Iterable[str]), render_context: dict | None = None
+        self, component_name: str, templates: str | Path | Iterable[str], render_context: dict | None = None
     ):
         """
         Adds additional templates to an existing component, that may overwrite existing files during rendering.
@@ -469,7 +473,7 @@ class PharaohProject:
         component.render_context.update(render_context or {})
 
         if isinstance(templates, (str, Path)):
-            templates = [templates]
+            templates = [str(templates)]
         templates = [str(t) for t in templates]
 
         if not templates:
@@ -752,7 +756,7 @@ class PharaohProject:
 
         workers = self.get_setting("asset_gen.worker_processes", 0)
         if workers == 0:  # Run in same process - used for easier debugging
-            results = []
+            results: list[tuple[Path, str | None]] = []
             for component_name, asset_source in sources:
                 try:
                     generate_assets(self.project_root, asset_src=asset_source, component_name=component_name)
@@ -891,24 +895,24 @@ class PharaohProject:
         if not self.sphinx_report_build.exists():
             msg = "Pharaoh report not built yet!"
             raise Exception(msg)
-        dest = Path(self.get_setting("report.archive_name") if dest is None else dest)
+        dest_path = Path(self.get_setting("report.archive_name") if dest is None else dest)
 
-        if not dest.is_absolute():
-            dest = (self.project_root / dest).absolute()
+        if not dest_path.is_absolute():
+            dest_path = (self.project_root / dest_path).absolute()
 
-        if not dest.suffix:
-            dest /= self.get_setting("report.archive_name")
+        if not dest_path.suffix:
+            dest_path /= self.get_setting("report.archive_name")
 
-        if dest.exists():
-            os.remove(dest)
-        dest.parent.mkdir(parents=True, exist_ok=True)
+        if dest_path.exists():
+            os.remove(dest_path)
+        dest_path.parent.mkdir(parents=True, exist_ok=True)
 
-        base_name = dest.parent / dest.stem
-        fmt = dest.suffix.replace(".", "")
+        base_name = dest_path.parent / dest_path.stem
+        fmt = dest_path.suffix.replace(".", "")
         shutil.make_archive(str(base_name), fmt, self.sphinx_report_build)
-        log.info(f"Created archive at {dest}")
+        log.info(f"Created archive at {dest_path}")
 
-        return dest
+        return dest_path
 
     def _check_template_dependencies(self):
         """
@@ -925,7 +929,8 @@ class PharaohProject:
             for template in comp.templates:
                 if template in l1_templates:
                     used_templates.add(template)
-                    [dependent_templates.add(need) for need in l1_templates[template].needs]
+                    for need in l1_templates[template].needs:
+                        dependent_templates.add(need)
         if not dependent_templates.issubset(used_templates):
             msg = (
                 f"The used project templates requires the existence of components that render "
@@ -969,8 +974,8 @@ class PharaohProject:
 
         default_settings = self._load_default_settings()
         if isinstance(custom_settings, (str, Path)):
-            custom_settings = omegaconf.OmegaConf.load(custom_settings)
-            default_settings = omegaconf.OmegaConf.unsafe_merge(default_settings, custom_settings)
+            custom_settings = omegaconf.OmegaConf.load(custom_settings)  # type: ignore[assignment]
+            default_settings = omegaconf.OmegaConf.unsafe_merge(default_settings, custom_settings)  # type: ignore[assignment]
 
         self.settings_file.write_text(omegaconf.OmegaConf.to_yaml(default_settings, resolve=False))
 

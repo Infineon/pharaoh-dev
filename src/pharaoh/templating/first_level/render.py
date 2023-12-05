@@ -36,19 +36,19 @@ def render_template_file(template_path: Path, outputdir: Path, context: dict | N
         raise ValueError(msg)
 
     with tempfile.TemporaryDirectory(prefix="pharaoh_") as tdir:
-        tdir = Path(tdir)
+        tempdir = Path(tdir)
         template_content = template_path.read_text(encoding="utf-8")
         tree = ast.parse(template_content)
         module_docstring = (ast.get_docstring(tree) or "").strip()
 
         stem = ".".join(template_path.name.split(".")[:-2])
-        asset_scripts = tdir / "asset_scripts"
+        asset_scripts = tempdir / "asset_scripts"
         asset_scripts.mkdir()
         (asset_scripts / f"{stem}.py").write_text(template_content, encoding="utf-8")
         if module_docstring:
-            (tdir / f"index_{stem}.rst").write_text(module_docstring, encoding="utf-8")
+            (tempdir / f"index_{stem}.rst").write_text(module_docstring, encoding="utf-8")
 
-        return render_template_directory(tdir, outputdir, context)
+        return render_template_directory(tempdir, outputdir, context)
 
 
 def render_sphinx_base_project(outputdir: Path, templates: t.Iterable[str], context: dict | None = None):

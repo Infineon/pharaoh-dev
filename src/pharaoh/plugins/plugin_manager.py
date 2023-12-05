@@ -70,8 +70,8 @@ class PharaohPluginManager:
         clear_cache()
 
         self.pm.load_setuptools_entrypoints(NAME)
-        for name, plugin in self._discover_plugin_modules():
-            self.pm.register(plugin, name=name)
+        for plugin in self._discover_plugin_modules():
+            self.pm.register(plugin)
         self.pm.register(pharaoh.plugins.core_plugin.plugin, name="pharaoh_core")
         self.pm.check_pending()
 
@@ -104,13 +104,11 @@ class PharaohPluginManager:
 
         :return: An iterable of plugins
         """
-        # Include deployed namespace package next to "pharaoh"
-        # todo: deploy those as separate packages with plugin entrypoints and remove this section here
-        for path in os.environ.get("PHARAOH_PLUGINS", "").strip("\"'").split(";"):
-            path = path.strip().strip("\"'")
-            if not path:
+        for path_item in os.environ.get("PHARAOH_PLUGINS", "").strip("\"'").split(";"):
+            path_item = path_item.strip().strip("\"'")
+            if not path_item:
                 continue
-            path = Path(path) / "plugin.py"
+            path = Path(path_item) / "plugin.py"
             if not path.exists():
                 msg = f"Cannot find plugin path {path} from environment variable PHARAOH_PLUGINS!"
                 raise FileNotFoundError(msg)
@@ -128,7 +126,7 @@ class PharaohPluginManager:
                 raise OSError(msg)
             spec.loader.exec_module(plugin_module)
 
-            yield None, plugin_module
+            yield plugin_module
 
     @cached
     def pharaoh_collect_l1_templates(self) -> dict[str, L1Template]:

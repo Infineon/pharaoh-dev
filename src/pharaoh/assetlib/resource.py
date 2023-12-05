@@ -30,9 +30,9 @@ class Resource:
         from pharaoh.plugins.plugin_manager import PM
 
         if isinstance(definition, omegaconf.DictConfig):
-            definition = omegaconf.OmegaConf.to_container(definition, resolve=True)
+            definition: dict = omegaconf.OmegaConf.to_container(definition, resolve=True)
         else:
-            definition = copy.deepcopy(definition)
+            definition: dict = copy.deepcopy(definition)
         resource_class = definition.pop("__class__")
         registry = PM.pharaoh_collect_resource_types()
         if resource_class not in registry:
@@ -155,13 +155,13 @@ class FileResource(LocalResource):
         """
         return self.get_files()[index]
 
-    def get_files(self, recursive=True) -> list[Path]:
+    def get_files(self, recursive: bool = True) -> list[Path]:
         """
         Returns all matches for the file pattern, depending on the chosen sort order.
 
         :param recursive:   If recursive is true, the pattern '**' will match any files and
                             zero or more directories and subdirectories.
         """
-        files = [Path(p).resolve() for p in glob.glob(self.pattern, recursive=recursive)]
+        files = [Path(p).resolve() for p in glob.glob(self.pattern, recursive=recursive)]  # type: ignore[type-var]
         sort = {"ascending": False, "descending": True}
         return natsort.natsorted(files, reverse=sort[self.sort])

@@ -81,7 +81,7 @@ class PharaohTemplateEnv(jinja2.Environment):
             keep_trailing_newline=True,
             extensions=["jinja2_ansible_filters.AnsibleCoreFiltersExtension"],
         )
-        self.default_context = {
+        self.default_context: dict = {
             "project": {},  # Project related context
             "local": {},  # Discovered content of context files next to the source file
             "assets": {},  # Discovered content of asset files registered via register_templating_context function
@@ -286,22 +286,22 @@ class PharaohTemplateEnv(jinja2.Environment):
             # does not allow <> in the file path, Python 3.9 does, apparently.
             # So we split off the suffix after <> (which would be done anyway using the "parent.parent" statement).
             parent = parent.split("<>")[0]
-        parent = Path(parent)
-        if not parent.is_dir():
-            parent = parent.parent
+        parent_path = Path(parent)
+        if not parent_path.is_dir():
+            parent_path = parent_path.parent
         # Use a special illegal string <> to be able to split the template from the parent in
         # PharaohFileSystemLoader.get_source
-        return parent.as_posix() + "<>" + Path(template).as_posix()
+        return parent_path.as_posix() + "<>" + Path(template).as_posix()
 
     def read_local_context_files(self, base_context: dict, basepath: Path) -> dict:
         """
         Reads all *_context.yaml and executes all *_context.py files to collect additional context data for templating.
         """
-        local_context = {}
+        local_context: dict = {}
         for file in basepath.glob("*_context.yaml"):
             f = Path(file)
             key = f.name.rsplit("_", 1)[0]
-            with open(f) as f:
+            with f.open():
                 conf = omegaconf.OmegaConf.load(f)
                 omegaconf.OmegaConf.resolve(conf)
                 local_context[key] = conf
@@ -318,7 +318,7 @@ class PharaohTemplateEnv(jinja2.Environment):
                 module.__dict__["base_ctx"] = eval_ctx
                 run_module(module, f.read_text(encoding="utf-8"))
                 self.local_context_file_cache[f] = module
-            result_ctx = module.__dict__
+            result_ctx: dict = module.__dict__
             if not ("context" in result_ctx and isinstance(result_ctx["context"], dict)):
                 msg = (
                     "No dict-typed variable named 'context' was defined by the script!\n"
@@ -359,7 +359,7 @@ def module_from_file(path: str | Path) -> ModuleType:
     module_name = f"local_context_{module_path.stem.replace(' ', '_').replace('-', '_')}_{uuid.uuid4().hex[:6]}"
     module = ModuleType(module_name)
     module.__dict__["__file__"] = str(module_path.absolute())
-    module.__path__ = [module_path.parent]
+    module.__path__ = [str(module_path.parent)]
     module.__dict__["__name__"] = "__main__"
     module.__dict__["__module_name__"] = module_name
 
