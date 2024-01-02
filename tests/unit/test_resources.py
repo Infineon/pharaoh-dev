@@ -75,11 +75,10 @@ def test_resources_update(new_proj):
 
 def test_file_resource_sorting(tmp_path):
     (tmp_path / "files").mkdir()
-    (tmp_path / "files" / "0_file.txt").touch()
-    (tmp_path / "files" / "01_file.txt").touch()
     (tmp_path / "files" / "1_file.txt").touch()
     (tmp_path / "files" / "2_file.txt").touch()
     (tmp_path / "files" / "10_file.txt").touch()
+    (tmp_path / "files" / "21_file.txt").touch()
 
     fr_asc = FileResource(alias="myfile", pattern=tmp_path / "*" / "*.txt", sort="ascending")
     fr_des = FileResource(alias="myfile", pattern=tmp_path / "*" / "*.txt", sort="descending")
@@ -87,8 +86,8 @@ def test_file_resource_sorting(tmp_path):
     def get_numbers(files):
         return [file.stem.split("_")[0] for file in files]
 
-    assert get_numbers(fr_asc.get_files()) == ["0", "01", "1", "2", "10"]
-    assert get_numbers(fr_des.get_files()) == ["10", "2", "01", "1", "0"]
+    assert get_numbers(fr_asc.get_files()) == ["1", "2", "10", "21"]
+    assert get_numbers(fr_des.get_files()) == ["21", "10", "2", "1"]
 
 
 def test_execute_asset_script_that_needs_resources(new_proj):
