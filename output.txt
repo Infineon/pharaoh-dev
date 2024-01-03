@@ -1,0 +1,4 @@
+dev.rst:8: [redirected with Found] https://github.com/Infineon/pharaoh-dev/issues/new?title=Trouble+with+development+environment to https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2FInfineon%2Fpharaoh-dev%2Fissues%2Fnew%3Ftitle%3DTrouble%2Bwith%2Bdevelopment%2Benvironment
+dev.rst:190: [redirected with Found] https://github.com/Infineon/pharaoh-dev/releases/new to https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2FInfineon%2Fpharaoh-dev%2Freleases%2Fnew
+reference/settings.rst:10: [redirected with Found] https://omegaconf.readthedocs.io/ to https://omegaconf.readthedocs.io/en/2.3_branch/
+installation.rst:49: [redirected with Found] https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/ to https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/
