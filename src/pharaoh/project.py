@@ -848,6 +848,8 @@ class PharaohProject:
                         keep_going,
                         pdb,
                     )
+
+                    PM.pharaoh_sphinx_app_inited(app)
                     app.build(force_all=False, filenames=None)
                     if app.statuscode:
                         log.error(

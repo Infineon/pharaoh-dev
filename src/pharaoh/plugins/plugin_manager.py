@@ -19,7 +19,7 @@ if TYPE_CHECKING:
 
     import click
 
-    from pharaoh.api import PharaohProject, Resource
+    from pharaoh.api import PharaohProject, PharaohSphinx, Resource
     from pharaoh.plugins.template import L1Template
 
 
@@ -170,6 +170,9 @@ class PharaohPluginManager:
 
     def pharaoh_build_started(self, project: PharaohProject, builder: str):
         return self.pm.hook.pharaoh_build_started(project=project, builder=builder)
+
+    def pharaoh_sphinx_app_inited(self, app: PharaohSphinx):
+        return self.pm.hook.pharaoh_sphinx_app_inited(app=app)
 
     @cached
     def pharaoh_find_asset_render_template(self, template_name: str) -> list[Path]:

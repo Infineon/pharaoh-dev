@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     import click
 
     from pharaoh.api import PharaohProject, Resource
+    from pharaoh.sphinx_app import PharaohSphinx
 
     from .template import L1Template
 
@@ -159,6 +160,15 @@ def pharaoh_build_started(project: PharaohProject, builder: str):
 
     :param project: The Pharaoh project instance
     :param builder: The name of the configured builder
+    """
+
+
+@_spec
+def pharaoh_sphinx_app_inited(app: PharaohSphinx):
+    """
+    This hook is after the Sphinx application is initialized.
+
+    :param app: The Pharaoh-specific Sphinx application
     """
 
 
