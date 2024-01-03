@@ -635,6 +635,7 @@ class PharaohProject:
                 "sphinx_design",  # https://github.com/executablebooks/sphinx-design
                 "pharaoh.templating.second_level.sphinx_ext.jinja_ext",
                 "pharaoh.templating.second_level.sphinx_ext.asset_ext",
+                "pharaoh.templating.second_level.sphinx_ext.suppress_ext",
             ],
             "project": self.get_setting("report.title"),
             "author": self.get_setting("report.author"),
