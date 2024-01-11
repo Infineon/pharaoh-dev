@@ -1,6 +1,11 @@
 Release History
 ===============
 
+v0.6.1
+------
+
+-   Fixed :issue:`7`: Tests fail for Jinja 3.1.3
+
 v0.6.0
 ------
 
