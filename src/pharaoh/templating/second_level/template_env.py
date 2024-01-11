@@ -12,6 +12,7 @@ from types import ModuleType
 from typing import TYPE_CHECKING, Callable
 
 import jinja2
+import jinja2.utils
 import omegaconf
 from jinja2_git import GitExtension
 
@@ -50,13 +51,10 @@ class PharaohFileSystemLoader(jinja2.loaders.FileSystemLoader):
 
             # Original code starts from here
 
-            f = jinja2.loaders.open_if_exists(filename)
-            if f is None:
+            if not os.path.isfile(filename):
                 continue
-            try:
+            with open(filename, "rb") as f:
                 contents = f.read().decode(self.encoding)
-            finally:
-                f.close()
 
             def up_to_date() -> bool:
                 return False
