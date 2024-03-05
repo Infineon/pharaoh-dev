@@ -2,16 +2,6 @@ from __future__ import annotations
 
 from contextlib import ExitStack, contextmanager
 
-from pharaoh.assetlib.patches import _bokeh, _holoviews, _matplotlib, _pandas, _panel, _plotly
-
-PATCHMODULES = (_bokeh, _holoviews, _matplotlib, _pandas, _plotly, _panel)
-
-
-def init_patches():
-    for module in PATCHMODULES:
-        if hasattr(module, "init_module"):
-            module.init_module()
-
 
 @contextmanager
 def patch_3rd_party_libraries():
@@ -35,10 +25,14 @@ def patch_3rd_party_libraries():
         shuts down, which leads to a premature reset of patches.
 
     """
-    init_patches()
+    from pharaoh.assetlib.patches import _bokeh, _holoviews, _matplotlib, _pandas, _panel, _plotly
+
+    patch_modules = (_bokeh, _holoviews, _matplotlib, _pandas, _plotly, _panel)
 
     with ExitStack() as stack:
-        for module in PATCHMODULES:
+        for module in patch_modules:
+            if hasattr(module, "init_module"):
+                module.init_module()
             stack.enter_context(module.patch())
         try:
             yield
