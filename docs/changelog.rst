@@ -1,6 +1,12 @@
 Release History
 ===============
 
+v0.6.2
+------
+
+-   Lazy load patch modules (``pharaoh/assetlib/patches/_*.py``) to improve import speed
+
+
 v0.6.1
 ------
 
