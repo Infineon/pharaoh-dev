@@ -56,14 +56,17 @@ def generate_assets(project_root: Path, asset_src: Path, component_name: str = "
     if asset_src.suffix.lower() == ".py":
         script_ignore_pattern = proj.get_setting("asset_gen.script_ignore_pattern")
 
-        with patches.patch_3rd_party_libraries(), context_stack.new_context(
-            context_name="generate_assets",
-            asset={
-                "script_name": asset_src.name,
-                "script_path": asset_src,
-                "index": 0,
-                "component_name": component_name,
-            },
+        with (
+            patches.patch_3rd_party_libraries(),
+            context_stack.new_context(
+                context_name="generate_assets",
+                asset={
+                    "script_name": asset_src.name,
+                    "script_path": asset_src,
+                    "index": 0,
+                    "component_name": component_name,
+                },
+            ),
         ):
             code = asset_src.read_text(encoding="utf-8")
 

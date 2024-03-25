@@ -3,6 +3,7 @@
 This module contains API functions related to asset generation.
 When asset scripts are accessing those API functions, the functions can access the project information by themselves.
 """
+
 # Don't remove unused imports. They may be unused here but maybe in user code!
 from __future__ import annotations
 
