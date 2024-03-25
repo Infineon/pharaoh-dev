@@ -56,8 +56,7 @@ class PharaohPluginManager:
             # log.debug(f"Plugins: Executing hook {hook_name!r} from plugins " +
             #           ", ".join([impl.plugin_name for impl in hook_impls]))
 
-        def after(outcome, hook_name, hook_impls, kwargs):
-            ...
+        def after(outcome, hook_name, hook_impls, kwargs): ...
 
         self.pm.add_hookcall_monitoring(before=before, after=after)
         self.pm.add_hookspecs(spec)
