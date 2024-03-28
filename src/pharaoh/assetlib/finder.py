@@ -88,25 +88,37 @@ class Asset:
 
         raise NotImplementedError
 
-    def read_json(self):
+    def read_json(self) -> dict:
+        """
+        Reads the file using a JSON parser.
+        """
         if self.assetfile.suffix.lower() != ".json":
             msg = "Can only read .json files!"
             raise Exception(msg)
         return json.loads(self.assetfile.read_text("utf-8"))
 
-    def read_yaml(self):
+    def read_yaml(self) -> dict:
+        """
+        Reads the file using a YAML parser.
+        """
         import yaml
 
-        if self.assetfile.suffix.lower() != ".yaml":
-            msg = "Can only read .yaml files!"
+        if self.assetfile.suffix.lower() not in (".yaml", ".yml"):
+            msg = "Can only read .yaml/.yml files!"
             raise Exception(msg)
         with open(self.assetfile, encoding="utf-8") as fp:
-            return yaml.load(fp, yaml.Loader)
+            return yaml.safe_load(fp)
 
-    def read_text(self, encoding: str = "utf-8"):
+    def read_text(self, encoding: str = "utf-8") -> str:
+        """
+        Reads the file as text
+        """
         return self.assetfile.read_text(encoding)
 
-    def read_bytes(self):
+    def read_bytes(self) -> bytes:
+        """
+        Reads the file as bytes
+        """
         return self.assetfile.read_bytes()
 
 

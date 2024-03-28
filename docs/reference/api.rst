@@ -31,6 +31,7 @@ Lists all items that can be imported from ``pharaoh.assetlib.api``.
     :special-members: __init__
 
 .. autoclass:: pharaoh.assetlib.finder.Asset
+    :members:
 
 .. autofunction:: pharaoh.assetlib.finder.asset_groupby
 
