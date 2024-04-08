@@ -645,10 +645,10 @@ were iterated over in the asset script. But let's assume you know, then this wou
 .. code-block:: none
 
     {% for vdd in (8.0, 10.0, 12.0) %}
-    {{ heading("Plots for Vdd:%.1fV, Iout:%.1fA" % vout, 2 }}
+    {{ heading("Plots for Vdd:%.1fV, Iout:%.1fA" % vout, 2) }}
 
     {% for iout in (1.0, 2.0, 5.0) %}
-    {{ heading("Plots for Iout:%.1fA" % iout, 3 }}
+    {{ heading("Plots for Iout:%.1fA" % iout, 3) }}
 
     .. pharaoh-asset:: vdd == {{ vdd }} and iout == {{ iout }} and signal_name == 'idd'
 
@@ -662,10 +662,10 @@ group assets first by ``vdd`` and then by ``iout``:
 
     {% set idd_plots = search_assets("signal_name == 'idd'") %}
     {% for vdd, assets_grby_vdd in agroupby(idd_plots, key="vdd").items() %}
-    {{ heading("Plots for Vdd:%.1fV" % vout, 2 }}
+    {{ heading("Plots for Vdd:%.1fV" % vout, 2) }}
 
         {% for iout, assets_grby_iout in agroupby(assets_grby_vdd, key="iout").items() %}
-    {{ heading("Plots for Iout:%.1fA" % iout, 3 }}
+    {{ heading("Plots for Iout:%.1fA" % iout, 3) }}
 
             {% for asset in assets_grby_iout %}
     .. pharaoh-asset:: {{ asset.id }}
