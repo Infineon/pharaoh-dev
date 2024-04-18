@@ -100,7 +100,7 @@ Following functions are available in the global templating scope, and can be use
 
 .. jinja:: default
 
-    {% for func in env_globals.to_document.values()|set %}
+    {% for func in env_globals.to_document.values()|unique %}
     .. autofunction:: {{ func.__module__ }}.{{ func.__name__ }}
     {% endfor %}
 
@@ -118,7 +118,7 @@ For example: ``{{ listx|join(', ') }}`` will join a list with commas.
 
 .. jinja:: default
 
-    {% for func in env_filters.to_document.values()|set %}
+    {% for func in env_filters.to_document.values()|unique %}
     .. autofunction:: {{ func.__module__ }}.{{ func.__name__ }}
     {% endfor %}
 
