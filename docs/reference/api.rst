@@ -41,8 +41,8 @@ Resources
 
 .. jinja:: default
 
-    {% for resource in resources.values() %}
-    .. autoclass:: {{ resource.__module__ }}.{{ resource.__name__ }}
+    {% for resource_id in resources.values() %}
+    .. autoclass:: {{ resource_id }}
         :show-inheritance:
         :members:
 

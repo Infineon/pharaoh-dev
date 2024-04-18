@@ -42,8 +42,8 @@ The currently available resource types:
 
 .. jinja:: default
 
-    {% for name, resource in resources.items() %}
-        - :class:`{{ name }} <{{ resource.__module__ }}.{{ resource.__name__ }}>`
+    {% for name, resource_id in resources.items() %}
+        - :class:`{{ name }} <{{ resource_id }}>`
 
     {% endfor %}
 
