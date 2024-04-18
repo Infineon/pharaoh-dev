@@ -110,6 +110,9 @@ else:
 autosectionlabel_prefix_document = True
 autosectionlabel_maxdepth = None  # 1,2,3
 
+# https://github.com/sphinx-doc/sphinx/issues/12300
+suppress_warnings = ["config.cache"]
+
 # https://pypi.org/project/sphinx-jinja/
 jinja_contexts = {}
 jinja_contexts["default"] = {
