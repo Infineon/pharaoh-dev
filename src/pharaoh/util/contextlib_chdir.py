@@ -1,6 +1,7 @@
 """
 Backport of contextlib.chdir stdlib class added in Python3.11.
 """
+
 from __future__ import annotations
 
 import os
