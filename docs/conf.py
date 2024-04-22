@@ -117,7 +117,11 @@ suppress_warnings = ["config.cache"]
 jinja_contexts = {}
 jinja_contexts["default"] = {
     # Filter out resources provided by plugins
-    "resources": {k: f"{v.__module__}.{v.__name__}" for k, v in PM.pharaoh_collect_resource_types().items() if v.__module__.startswith("pharaoh.")},
+    "resources": {
+        k: f"{v.__module__}.{v.__name__}"
+        for k, v in PM.pharaoh_collect_resource_types().items()
+        if v.__module__.startswith("pharaoh.")
+    },
     "env_filters": env_filters,
     "env_globals": env_globals,
     "env_tests": env_tests,
