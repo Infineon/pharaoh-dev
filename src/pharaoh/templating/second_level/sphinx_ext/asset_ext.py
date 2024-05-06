@@ -87,7 +87,8 @@ def _option_boolean(arg):
         return False
     if arg.strip().lower() in ("yes", "1", "true"):
         return True
-    raise ValueError('"%s" unknown boolean' % arg)
+    msg = f'"{arg}" unknown boolean'
+    raise ValueError(msg)
 
 
 # -------------------------------------
