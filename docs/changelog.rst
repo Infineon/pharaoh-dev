@@ -4,7 +4,13 @@ Release History
 v0.7.0
 ------
 
--   Performance improvements for Sphinx build, by removing unnecessary deepcopy operations
+-   Major performance improvements for Sphinx build, by removing unnecessary deepcopy operations
+-   Added support for ``.yml`` suffix for YAML files
+-   Added reference docs for class :class:`pharaoh.assetlib.finder.Asset`
+-   Removed Python upper version constraint
+-   Unpinned pyyaml dependency, but ignoring version ``5.3.0``
+-   Removed ``numpy<2.0`` version constraint
+
 
 v0.6.2
 ------
