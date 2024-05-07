@@ -3,6 +3,7 @@ This script is executed by unit test tests.unit.test_asset_generation.test_execu
 directly via a subprocess to simulate the user debugging the asset script directly in an IDE outside of Pharaoh asset
 generation.
 """
+
 import tempfile
 from pathlib import Path
 

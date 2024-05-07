@@ -163,9 +163,16 @@ exclude_lines = [
     "raise AssertionError",
 ]
 
+
 [tool.ruff]
-src = ["src", "tests"]
-preview = false
+# https://docs.astral.sh/ruff/settings
+target-version = "py39"
+line-length = 120
+fix = false  # Allow autofix for all enabled rules (when `--fix`) is provided.
+show-fixes = true
+unsafe-fixes = true
+
+[tool.ruff.lint]
 select = [
     "E",  # pycodestyle errors
     "F",  # pyflakes
@@ -187,34 +194,25 @@ select = [
     "PLW",  # Pylint - warnings
     "PLC",  # Pylint - conventions
     "RUF",  # Ruff-specific rules
-
-    # Enable those later maybe when there's time to fix those errors
-    # "BLE",  # flake8-blind-except
-    # "PTH",  # flake8-use-pathlib
-    # "NPY",  # NumPy-specific rules
 ]
 ignore = [
     "PLW2901",  # Pylint - warnings: redefined-loop-name
     "E501", # https://docs.astral.sh/ruff/faq/#is-the-ruff-linter-compatible-with-black
 ]
 exclude = []
-fix = true  # Allow autofix for all enabled rules (when `--fix`) is provided.
-unsafe-fixes = true
-show-fixes = true
-line-length = 120  # Same as Black.
 
 # Allow unused variables when underscore-prefixed.
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
-isort = {known-first-party = ["pharaoh", "tests"], required-imports = ["from __future__ import annotations"]}
+[tool.ruff.lint.isort]
+known-first-party = ["pharaoh", "test"]
+required-imports = ["from __future__ import annotations"]
 
-
-[tool.ruff.per-file-ignores]
+[tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["F401"]
 "api.py" = ["F401"]
 
-
-[tool.ruff.flake8-tidy-imports]
+[tool.ruff.lint.flake8-tidy-imports]
 # Whether to ban all relative imports ("all"),
 # or only those imports that extend into the parent module or beyond ("parents").
 ban-relative-imports = "parents"
