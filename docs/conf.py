@@ -5,11 +5,11 @@ import os
 
 import sphinx
 
+import pharaoh
 from pharaoh.cli import cli
 from pharaoh.plugins.core_plugin.plugin import DEFAULT_ASSET_TEMPLATE_MAPPING
 from pharaoh.plugins.plugin_manager import PM
 from pharaoh.templating.second_level import env_filters, env_globals, env_tests
-from pharaoh.version import __version__
 
 assert sphinx.version_info[0] == 7
 
@@ -46,7 +46,9 @@ master_doc = "index"
 project = "Pharaoh"
 year = str(datetime.datetime.now(tz=datetime.timezone.utc).year)
 
-release, version = __version__, "Pharaoh v" + ".".join(__version__.split(".")[:3])
+release, version = pharaoh.__version__, "Pharaoh v" + ".".join(pharaoh.__version__.split(".")[:3])
+
+print(f"Building docs for {project} {pharaoh.__version__} ({pharaoh})")
 
 add_function_parentheses = True
 add_module_names = False
