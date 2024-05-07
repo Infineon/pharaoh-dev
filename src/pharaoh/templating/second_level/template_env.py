@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import copy
 import functools
 import os
 import pprint
@@ -202,9 +201,7 @@ class PharaohTemplateEnv(jinja2.Environment):
         rendered, _ = self.render_file(file)
         content[0] = rendered
 
-    def render_file(self, docname: Path | str, additional_context: dict | None = None) -> tuple[str, Path]:
-        context = {}
-
+    def render_file(self, docname: Path | str) -> tuple[str, Path]:
         project: pharaoh.project.PharaohProject = self.sphinx_app.pharaoh_proj
 
         if isinstance(docname, str):
@@ -226,25 +223,20 @@ class PharaohTemplateEnv(jinja2.Environment):
 
             # Context Creation
             log.debug(f"Discovering additional templating context for component {component_name!r}...")
-            context = copy.deepcopy(self.default_context)
-            context["project"]["component_name"] = component_name
-            for key, ctx in self.read_local_context_files(context, template_file.parent).items():
+            self.default_context["project"]["component_name"] = component_name
+            self.default_context["local"] = {}
+
+            for key, ctx in self.read_local_context_files(self.default_context, template_file.parent).items():
                 log.debug(f"... discovered local context {key!r}")
-                if key in context["local"]:
+                if key in self.default_context["local"]:
                     log.warning(f"Overwriting existing local context namespace {key!r}!")
-                context["local"][key] = ctx
+                self.default_context["local"][key] = ctx
 
             for key, ctx in self.read_asset_context_files(component=component_name):
                 log.debug(f"... discovered asset context {key!r}")
-                if key in context["local"]:
+                if key in self.default_context["local"]:
                     log.warning(f"Overwriting existing local context namespace {key!r}!")
-                context["local"][key] = ctx
-
-            # additional_context only has data if this function is called by the global function "render_template"
-            for key, val in (additional_context or {}).items():
-                if key in context:
-                    log.warning(f"Overwriting existing context key {key}!")
-                context[key] = val
+                self.default_context["local"][key] = ctx
 
             render_globals = {
                 "search_assets": functools.partial(project.asset_finder.search_assets, components=[component_name]),
@@ -254,7 +246,7 @@ class PharaohTemplateEnv(jinja2.Environment):
 
             with chdir(template_file.parent):
                 template = self.select_template([template_file.name], parent=str(template_file.parent))
-                rendered = template.render({"ctx": context}, **render_globals)
+                rendered = template.render({"ctx": self.default_context}, **render_globals)
 
             rendered_file = template_file.parent / (template_file.name + ".rendered")
             rendered_file.write_text(rendered)
@@ -262,10 +254,12 @@ class PharaohTemplateEnv(jinja2.Environment):
         except Exception:
             log.error(
                 f"Error in PharaohTemplateEnv.sphinx_source_read_hook while trying to render template "
-                f"{template_file} with context {pprint.pformat(context)}!",
+                f"{template_file} with context {pprint.pformat(self.default_context)}!",
                 exc_info=True,
             )
             raise
+        finally:
+            self.default_context["local"] = {}
 
     def join_path(self, template: str, parent: str) -> str:
         """
@@ -311,9 +305,6 @@ class PharaohTemplateEnv(jinja2.Environment):
                 module = self.local_context_file_cache[f]
             else:
                 module = module_from_file(f)
-                eval_ctx = copy.deepcopy(base_context)
-                eval_ctx["local"] = local_context  # Pass in previously read context to allow more powerful scripts
-                module.__dict__["base_ctx"] = eval_ctx
                 run_module(module, f.read_text(encoding="utf-8"))
                 self.local_context_file_cache[f] = module
             result_ctx: dict = module.__dict__

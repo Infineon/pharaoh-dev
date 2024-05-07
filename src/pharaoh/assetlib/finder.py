@@ -183,7 +183,7 @@ class AssetFinder:
 
         for asset in self.iter_assets(components):
             try:
-                result = eval(code, {}, asset.context.copy())
+                result = eval(code, {}, asset.context)
             except Exception:
                 result = False
             if result:

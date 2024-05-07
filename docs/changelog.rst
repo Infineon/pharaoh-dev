@@ -1,6 +1,11 @@
 Release History
 ===============
 
+v0.7.0
+------
+
+-   Performance improvements for Sphinx build, by removing unnecessary deepcopy operations
+
 v0.6.2
 ------
 

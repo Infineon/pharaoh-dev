@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import copy
 import datetime
 import functools
 import logging
@@ -563,7 +562,7 @@ class PharaohProject:
                 found.append(comp)
                 continue
             try:
-                result = eval(expression, {}, copy.deepcopy(comp))
+                result = eval(expression, {}, comp)
             except Exception:
                 result = False
             if result:
