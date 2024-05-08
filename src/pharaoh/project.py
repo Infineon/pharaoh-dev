@@ -270,7 +270,7 @@ class PharaohProject:
                 ret = ret[path]
 
             return ret
-        except omegaconf.errors.ConfigKeyError:
+        except KeyError:
             if default is DEFAULT_MISSING:
                 msg = f"No setting key called {key!r}!"
                 raise LookupError(msg) from None
