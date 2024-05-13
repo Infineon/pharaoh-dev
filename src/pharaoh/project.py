@@ -780,10 +780,13 @@ class PharaohProject:
 
         return processed_asset_scripts
 
-    def build_report(self, catch_errors=True) -> int:
+    def build_report(self, builder: str | None = None, catch_errors=True) -> int:
         """
         Builds the Sphinx project and returns the status code.
 
+        :param builder: The name of the builder to build the report for.
+            Available builders: ``html``, ``singlehtml``, ``confluence``, ``singleconfluence``, or
+            any other builder documented `here <https://www.sphinx-doc.org/en/master/usage/builders/index.html>`_.
         :param catch_errors: If True, Sphinx build errors will not raise an exception but return a -1 instead.
         """
         import multiprocessing
@@ -792,7 +795,7 @@ class PharaohProject:
 
         from pharaoh.sphinx_app import PharaohSphinx
 
-        builder = self.get_setting("report.builder")
+        builder = builder or self.get_setting("report.builder")
         PM.pharaoh_build_started(self, builder)
         self._check_template_dependencies()
 
