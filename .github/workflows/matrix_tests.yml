@@ -34,7 +34,7 @@ jobs:
       - name: Install Hatch
         uses: pypa/hatch@install
       - name: Run test suite
-        run: hatch run cov
+        run: hatch run all.py${{ matrix.py }}:cov
         env:
           PYTEST_XDIST_AUTO_NUM_WORKERS: 0
       - name: On fail upload pytest results
