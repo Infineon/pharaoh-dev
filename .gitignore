@@ -1,6 +1,8 @@
 .tox
-src/pharaoh/version.py
-src/pharaoh/_version.py
+.hatch_data
+.tmp
+src/*/version.py
+.coverage*
 
 # IDEs
 .idea/

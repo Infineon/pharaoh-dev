@@ -7,33 +7,21 @@ permissions:
 
 jobs:
   docs:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-tags: true
           fetch-depth: 0
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-      - name: Install dependencies
-        run: |
-          pip install .[docs] --prefer-binary
-      - name: Create CLI docs
-        run: |
-          python docs/cli/generate_cli_command_docs.py
+      - name: Install Hatch
+        uses: pypa/hatch@install
       - name: Sphinx build
-        run: |
-          sphinx-build -E -W -b html docs _build
-      - name: Link Check
-        continue-on-error: true
-        run: |
-          sphinx-build -b linkcheck docs _build
+        run: hatch run docs
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         with:
           publish_branch: gh-pages
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: _build/
+          publish_dir: dist/docs
           force_orphan: true

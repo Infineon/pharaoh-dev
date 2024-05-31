@@ -1,9 +1,8 @@
 [build-system]
+# See https://pypi.org/project/hatchling/
+requires = ["hatchling", "hatch-vcs>=0.3"]
 build-backend = "hatchling.build"
-requires = [
-    "hatch-vcs>=0.3",
-    "hatchling>=1.18",
-]
+
 
 [project]
 name = "pharaoh-report"
@@ -50,7 +49,7 @@ dependencies = [
     "natsort", # sorting paths naturally
     "pyyaml!=5.3.0",
     "pluggy",
-    "nbconvert", # used to programmatically execute asset notebooks",
+    "nbconvert", # used to programmatically execute asset notebooks,
     "mistletoe", # Markdown to HTML
     # Sphinx, theme & extensions
     "sphinx >=7.2.5, <8.0",
@@ -103,12 +102,8 @@ docs = [
     "sphinxcontrib-jquery",
     "sphinx-jinja",
     "sphinx-copybutton",
-    "numpy<2.0",
 ]
 dev = [
-    "tox",
-    "gitpython",
-    "setuptools_scm",
     "pytest",
     "pytest-sugar",
     "pytest-cov",
@@ -116,8 +111,8 @@ dev = [
     "pytest-timeout",
     "pytest-xdist",
     "pytest-randomly",
-    "diff-cover>=7.7",
-    "pharaoh-report[all-plotting]",
+    "mypy",
+    "pharaoh-report[all-plotting,docs]",
 ]
 
 [project.scripts]
@@ -125,45 +120,97 @@ pharaoh = "pharaoh.cli:cli"
 
 [tool.hatch]
 build.dev-mode-dirs = ["src"]
-build.targets.sdist.packages = ["src/pharaoh"]
+build.targets.sdist.packages = ["src"]
 build.targets.wheel.packages = ["src/pharaoh"]
 build.hooks.vcs.version-file = "src/pharaoh/version.py"
 version.source = "vcs"
 
+# https://hatch.pypa.io/latest/config/environment/overview/
+[tool.hatch.envs.default]
+installer = "uv"
+python = "3.11"  # Specifies the Python version for the default development environment
+features = ["dev"]
 
-[tool.pytest.ini_options]
-# timeout = 30
-python_files = ["test_*.py"]
-python_classes = ["Test*"]
-python_functions = ["test_*"]
-addopts = "--tb=auto -ra --showlocals -vv"
-testpaths = [
-    "tests/unit",
-    "tests/integration",
+[tool.hatch.envs.default.env-vars]
+
+[tool.hatch.envs.default.scripts]
+# Runs all tests
+test = [
+    "bash -c 'mkdir -p .tmp'",
+    "pytest --basetemp=.tmp/pytest --timeout=120 -n={env:PYTEST_XDIST_AUTO_NUM_WORKERS:auto} {args}",
 ]
 
-[tool.coverage.run]
-branch = true
-parallel = true
+# Runs all tests including coverage and junit xml output
+cov = [
+    "bash -c 'mkdir -p .tmp'",
+    """pytest \
+        --basetemp=.tmp/pytest \
+        {args: \
+        --junitxml .tmp/junit.{env_name}.xml \
+        --cov \
+        --cov-context test \
+        --cov-config pyproject.toml \
+        --cov-report term-missing:skip-covered \
+        --cov-report html:.tmp/htmlcov \
+        --cov-report xml:.tmp/coverage.{env_name}.xml \
+        --no-cov-on-fail \
+        --timeout=120 \
+        -n={env:PYTEST_XDIST_AUTO_NUM_WORKERS:auto} \
+    }""",
+]
 
-[tool.coverage.html]
-directory = "dist/coverage"
+# Installs the current package in editable mode.
+# This script may be used to quickly install missing entry points or dependencies
+# that are not tracked by Hatch.
+dev = [
+    "hatch build",
+    "{env:HATCH_UV} pip install -e .",
+]
 
-[tool.coverage.report]
-show_missing = true
-# fail_under = 90
-precision = 2
-exclude_lines = [
-    "pragma: no cover",
-    "pragma: nocover",
-    "def __repr__",
-    "def __str__",
-    "if self.debug:",
-    "if settings.DEBUG",
-    "raise AssertionError",
+# Cleans files that are ignored by Git
+clean = [
+    "git clean -ffX .tmp",  # Temporary files from testing
+    "git clean -fX .coverage*",
+    "git clean -fX dist",  # Built documentation and distributions (wheels etc)
+    "git clean -fX src/*/version.py",
+]
+
+# Builds documentation with upcoming changelog and runs link checks
+docs = [
+    "hatch build",
+    "python docs/cli/generate_cli_command_docs.py",
+    "sphinx-build -E -W -b html docs dist/docs",
+    "- sphinx-build -b linkcheck docs dist/docs",
+]
+
+# Runs mypy
+type = "hatch run ci:mypy --install-types --non-interactive src {args}"
+
+# Runs ruff without auto-fixes
+style = "ruff check {args:.}"
+
+# Runs pre-commit (includes ruff with auto-fixes and other stuff) on all files
+fix = [
+    "pre-commit install",
+    "pre-commit run {args:--all-files}",
 ]
 
 
+[tool.hatch.envs.all]
+dev-mode = false  # for matrix tests we want the packages to be installed non-editable
+
+# https://hatch.pypa.io/latest/config/environment/advanced/#matrix
+[[tool.hatch.envs.all.matrix]]
+python = ["3.9", "3.10", "3.11"]
+
+# An environment for CI only to speed up env creation for certain jobs
+[tool.hatch.envs.ci]
+skip-install = true
+
+
+########
+# Ruff #
+########
 [tool.ruff]
 # https://docs.astral.sh/ruff/settings
 target-version = "py39"
@@ -199,10 +246,9 @@ ignore = [
     "PLW2901",  # Pylint - warnings: redefined-loop-name
     "E501", # https://docs.astral.sh/ruff/faq/#is-the-ruff-linter-compatible-with-black
 ]
-exclude = []
-
-# Allow unused variables when underscore-prefixed.
-dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+exclude = [
+    "tests/templates/*"
+]
 
 [tool.ruff.lint.isort]
 known-first-party = ["pharaoh", "test"]
@@ -213,18 +259,71 @@ required-imports = ["from __future__ import annotations"]
 "api.py" = ["F401"]
 
 [tool.ruff.lint.flake8-tidy-imports]
-# Whether to ban all relative imports ("all"),
-# or only those imports that extend into the parent module or beyond ("parents").
 ban-relative-imports = "parents"
 
 
+############
+# Coverage #
+############
+# https://coverage.readthedocs.io/en/latest/config.html#
+[tool.coverage.run]
+source_pkgs = ["pharaoh"]
+branch = true
+parallel = true
+relative_files = true
+
+[tool.coverage.paths]
+ifx_pharaoh = ["src/pharaoh", "*site-packages/pharaoh"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "pragma: nocover",
+    "def __repr__",
+    "def __str__",
+    "raise AssertionError",
+    "no cov",
+    "if __name__ == \"__main__\":",
+    "if TYPE_CHECKING:",
+]
+
+
+##########
+# PyTest #
+##########
+# https://docs.pytest.org/en/stable/reference/customize.html#pyproject-toml
+[tool.pytest.ini_options]
+# timeout = 30
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "--tb=auto -ra --showlocals -vv"
+testpaths = [
+    "tests/unit",
+    "tests/integration",
+]
+
+
+########
+# MYPY #
+########
+# https://justincaustin.com/blog/mypy-tips-and-tricks/
 [tool.mypy]
-python_version = "3.11"
-show_error_codes = true
+# disallow_any_generics = true
+# disallow_incomplete_defs = true
+# disallow_untyped_calls = true
+# disallow_untyped_decorators = true
+# disallow_untyped_defs = true
+follow_imports = "normal"
 ignore_missing_imports = true
-allow_untyped_defs = true
-allow_incomplete_defs = true
-allow_untyped_calls = true
+no_implicit_reexport = true
+show_error_codes = true
+show_error_context = true
+strict_equality = true
+strict_optional = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unused_ignores = true
 disable_error_code = [
     "import-untyped",
     "no-redef",

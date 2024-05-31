@@ -25,21 +25,6 @@ extensions = [
     "sphinx_copybutton",
 ]
 
-# mocking imports so docs can be built with a lightweight python environment.
-# unable to mock: numpy, six
-autodoc_mock_imports = [
-    "bokeh",
-    "matplotlib",
-    "holoviews",
-    "plotly",
-    "pandas",
-    "selenium",
-    "kaleido",
-    # The next packages have circular imports that are hit when sphinx.autodoc extension imports those with
-    # typing.TYPE_HINTING set to True. So just ignore them.
-    "omegaconf",
-    "setuptools",
-]
 
 source_suffix = ".rst"
 master_doc = "index"
