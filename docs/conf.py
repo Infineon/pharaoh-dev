@@ -92,6 +92,7 @@ else:
     linkcheck_workers = 25
     linkcheck_timeout = 2
     linkcheck_report_timeouts_as_broken = False
+linkcheck_rate_limit_timeout = 5
 
 # https://www.sphinx-doc.org/en/master/usage/extensions/autosectionlabel.html
 autosectionlabel_prefix_document = True
