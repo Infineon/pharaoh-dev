@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+import pharaoh
 from pharaoh.templating.second_level.template_env import PharaohTemplateEnv
 
 if TYPE_CHECKING:
@@ -20,3 +21,9 @@ def setup(app: PharaohSphinx):
     app.connect("builder-inited", app.pharaoh_te.sphinx_builder_inited_hook)
     app.connect("source-read", app.pharaoh_te.sphinx_source_read_hook)
     app.connect("include-read", app.pharaoh_te.sphinx_include_read_hook)
+
+    return {
+        "parallel_read_safe": False,
+        "parallel_write_safe": False,
+        "version": pharaoh.__version__,
+    }
