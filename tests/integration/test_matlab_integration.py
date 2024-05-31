@@ -10,7 +10,7 @@ def eng():
 
         from pharaoh.assetlib.api import Matlab
     except ModuleNotFoundError:
-        pytest.xfail("matlab.engine not installed")
+        pytest.skip("matlab.engine not installed", allow_module_level=True)
 
     m = Matlab()
     try:
