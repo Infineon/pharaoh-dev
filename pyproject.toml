@@ -201,7 +201,7 @@ dev-mode = false  # for matrix tests we want the packages to be installed non-ed
 
 # https://hatch.pypa.io/latest/config/environment/advanced/#matrix
 [[tool.hatch.envs.all.matrix]]
-python = ["3.9", "3.10", "3.11"]
+python = ["3.9", "3.10", "3.11", "3.12"]
 
 # An environment for CI only to speed up env creation for certain jobs
 [tool.hatch.envs.ci]
