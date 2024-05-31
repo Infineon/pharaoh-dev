@@ -23,7 +23,7 @@ def setup(app: PharaohSphinx):
     app.connect("include-read", app.pharaoh_te.sphinx_include_read_hook)
 
     return {
-        "parallel_read_safe": False,
-        "parallel_write_safe": False,
+        "parallel_read_safe": True,
+        "parallel_write_safe": True,
         "version": pharaoh.__version__,
     }
