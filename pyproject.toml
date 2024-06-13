@@ -136,13 +136,13 @@ features = ["dev"]
 [tool.hatch.envs.default.scripts]
 # Runs all tests
 test = [
-    "bash -c 'mkdir -p .tmp'",
+    """python -c "from pathlib import Path;Path('.tmp').mkdir(parents=True, exist_ok=True)" """,
     "pytest --basetemp=.tmp/pytest --timeout=120 -n={env:PYTEST_XDIST_AUTO_NUM_WORKERS:auto} {args}",
 ]
 
 # Runs all tests including coverage and junit xml output
 cov = [
-    "bash -c 'mkdir -p .tmp'",
+    """python -c "from pathlib import Path;Path('.tmp').mkdir(parents=True, exist_ok=True)" """,
     """pytest \
         --basetemp=.tmp/pytest \
         {args: \
