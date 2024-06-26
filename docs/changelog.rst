@@ -1,6 +1,18 @@
 Release History
 ===============
 
+v0.7.2
+------
+
+-   Fixed an ``InterpolationKeyError`` when dynamically resolving variables inside the components
+    section of ``pharaoh.yaml``.
+
+v0.7.1
+------
+
+-   Migrated to hatch-based workflow
+-   Fix some deprecations
+
 v0.7.0
 ------
 

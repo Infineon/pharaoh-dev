@@ -122,7 +122,7 @@ class PharaohProject:
         :param template_context: The Jinja rendering context for the selected project templates.
         :keyword custom_settings: A path to a YAML file containing settings to overwrite the default project settings.
         """
-        self._settings_map: omegaconf.DictConfig = omegaconf.DictConfig({})
+        self._settings_map: dict[str, omegaconf.DictConfig] = {}
         self._merged_settings: omegaconf.DictConfig = omegaconf.DictConfig({})
         self._project_root: Path = Path(project_root).absolute().resolve()
         self._asset_finder: finder.AssetFinder | None = None
