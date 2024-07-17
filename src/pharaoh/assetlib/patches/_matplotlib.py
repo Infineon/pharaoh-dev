@@ -1,8 +1,8 @@
 # mypy: disable-error-code="method-assign"
 from __future__ import annotations
 
+import os
 from contextlib import contextmanager
-from pathlib import Path
 
 try:
     import matplotlib.pyplot as plt
@@ -79,29 +79,40 @@ if MPL_AVAIL:
 
         docs: https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure.savefig
         """
-        params = parse_signature(
-            obj="matplotlib.backend_bases.FigureCanvasBase.print_figure", args=args, kwargs=kwargs, fromclass=True
-        )
+        params = parse_signature(obj=vanilla_mpl_figure_savefig, args=args, kwargs=kwargs, fromclass=True)
         params.pop("kwargs")
         params.update(kwargs)
-        params.pop("format")  # Format must be given through filename
-        file = params["filename"]
+        filename = params.pop("fname")
+
+        format: str | None = params.pop("format", None)  # Format must be given through filename
+        if format is None:
+            # get format from filename, or from backend's default filetype
+            if isinstance(filename, os.PathLike):
+                filename = os.fspath(filename)
+            if isinstance(filename, str):
+                format = os.path.splitext(filename)[1][1:]
+            if format is None or format == "":
+                format = plt.FigureCanvasBase.get_default_filetype()
+                if isinstance(filename, str):
+                    filename = filename.rstrip(".") + "." + format.lower()
+        else:
+            format = format.lower().lstrip(".")
+            filename = os.path.splitext(filename)[0] + "." + format
 
         active_app = project.get_project()
         params.update(active_app.get_setting("toolkits.matplotlib.savefig"))
 
-        format = Path(file).suffix.lower()
-        if format in (".jpeg", ".jpg", ".png", ".svg"):
+        if format in ("jpeg", "jpg", "png", "svg"):
             template_context = {"template": "image"}
         else:
-            msg = f"File format of {file!r} not supported!"
+            msg = f"File format of {filename!r} not supported!"
             raise NotImplementedError(msg)
 
-        file_path = active_app._build_asset_filepath(file)
+        file_path = active_app._build_asset_filepath(filename)
         params["filename"] = str(file_path)
         with context_stack.new_context(
             asset=dict(
-                user_filepath=str(file),
+                user_filepath=str(filename),
                 file=str(file_path),
                 name=file_path.name,
                 stem=file_path.stem,

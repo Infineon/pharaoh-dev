@@ -30,6 +30,7 @@ axs[1].set_ylabel("coherence")
 
 fig.tight_layout()
 
-fig.savefig("coherence.png")
-fig.savefig("coherence.svg")
+fig.savefig("coherence1.png")
+fig.savefig("coherence2.svg")
+fig.savefig("coherence3", format="png")
 plt.show()

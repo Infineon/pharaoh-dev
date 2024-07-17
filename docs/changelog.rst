@@ -1,6 +1,11 @@
 Release History
 ===============
 
+v0.7.3
+------
+
+-   Fixed :issue:`20`: Matplotlib savefig wrong signature after patching by Pharaoh
+
 v0.7.2
 ------
 

@@ -4,13 +4,29 @@ import collections
 import importlib
 import inspect
 from pathlib import Path
-from typing import TYPE_CHECKING, TypeVar
+from typing import TYPE_CHECKING, Callable, TypeVar
 
 if TYPE_CHECKING:
     from collections.abc import Iterable
 
 
-def parse_signature(obj, args: tuple = (), kwargs: dict | None = None, fromclass=False) -> dict:
+def parse_signature(obj: str | Callable, args: tuple = (), kwargs: dict | None = None, fromclass: bool = False) -> dict:
+    """
+    Parses the signature of a function or method and returns a dictionary mapping parameter names to their values.
+
+    This function dynamically imports the specified function or method based on its fully qualified name and then
+    parses its signature. It supports both standalone functions and class methods. For class methods, the `fromclass`
+    parameter must be set to True. The function or method's parameters are then mapped to their respective values
+    based on the provided `args` and `kwargs`, with priority given to `args`.
+
+    :param obj: The fully qualified name of the function or method as a string, or the function/method object itself.
+    :param args: A tuple of positional arguments that are passed to the function or method.
+    :param kwargs: A dictionary of keyword arguments that are passed to the function or method.
+    :param fromclass: A boolean indicating whether the specified function is a method of a class. If True,
+      `obj` is expected to be in the format "module.class.function". If False, `obj` is expected to be in the format
+      "module.function".
+    :returns: A dictionary mapping parameter names to their values as determined by the provided `args` and `kwargs`.
+    """
     kwargs = kwargs or {}
     if isinstance(obj, str):
         if fromclass:

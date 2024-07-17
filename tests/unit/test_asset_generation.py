@@ -114,10 +114,11 @@ def test_generate_python_holoviews_asset_static(new_proj):
 def test_generate_python_matplotlib_asset(new_proj):
     generate_assets(new_proj.project_root, example_assets / "matplotlib_plot.py")
     files = list(new_proj.asset_build_dir.glob("*"))
-    assert len(files) == 4
-    assert_file_exists(files, r"coherence_.*.png")
-    assert_file_exists(files, r"coherence_.*.svg")
-    assert_assetinfo_file_exists(files, r"coherence_.*.assetinfo")
+    assert len(files) == 6
+    assert_file_exists(files, r"coherence1_.*\.png")
+    assert_file_exists(files, r"coherence2_.*\.svg")
+    assert_file_exists(files, r"coherence3_.*\.png")
+    assert_assetinfo_file_exists(files, r"coherence.*\.assetinfo")
 
 
 def test_generate_python_pandas_asset(new_proj):
