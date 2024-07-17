@@ -185,8 +185,8 @@ def test_parallel_asset_generation(new_proj):
     assert len(fails) == 2
 
     files = sorted(new_proj.asset_build_dir.glob("*"))
-    assert len(sorted(new_proj.asset_build_dir.glob("*.assetinfo"))) == 18
-    assert len(files) == 38
+    assert len(sorted(new_proj.asset_build_dir.glob("*.assetinfo"))) == 19
+    assert len(files) == 40
     # os.system(f'explorer.exe "{tmp_app.asset_build_dir}"')
 
 
