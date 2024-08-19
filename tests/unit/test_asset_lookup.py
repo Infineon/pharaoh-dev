@@ -22,7 +22,7 @@ def create_asset(basedir: Path, name: str, **context) -> Asset:
     return Asset(info)
 
 
-@pytest.fixture()
+@pytest.fixture
 def dummy_assetdir(tmp_path):
     assetdir = tmp_path / "assets"
     component_dir = assetdir / "component_xyz"
