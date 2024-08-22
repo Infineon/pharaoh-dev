@@ -13,13 +13,13 @@ from pharaoh.project import get_project
 from pharaoh.util.contextlib_chdir import chdir
 
 
-@pytest.fixture()
+@pytest.fixture
 def tmp_cwd(tmp_path):
     with chdir(tmp_path) as cwd:
         yield cwd
 
 
-@pytest.fixture()
+@pytest.fixture
 def invoke():
     cli_runner = CliRunner()
 
