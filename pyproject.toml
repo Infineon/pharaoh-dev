@@ -55,7 +55,7 @@ dependencies = [
     "sphinx >=7.2.5, <8.0",
     "sphinxcontrib-jquery",
     "sphinx-design",
-    "sphinx-rtd-theme",
+    "sphinx-rtd-theme<3.0",
     #    "sphinx-toolbox",
     #    "sphinx-data-viewer",
     # Jinja & extensions
