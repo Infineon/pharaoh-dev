@@ -1,6 +1,12 @@
 Release History
 ===============
 
+v0.7.4
+------
+
+-   Constrain sphinx-rtd-theme to <3.0 to keep support for ``display_version`` theme option.
+
+
 v0.7.3
 ------
 
