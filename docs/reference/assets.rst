@@ -444,11 +444,11 @@ Matplotlib
 
         When running in Pharaoh asset generation, this function is patched to prevent showing the plot in the browser.
     -   `matplotlib.figure.Figure.show()
-        <https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure.show>`_
+        <https://matplotlib.org/stable/api/_as_gen/matplotlib.figure.Figure.show.html>`_
 
         When running in Pharaoh asset generation, this function is patched to prevent showing the plot in the browser.
     -   `matplotlib.figure.Figure.savefig()
-        <https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure.savefig>`_
+        <https://matplotlib.org/stable/api/_as_gen/matplotlib.figure.Figure.savefig.html#matplotlib.figure.Figure.savefig>`_
 
     Examples::
 
