@@ -211,7 +211,7 @@ def test_error_report_component_with_errors(new_proj):
     new_proj.add_component("errors", "pharaoh.report_info", {"title": TITLE})
     new_proj.generate_assets()
     status = new_proj.build_report()
-    new_proj.open_report()
+    # new_proj.open_report()
     assert status == 0
 
     dummy_index_content = (new_proj.sphinx_report_build / "components/dummy/index.html").read_text(encoding="utf-8")
