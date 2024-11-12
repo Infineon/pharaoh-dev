@@ -21,10 +21,13 @@ def catch_exceptions(
     """
     Catch exceptions of given types.
 
+    .. seealso:: :ref:`reference/assets:Catching Errors`
+
     :param catch: The exception types to catch
+    :param reraise: The exception types to re-raise (has precedence over catch)
     :param msg_prefix: The message prefix to log before the exception message
     :param log_exc: Whether to log the exception message
-    :param render_exc: Whether to render the exception traceback as an asset in the report
+    :param render_exc: Whether to export the exception traceback as an asset to be included in the report
     """
     try:
         yield

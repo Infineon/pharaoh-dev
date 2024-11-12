@@ -24,7 +24,7 @@ Lists all items that can be imported from ``pharaoh.assetlib.api``.
 
 .. automodule:: pharaoh.assetlib.api
     :members: register_asset,metadata_context,get_resource,find_components,
-        get_current_component,get_asset_finder,register_templating_context
+        get_current_component,get_asset_finder,register_templating_context,catch_exceptions
 
 .. autoclass:: pharaoh.assetlib.finder.AssetFinder
     :members:
