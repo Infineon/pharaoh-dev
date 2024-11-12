@@ -1033,8 +1033,21 @@ class PharaohProject:
 
         :param env: the Jinja env to update
         """
+
+        def search_error_assets_global():
+            """
+            Find all error traceback assets in the project grouped by component name.
+            """
+            error_assets = {}
+            for comp in self.iter_components():
+                assets = self.asset_finder.search_assets("asset_type == 'error_traceback'", comp.name)
+                if assets:
+                    error_assets[comp.name] = assets
+            return error_assets
+
         env.globals["get_setting"] = self.get_setting
         env.globals["search_assets_global"] = self.asset_finder.search_assets
+        env.globals["search_error_assets_global"] = search_error_assets_global
 
     def _build_asset_filepath(self, file: PathLike, component_name: str | None = None) -> Path:
         """

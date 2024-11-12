@@ -29,7 +29,6 @@ if TYPE_CHECKING:
     from sphinx.config import Config
 
     import pharaoh.project
-    from pharaoh.assetlib.finder import Asset
     from pharaoh.sphinx_app import PharaohSphinx
 
 
@@ -261,26 +260,13 @@ class PharaohTemplateEnv(jinja2.Environment):
     def get_render_globals(
         self, project: pharaoh.project.PharaohProject, component_name: str, template_file: Path
     ) -> dict[str, Callable]:
-        def search_error_assets_global() -> dict[str, list[Asset]]:
-            """
-            Find all error traceback assets in the project grouped by component name.
-            """
-            error_assets = {}
-            for comp in project.iter_components():
-                assets = project.asset_finder.search_assets("asset_type == 'error_traceback'", comp.name)
-                if assets:
-                    error_assets[comp.name] = assets
-            return error_assets
-
         return {
             "search_error_assets": functools.partial(
                 project.asset_finder.search_assets,
                 components=[component_name],
                 condition="asset_type == 'error_traceback'",
             ),
-            "search_error_assets_global": search_error_assets_global,
             "search_assets": functools.partial(project.asset_finder.search_assets, components=[component_name]),
-            "search_assets_global": functools.partial(project.asset_finder.search_assets, components=[component_name]),
             "asset_rel_path_from_project": partial(asset_rel_path_from_project, project),
             "asset_rel_path_from_build": partial(asset_rel_path_from_build, self.sphinx_app, template_file),
         }
