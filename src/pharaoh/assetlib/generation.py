@@ -268,6 +268,13 @@ def register_asset(
 
     :returns: The file path where the asset will be actually stored
     """
+    try:
+        active_app = project.get_project()
+    except Exception:
+        # If there is no Pharaoh application yet, the calling file is presumably executed standalone,
+        # so we have to skip exporting any files
+        return None
+
     component_name = kwargs.pop("component", None)
     if kwargs:
         raise Exception("Unknown keyword arguments " + ",".join(kwargs.keys()))
@@ -284,14 +291,6 @@ def register_asset(
 
     if template in ("iframe",):
         copy2build = True
-
-    file = Path(file)
-    try:
-        active_app = project.get_project()
-    except Exception:
-        # If there is no Pharaoh application yet, the calling file is presumably executed standalone,
-        # so we have to skip exporting any files
-        return None
 
     # If this function is used in an asset script that is executed directly, the component name is not added to the
     # metadata context, so we have to find the component via the callstack and pass it to _build_asset_filepath
