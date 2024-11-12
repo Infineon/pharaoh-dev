@@ -1,0 +1,22 @@
+{% set error_assets = search_error_assets_global() %}
+{% set ns = namespace(any_error=false) %}
+
+{{ h1("[[ title|d('Report Info') ]]") }}
+
+{{ h2("Errors") }}
+
+{% for component, assets in error_assets.items() %}
+{% if assets %}
+{% set ns.any_error = true %}
+{{ h3(component) }}
+
+    {% for asset in assets %}
+.. pharaoh-asset:: {{ asset.id }}
+    :components: {{ component }}
+
+    {% endfor %}
+{% endif %}
+{% endfor %}
+{% if not ns.any_error %}
+:octicon:`check-circle;2em;sd-text-success` No errors found!
+{% endif %}

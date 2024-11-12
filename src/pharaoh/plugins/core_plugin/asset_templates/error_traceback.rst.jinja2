@@ -1,0 +1,7 @@
+{% set error_message = asset.context|oc_get("error_message", "") %}
+
+.. dropdown:: :octicon:`bug;2em;sd-text-danger` {% if error_message %}``{{ error_message }}``{% endif +%}
+
+    .. code-block:: none
+
+        {{ asset.read_text(encoding="utf-8")|indent(8) }}

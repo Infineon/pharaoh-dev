@@ -29,6 +29,7 @@ if TYPE_CHECKING:
     from sphinx.config import Config
 
     import pharaoh.project
+    from pharaoh.assetlib.finder import Asset
     from pharaoh.sphinx_app import PharaohSphinx
 
 
@@ -238,15 +239,11 @@ class PharaohTemplateEnv(jinja2.Environment):
                     log.warning(f"Overwriting existing local context namespace {key!r}!")
                 self.default_context["local"][key] = ctx
 
-            render_globals = {
-                "search_assets": functools.partial(project.asset_finder.search_assets, components=[component_name]),
-                "asset_rel_path_from_project": partial(asset_rel_path_from_project, project),
-                "asset_rel_path_from_build": partial(asset_rel_path_from_build, self.sphinx_app, template_file),
-            }
-
             with chdir(template_file.parent):
                 template = self.select_template([template_file.name], parent=str(template_file.parent))
-                rendered = template.render({"ctx": self.default_context}, **render_globals)
+                rendered = template.render(
+                    {"ctx": self.default_context}, **self.get_render_globals(project, component_name, template_file)
+                )
 
             rendered_file = template_file.parent / (template_file.name + ".rendered")
             rendered_file.write_text(rendered)
@@ -260,6 +257,33 @@ class PharaohTemplateEnv(jinja2.Environment):
             raise
         finally:
             self.default_context["local"] = {}
+
+    def get_render_globals(
+        self, project: pharaoh.project.PharaohProject, component_name: str, template_file: Path
+    ) -> dict[str, Callable]:
+        def search_error_assets_global() -> dict[str, list[Asset]]:
+            """
+            Find all error traceback assets in the project grouped by component name.
+            """
+            error_assets = {}
+            for comp in project.iter_components():
+                assets = project.asset_finder.search_assets("asset_type == 'error_traceback'", comp.name)
+                if assets:
+                    error_assets[comp.name] = assets
+            return error_assets
+
+        return {
+            "search_error_assets": functools.partial(
+                project.asset_finder.search_assets,
+                components=[component_name],
+                condition="asset_type == 'error_traceback'",
+            ),
+            "search_error_assets_global": search_error_assets_global,
+            "search_assets": functools.partial(project.asset_finder.search_assets, components=[component_name]),
+            "search_assets_global": functools.partial(project.asset_finder.search_assets, components=[component_name]),
+            "asset_rel_path_from_project": partial(asset_rel_path_from_project, project),
+            "asset_rel_path_from_build": partial(asset_rel_path_from_build, self.sphinx_app, template_file),
+        }
 
     def join_path(self, template: str, parent: str) -> str:
         """

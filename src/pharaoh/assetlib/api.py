@@ -9,6 +9,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from pharaoh.assetlib.catch_exceptions import catch_exceptions
 from pharaoh.assetlib.context import metadata_context
 from pharaoh.assetlib.generation import register_asset, register_templating_context
 from pharaoh.assetlib.matlab_engine import Matlab

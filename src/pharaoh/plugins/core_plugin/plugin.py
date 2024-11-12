@@ -28,6 +28,10 @@ def pharaoh_collect_l1_templates():
             name="pharaoh.empty",
             path=Path(__file__).parent / "level_1" / "empty",
         ),
+        L1Template(
+            name="pharaoh.report_info",
+            path=Path(__file__).parent / "level_1" / "report_info",
+        ),
     ]
 
 

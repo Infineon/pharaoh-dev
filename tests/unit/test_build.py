@@ -202,3 +202,35 @@ def test_build_project_with_custom_built_time_templates(tmp_path):
 
     assert "base2.rst" in dummy2_index_content
     assert "Paragraph from component" in dummy2_index_content
+
+
+def test_error_report_component_with_errors(new_proj):
+    TITLE = "Report Errors"
+
+    new_proj.add_component("dummy", "pharaoh_testing.render_asset_error")
+    new_proj.add_component("errors", "pharaoh.report_info", {"title": TITLE})
+    new_proj.generate_assets()
+    status = new_proj.build_report()
+    new_proj.open_report()
+    assert status == 0
+
+    dummy_index_content = (new_proj.sphinx_report_build / "components/dummy/index.html").read_text(encoding="utf-8")
+    assert "This is a ValueError" in dummy_index_content
+    assert "This is a TypeError" in dummy_index_content
+
+    errors_index_content = (new_proj.sphinx_report_build / "components/errors/index.html").read_text(encoding="utf-8")
+    assert f"<title>{TITLE}</title>" in errors_index_content
+    assert "<h3>dummy<a" in errors_index_content
+    assert "This is a ValueError" in errors_index_content
+    assert "This is a TypeError" in errors_index_content
+
+
+def test_error_report_component_without_errors(new_proj):
+    new_proj.add_component("errors", "pharaoh.report_info")
+    new_proj.generate_assets()
+    status = new_proj.build_report()
+    # new_proj.open_report()
+    assert status == 0
+
+    errors_index_content = (new_proj.sphinx_report_build / "components/errors/index.html").read_text(encoding="utf-8")
+    assert "No errors found!" in errors_index_content
