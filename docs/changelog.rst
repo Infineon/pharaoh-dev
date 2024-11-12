@@ -10,6 +10,9 @@ Release History
 -   The built-in default Pharaoh project template now also includes a short error admonition on the index page,
     that shows which components have exported :ref:`error assets <reference/assets:Catching Errors>`
     during asset generation.
+-   If errors during asset generation are :ref:`caught <reference/assets:Catching Errors>` and rendered
+    in the final report, the Sphinx build will now also output a warning
+    (and therefore fail), to make sure the user notices the errors.
 
 0.7.4
 -----
