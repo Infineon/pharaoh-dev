@@ -21,12 +21,14 @@ def catch_exceptions(
     """
     Catch exceptions of given types.
 
+    If an exception is caught, the Sphinx report generation will report a warning.
+
     .. seealso:: :ref:`reference/assets:Catching Errors`
 
     :param catch: The exception types to catch
     :param reraise: The exception types to re-raise (has precedence over catch)
     :param msg_prefix: The message prefix to log before the exception message
-    :param log_exc: Whether to log the exception message
+    :param log_exc: Whether to log the exception message as a warning
     :param render_exc: Whether to export the exception traceback as an asset to be included in the report
     """
     try:
@@ -35,7 +37,10 @@ def catch_exceptions(
         raise
     except catch as e:
         if log_exc:
-            log.error(f"{msg_prefix}{e}")
+            log.warning(
+                f"An error occurred during asset generation: {msg_prefix}{e}\n"
+                f"Traceback:\n{traceback.format_exc(limit=-1)}"
+            )
         if render_exc:
             register_asset(
                 file="error.txt",

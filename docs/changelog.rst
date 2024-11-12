@@ -7,6 +7,9 @@ Release History
 -   Removed logging all environment variables in case of an error
 -   Added functionality to catch errors during asset generation and render them
     in the final report. More info here: :ref:`Catching Errors <reference/assets:Catching Errors>`
+-   The built-in default Pharaoh project template now also includes a short error admonition on the index page,
+    that shows which components have exported :ref:`error assets <reference/assets:Catching Errors>`
+    during asset generation.
 
 0.7.4
 -----

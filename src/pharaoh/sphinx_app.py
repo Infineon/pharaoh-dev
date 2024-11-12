@@ -11,12 +11,21 @@ if t.TYPE_CHECKING:  # We get circular imports otherwise
 
 
 class PharaohSphinx(Sphinx):
-    # Set by entrypoint of Sphinx plugin "asset_ext"
-    # ...sphinx_ext.asset_ext.setup()
     pharaoh_proj: PharaohProject
-    # Set by entrypoint of Sphinx plugin "jinja_ext"
-    # ...jinja_ext.setup()
+    """
+    Set by entrypoint of Sphinx plugin ...asset_ext.setup()
+    """
+
     pharaoh_te: PharaohTemplateEnv
+    """
+    Set by entrypoint of Sphinx plugin ...jinja_ext.setup()
+    """
+
+    seen_warnings: t.ClassVar = set()
+    """
+    Set of warnings that have been seen already. Used to avoid duplicate warnings.
+    Added by PharaohAssetDirective.
+    """
 
     @property
     def assets_dir(self):

@@ -151,7 +151,7 @@ class PharaohAssetDirective(Directive):
         logger.verbose(msg)
 
         try:
-            return self._run()
+            return self._run(source_file, line_no)
         except Exception as e:
             # If there's any error, render a nice error description into the report.
             # It will contain the source file + line number as well as the error message and traceback
@@ -180,7 +180,7 @@ class PharaohAssetDirective(Directive):
             )
             return []
 
-    def _run(self) -> list:
+    def _run(self, source_file: Path, line_no: str) -> list:
         arguments = self.arguments
         content = self.content
         state_machine = self.state_machine
@@ -274,6 +274,17 @@ class PharaohAssetDirective(Directive):
             image_opts = {key.replace("image_", ""): val for key, val in options.items() if key.startswith("image_")}
 
             logger.verbose(f"Rendering {asset} with template {template!r}")
+
+            # Let generated error assets using the "catch_exceptions" function also issue a Sphinx warning
+            # to fail report generation.
+            if asset.context.get("asset_type", "") == "error_traceback":
+                msg = (
+                    f"An error occurred during asset generation: {asset.context.get('error_message', '')}. "
+                    f"Please search the log for the error message including traceback!"
+                )
+                if msg not in sphinx_app.seen_warnings:
+                    sphinx_app.seen_warnings.add(msg)
+                    self.state_machine.reporter.warning(msg)
 
             assert sphinx_app.pharaoh_te is not None
             content = render_asset_template(
