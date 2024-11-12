@@ -139,3 +139,32 @@ Finding Components
 Components can be looked up via their metadata using the function
 :func:`PharaohProject.get_component_names_by_metadata()
 <pharaoh.project.PharaohProject.get_component_names_by_metadata>`.
+
+
+Built-In Templates
+------------------
+
+Pharaoh comes with some builtin templates:
+
+``"pharaoh.default_project"``
+    The default project template that is used when creating a new project.
+    It contains a basic Sphinx project with a
+
+    *   Pharaoh logo
+    *   ReadTheDocs theme with customized layout and footer templates (includes some JS/CSS to display
+        dynamic tables)
+    *   Pharaoh CLI CMD wrappers for quick access to the most important commands
+
+
+``"pharaoh.empty"``
+    The default template for :meth:`PharaohProject.add_component() <pharaoh.project.PharaohProject.add_component>`
+    if no template is specified.
+
+
+``"pharaoh.report_info"``
+    The template for a component that shows a list of all errors that occurred during asset generation
+    in other components, grouped by the component name.
+
+    Example:
+
+    .. image:: /_static/report_info_component_example.png
