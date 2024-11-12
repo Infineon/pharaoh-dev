@@ -4,7 +4,6 @@ import getpass
 import logging
 import os
 import platform
-import pprint
 import re
 import sys
 from pathlib import Path
@@ -102,7 +101,8 @@ def log_debug_info():
         log.info(f"Python Binary:   {sys.executable}")
         log.info(f"System:          {platform.platform()}")
         log.info(f"User:            {getpass.getuser()}")
-        log.info(f"Environment Variables:\n{pprint.pformat(envs, compact=True, indent=2, width=150, )}")
+        log.info(f"Path:            {os.environ.get('PATH', '')}")
+        log.info(f"PythonPath:      {os.environ.get('PYTHONPATH', '')}")
     finally:
         log.setLevel(level)
 
