@@ -1,6 +1,12 @@
 Release History
 ===============
 
+0.8.1
+-----
+
+-   Pinned kaleido dependency to <0.4 for Linux environments.
+    See [Kaleido-223](https://github.com/plotly/Kaleido/issues/223).
+
 0.8.0
 -----
 
