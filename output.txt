@@ -1,0 +1,11 @@
+dev.rst:8: [redirected with Found] https://github.com/Infineon/pharaoh-dev/issues/new?title=Trouble+with+development+environment to https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2FInfineon%2Fpharaoh-dev%2Fissues%2Fnew%3Ftitle%3DTrouble%2Bwith%2Bdevelopment%2Benvironment
+dev.rst:190: [redirected with Found] https://github.com/Infineon/pharaoh-dev/releases/new to https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2FInfineon%2Fpharaoh-dev%2Freleases%2Fnew
+reference/templating.rst:35: [redirected with Found] https://jinja.palletsprojects.com/en/3.1.x/templates/ to https://jinja.palletsprojects.com/en/stable/templates/
+reference/settings.rst:10: [redirected with Found] https://omegaconf.readthedocs.io/ to https://omegaconf.readthedocs.io/en/2.3_branch/
+reference/templating.rst:276: [redirected with Found] https://jinja.palletsprojects.com/en/3.1.x/templates/#template-inheritance to https://jinja.palletsprojects.com/en/stable/templates/
+installation.rst:49: [redirected with Found] https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/ to https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/
+changelog.rst:3: [redirected with Found] https://jinja.palletsprojects.com/en/3.1.x/intro/ to https://jinja.palletsprojects.com/en/stable/intro/
+reference/api.rst:86: [redirected with Found] https://jinja.palletsprojects.com/en/3.1.x/templates/#list-of-builtin-filters to https://jinja.palletsprojects.com/en/stable/templates/
+reference/api.rst:88: [redirected with Found] https://jinja.palletsprojects.com/en/3.1.x/templates/#list-of-global-functions to https://jinja.palletsprojects.com/en/stable/templates/
+reference/assets.rst:617: [redirected with Found] https://jinja.palletsprojects.com/en/3.0.x/templates/#list-of-control-structures to https://jinja.palletsprojects.com/en/stable/templates/
+reference/api.rst:87: [redirected with Found] https://jinja.palletsprojects.com/en/3.1.x/templates/#list-of-builtin-tests to https://jinja.palletsprojects.com/en/stable/templates/
