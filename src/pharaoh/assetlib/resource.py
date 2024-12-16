@@ -11,7 +11,7 @@ import natsort
 import omegaconf
 from attrs.validators import deep_iterable, in_, instance_of, min_len
 
-__all__ = ["Resource", "LocalResource", "TransformedResource", "FileResource", "CustomResource"]
+__all__ = ["CustomResource", "FileResource", "LocalResource", "Resource", "TransformedResource"]
 
 
 @attrs.define
