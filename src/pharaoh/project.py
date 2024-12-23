@@ -517,7 +517,7 @@ class PharaohProject:
         removed = []
         components = []
         for comp in self.iter_components():
-            if regex and rex.match(comp["name"]) is not None or comp["name"].lower() == filter:
+            if (regex and rex.match(comp["name"]) is not None) or comp["name"].lower() == filter:
                 comp_files = self.sphinx_report_project_components / comp["name"]
                 if comp_files.exists() and comp_files.is_dir():  # pragma: no cover
                     shutil.rmtree(comp_files)
