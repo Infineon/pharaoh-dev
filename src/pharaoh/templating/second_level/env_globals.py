@@ -43,7 +43,7 @@ def heading(text: str, level: int) -> str:
     if len(text) < 2:
         msg = "Heading text must be at least 2 characters"
         raise ValueError(msg)
-    return f"{text}\n{character*len(text)}"
+    return f"{text}\n{character * len(text)}"
 
 
 def rand_id(chars: int | None = None) -> str:
