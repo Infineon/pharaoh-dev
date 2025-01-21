@@ -163,5 +163,8 @@ class FileResource(LocalResource):
                             zero or more directories and subdirectories.
         """
         files = [Path(p).resolve() for p in glob.glob(self.pattern, recursive=recursive)]  # type: ignore[type-var]
+        if not files:
+            msg = f"No files found for pattern {self.pattern!r}"
+            raise FileNotFoundError(msg)
         sort = {"ascending": False, "descending": True}
         return natsort.natsorted(files, reverse=sort[self.sort])
