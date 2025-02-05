@@ -31,7 +31,7 @@ def test_build_project_with_notebook(new_proj):
     new_proj.add_component("mycomponent", "pharaoh_testing.ipynb", resources=[FileResource("mydata", resource)])
     new_proj.generate_assets()
     status = new_proj.build_report()
-    new_proj.open_report()
+    # new_proj.open_report()
     assert status == 0
 
 
