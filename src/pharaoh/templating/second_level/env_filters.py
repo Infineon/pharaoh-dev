@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 from pathlib import Path
 
 import omegaconf
@@ -104,6 +105,11 @@ def md2html(text):
     return mistletoe.markdown(text)
 
 
+def rsub(s, find: str, replace: str):
+    """A non-optimal implementation of a regex filter"""
+    return re.sub(find, replace, s)
+
+
 env_filters = {
     "hasattr": hasattr_,
     "req": required,
@@ -116,6 +122,7 @@ env_filters = {
     "exists": exists,
     "to_path": to_path,
     "md2html": md2html,
+    "rsub": rsub,
 }
 
 # Only document the functions defined in here

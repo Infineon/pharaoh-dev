@@ -8,6 +8,7 @@ Release History
     calls to ``pharaoh.assetlib.api.get_current_component`` resulted in an error.
 -   Tracebacks occurring during asset generation in Jupyter notebooks are now
     printed to console with filtered ANSI control characters to improve readability.
+-   Fixed :issue:`32`: Image assets with whitespace in path are not rendered correctly
 
 0.8.1
 -----

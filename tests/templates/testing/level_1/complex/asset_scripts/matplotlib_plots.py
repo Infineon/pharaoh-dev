@@ -34,7 +34,7 @@ fig.tight_layout()
 
 with metadata_context(label="MPL"):
     fig.savefig(
-        "coherence1.png",
+        "co he-rence  1.png",  # try with whitespace in path, see https://github.com/Infineon/pharaoh-dev/issues/32
     )
     fig.savefig("coherence2.svg")
 plt.show()
