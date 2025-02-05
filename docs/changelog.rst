@@ -6,6 +6,8 @@ Release History
 
 -   Fixed an issue when using Jupyter notebooks as asset scripts, where the
     calls to ``pharaoh.assetlib.api.get_current_component`` resulted in an error.
+-   Tracebacks occurring during asset generation in Jupyter notebooks are now
+    printed to console with filtered ANSI control characters to improve readability.
 
 0.8.1
 -----

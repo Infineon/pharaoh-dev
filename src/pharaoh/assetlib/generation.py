@@ -161,7 +161,25 @@ os.environ["JPY_SESSION_NAME"] = "{asset_src.as_posix()}"
                 f"An exception was raised when executing notebook '{asset_src.stem}': {e}\n"
                 f"Check the notebook for errors/traces: {failed_notebooks_path}"
             )
-            raise Exception(msg) from e
+
+            # Remove all 7-bit C1 ANSI sequences for better readability
+            ansi_escape = re.compile(
+                r"""
+                \x1B  # ESC
+                (?:   # 7-bit C1 Fe (except CSI)
+                    [@-Z\\-_]
+                |     # or [ for CSI, followed by a control sequence
+                    \[
+                    [0-?]*  # Parameter bytes
+                    [ -/]*  # Intermediate bytes
+                    [@-~]   # Final byte
+                )
+            """,
+                re.VERBOSE,
+            )
+            msg = ansi_escape.sub("", msg)
+
+            raise Exception(msg) from None
 
 
 def generate_assets_parallel(
