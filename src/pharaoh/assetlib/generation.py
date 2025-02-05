@@ -150,12 +150,12 @@ os.environ["JPY_SESSION_NAME"] = "{asset_src.as_posix()}"
 
             completed_notebooks_path = proj.asset_build_dir / "completed_notebooks" / subdir / asset_src.name
             completed_notebooks_path.parent.mkdir(parents=True, exist_ok=True)
-            with open(completed_notebooks_path, "w") as file:
+            with open(completed_notebooks_path, "w", encoding="utf-8") as file:
                 nbformat.write(nb, file)
         except CellExecutionError as e:
             failed_notebooks_path = proj.asset_build_dir / "failed_notebooks" / subdir / asset_src.name
             failed_notebooks_path.parent.mkdir(parents=True, exist_ok=True)
-            with open(failed_notebooks_path, "w") as file:
+            with open(failed_notebooks_path, "w", encoding="utf-8") as file:
                 nbformat.write(nb, file)
             msg = (
                 f"An exception was raised when executing notebook '{asset_src.stem}': {e}\n"

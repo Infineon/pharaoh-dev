@@ -1,6 +1,12 @@
 Release History
 ===============
 
+0.8.3
+-----
+
+-   Fix encoding issue when dumping Juptyer notebook outputs
+
+
 0.8.2
 -----
 
