@@ -114,8 +114,8 @@ from pharaoh.assetlib.api import get_current_component
 assert get_current_component() == "{COMP}"
 """
     # Execute the code in a context of a file inside the component
-    exec(compile(code, new_proj.sphinx_report_project_components / COMP / "dummy.py", "exec"))
-    exec(compile(code, new_proj.sphinx_report_project_components / COMP / "subdir/dummy.py", "exec"))
+    exec(compile(code, new_proj.sphinx_report_project_components / COMP / "asset_scripts/dummy.py", "exec"))
+    exec(compile(code, new_proj.sphinx_report_project_components / COMP / "asset_scripts/subdir/dummy.py", "exec"))
     with pytest.raises(LookupError, match="was not executed from inside a component"):
         exec(compile(code, new_proj.sphinx_report_project_components / "dummy.py", "exec"))
 
