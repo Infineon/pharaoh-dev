@@ -9,6 +9,8 @@ Release History
 -   Tracebacks occurring during asset generation in Jupyter notebooks are now
     printed to console with filtered ANSI control characters to improve readability.
 -   Fixed :issue:`32`: Image assets with whitespace in path are not rendered correctly
+-   Pinned ``kaleido`` dependency to 0.2.0/0.2.1 for Linux environments,
+    since there are no wheels available for newer versions.
 
 0.8.1
 -----
