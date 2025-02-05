@@ -133,9 +133,13 @@ metadata_context(
 ).activate()
 
 os.environ["WAVEWATSON_LEGACY_INPLACE"] = "0"
+os.environ["JPY_SESSION_NAME"] = "{asset_src.as_posix()}"
 """[1:-1],
             }
         )
+        # Remark: JPY_SESSION_NAME is normally set by Jupyter runtime. In our case we use the nbconvert preprocessor
+        # so the variable is not set. So we have do set it manually to the current notebook path in order for the
+        # pharaoh.assetlib.api.get_current_component function to be able to find the "executing" script..
 
         nb.cells.insert(0, initial_node)
 

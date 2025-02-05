@@ -1,6 +1,12 @@
 Release History
 ===============
 
+0.8.2
+-----
+
+-   Fixed an issue when using Jupyter notebooks as asset scripts, where the
+    calls to ``pharaoh.assetlib.api.get_current_component`` resulted in an error.
+
 0.8.1
 -----
 

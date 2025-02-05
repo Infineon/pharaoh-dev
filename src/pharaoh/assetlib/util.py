@@ -51,18 +51,13 @@ def parse_signature(obj: str | Callable, args: tuple = (), kwargs: dict | None =
     return mapping
 
 
-def get_component_name_by_callstack(components_directory: Path) -> str:
-    stack = inspect.stack()
-    for frame in stack:
-        try:
-            parts = Path(frame.filename).relative_to(components_directory).parts
-        except ValueError:
-            continue
-        if len(parts) < 2:
-            continue
-        return parts[0]
+def get_component_name_via_path_iter(path_iterator: Iterable[str]) -> str:
+    for path in path_iterator:
+        parts = Path(path).parts
+        if "asset_scripts" in parts:
+            return parts[parts.index("asset_scripts") - 1]
 
-    msg = "Current method was not executed from inside a component"
+    msg = "Current method was not executed from inside a component (no 'asset_scripts' dir in path)."
     raise LookupError(msg)
 
 

@@ -7,6 +7,8 @@ When asset scripts are accessing those API functions, the functions can access t
 # Don't remove unused imports. They may be unused here but maybe in user code!
 from __future__ import annotations
 
+import os
+from pathlib import Path
 from typing import TYPE_CHECKING
 
 from pharaoh.assetlib.catch_exceptions import catch_exceptions
@@ -83,10 +85,17 @@ def get_current_component() -> str:
     If executed from within a script that is placed inside a Pharaoh component, the function returns the components
     name by analyzing the call stack.
     """
+    import inspect
+
     from pharaoh.assetlib import util
 
-    proj = __get_pharaoh_project()
-    return util.get_component_name_by_callstack(proj.sphinx_report_project_components)
+    __get_pharaoh_project()
+    # JPY_SESSION_NAME is normally set by Jupyter runtime. In our case we use the nbconvert preprocessor
+    # so the variable is not set. Instead the ``pharaoh.assetlib.generation.generate_assets`` function sets
+    # this variable.
+    jpy_nb = os.getenv("JPY_SESSION_NAME")
+    path_iter = Path(jpy_nb).parents if jpy_nb else (frame.filename for frame in inspect.stack())
+    return util.get_component_name_via_path_iter(path_iter)
 
 
 def get_asset_finder() -> AssetFinder:

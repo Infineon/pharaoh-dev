@@ -5,7 +5,7 @@ from unittest import mock
 
 import pytest
 
-from pharaoh.api import PharaohProject
+from pharaoh.api import FileResource, PharaohProject
 
 
 def test_build_empty_project(new_proj):
@@ -22,6 +22,16 @@ def test_build_project_with_assets(new_proj):
     )  # May be more in the future, but check if the assets were generated
     status = new_proj.build_report()
     # new_proj.open_report()
+    assert status == 0
+
+
+def test_build_project_with_notebook(new_proj):
+    resource = new_proj.project_root / "data.txt"
+    resource.touch()
+    new_proj.add_component("mycomponent", "pharaoh_testing.ipynb", resources=[FileResource("mydata", resource)])
+    new_proj.generate_assets()
+    status = new_proj.build_report()
+    new_proj.open_report()
     assert status == 0
 
 
