@@ -246,7 +246,7 @@ class PharaohAssetDirective(Directive):
 
         lines_to_insert = []
         for iasset, asset in enumerate(assets):
-            if len(indices) and iasset not in indices:
+            if indices and iasset not in indices:
                 continue
             # Template option priorities:
             #  1. Directive options

@@ -108,7 +108,7 @@ def test_generate_python_holoviews_asset_static(new_proj):
     assert_file_exists(files, r"heatmap_holo_bokeh_.*.png")
     assert_file_exists(files, r"heatmap_holo_mpl_.*.png")
     html_files = list(new_proj.asset_build_dir.glob("*.html"))
-    assert not len(html_files)
+    assert not html_files
 
 
 def test_generate_python_matplotlib_asset(new_proj):

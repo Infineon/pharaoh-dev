@@ -184,7 +184,7 @@ class PharaohProject:
                     keys = re.split(r"\.|(?<!_)__(?!_)", k)
                     key = ".".join(keys[1:]).lower()
                     dotlist.append(f"{key}={v}")
-            if len(dotlist):
+            if dotlist:
                 self._settings_map["env"] = omegaconf.OmegaConf.from_dotlist(dotlist)
             else:
                 self._settings_map["env"] = omegaconf.OmegaConf.create({})
@@ -525,7 +525,7 @@ class PharaohProject:
             else:
                 components.append(comp)
 
-        if len(removed):
+        if removed:
             self._project_settings.components = components
             self.save_settings()
             log.info(f"Removed components {','.join(removed)}. Saved project.")
@@ -953,7 +953,7 @@ class PharaohProject:
         """
         self.project_root.mkdir(exist_ok=True, parents=True)
         existing_files = tuple(self.project_root.glob("*"))
-        if len(existing_files):
+        if existing_files:
             if recreate:
                 shutil.rmtree(
                     self.project_root, onerror=lambda func, path, exc_info: log.warning(f"Could not delete file {path}")
