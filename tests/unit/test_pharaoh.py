@@ -292,3 +292,6 @@ def test_component_filtering(new_proj):
 
     names = [c.name for c in new_proj.iter_components(filtered=True)]
     assert names == ["foo1", "foo2", "bar1", "baz"]
+
+    new_proj.generate_assets()
+    assert new_proj.build_report(catch_errors=False) == 0

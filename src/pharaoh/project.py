@@ -674,6 +674,16 @@ class PharaohProject:
             "autosectionlabel_prefix_document": True,
             # Latex Builder (PDF)
         }
+
+        # compute exclusions based on project config
+        all_names = {c.name for c in self.iter_components()}
+        names_after_filtering = {c.name for c in self.iter_components(filtered=True)}
+        excluded_names = all_names - names_after_filtering
+        for name in excluded_names:
+            config["exclude_patterns"].append(
+                (self.sphinx_report_project_components / name).relative_to(self.sphinx_report_project).as_posix()
+            )
+
         # HTML Builder
         static_path = confdir / "_static"
         assert static_path.exists()
