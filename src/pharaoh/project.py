@@ -531,11 +531,15 @@ class PharaohProject:
             log.info(f"Removed components {','.join(removed)}. Saved project.")
         return removed
 
-    def iter_components(self) -> Iterator[omegaconf.DictConfig]:
+    def iter_components(self, filtered: bool = False) -> Iterator[omegaconf.DictConfig]:
         """
         Returns an iterator over all components from a project.
         """
-        yield from self._project_settings.get("components", []) or []
+        self.get_setting("report.component_filter.include", ".*")
+        self.get_setting("report.component_filter.exclude", None)
+        self._project_settings.get("components", []) or []
+
+        # yield from
 
     def find_components(self, expression: str = "") -> list[omegaconf.DictConfig]:
         """
