@@ -535,11 +535,20 @@ class PharaohProject:
         """
         Returns an iterator over all components from a project.
         """
-        self.get_setting("report.component_filter.include", ".*")
-        self.get_setting("report.component_filter.exclude", None)
-        self._project_settings.get("components", []) or []
-
-        # yield from
+        filter_include = self.get_setting("report.component_filter.include", ".*")
+        filter_exclude = self.get_setting("report.component_filter.exclude", None)
+        components = self._project_settings.get("components", []) or []
+        if filtered:
+            for component in components:
+                filters_matched = False
+                if re.fullmatch(filter_include, component.name) is not None and (
+                    filter_exclude is None or re.fullmatch(filter_exclude, component.name) is None
+                ):
+                    filters_matched = True
+                if filters_matched:
+                    yield component
+        else:
+            yield from components
 
     def find_components(self, expression: str = "") -> list[omegaconf.DictConfig]:
         """

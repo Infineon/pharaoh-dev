@@ -270,3 +270,25 @@ def test_add_additional_templates(new_proj):
     assert (new_proj.sphinx_report_project_components / "dummy/asset_scripts/plotly_plots_2.py").exists()
     assert "foo" in new_proj._project_settings.components[0].render_context
     assert "bla" in new_proj._project_settings.components[0].render_context
+
+
+def test_component_filtering(new_proj):
+    new_proj.put_setting(
+        "report.component_filter",
+        {
+            "include": ".*",
+            "exclude": "bar2",
+        },
+    )
+    new_proj.add_component("foo1", "pharaoh_testing.simple")
+    new_proj.add_component("foo2", "pharaoh_testing.simple")
+    new_proj.add_component("bar1", "pharaoh_testing.simple")
+    new_proj.add_component("bar2", "pharaoh_testing.simple")
+    new_proj.add_component("baz", "pharaoh_testing.simple")
+    new_proj.save_settings()
+
+    names = [c.name for c in new_proj.iter_components()]
+    assert names == ["foo1", "foo2", "bar1", "bar2", "baz"]
+
+    names = [c.name for c in new_proj.iter_components(filtered=True)]
+    assert names == ["foo1", "foo2", "bar1", "baz"]
