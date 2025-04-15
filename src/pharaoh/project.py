@@ -538,6 +538,16 @@ class PharaohProject:
         filter_include = self.get_setting("report.component_filter.include", ".*")
         filter_exclude = self.get_setting("report.component_filter.exclude", None)
         components = self._project_settings.get("components", []) or []
+
+        # input validation
+        filter_include = ".*" if filter_include is None else filter_include
+        if not isinstance(filter_include, str):
+            msg = "Invalid pharaoh.yaml: report.component_filter.include must be either set to a string or left empty."
+            raise ValueError(msg)
+        if not (filter_exclude is None or isinstance(filter_exclude, str)):
+            msg = "Invalid pharaoh.yaml: report.component_filter.exclude must be either set to a string or left empty."
+            raise ValueError(msg)
+
         if filtered:
             for component in components:
                 filters_matched = False
