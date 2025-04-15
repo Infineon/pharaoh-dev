@@ -155,11 +155,6 @@ class PharaohTemplateEnv(jinja2.Environment):
 
         self.loader = PharaohFileSystemLoader(template_paths)
 
-        components = []
-        for comp in pharaoh_proj._project_settings.get("components", []) or []:
-            rst_entrypoint = pharaoh_proj.sphinx_report_project_components / comp["name"] / "index.rst"
-            if rst_entrypoint.exists():
-                components.append(rst_entrypoint.relative_to(pharaoh_proj.sphinx_report_project).as_posix())
         self.default_context["project"]["instance"] = pharaoh_proj
         self.default_context["config"] = app.config or {}
         self.default_context["user"] = app.config.pharaoh_jinja_context or {}

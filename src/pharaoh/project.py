@@ -560,7 +560,7 @@ class PharaohProject:
         else:
             yield from components
 
-    def find_components(self, expression: str = "") -> list[omegaconf.DictConfig]:
+    def find_components(self, expression: str = "", filtered: bool = False) -> list[omegaconf.DictConfig]:
         """
         Find components by their metadata using an evaluated expression.
 
@@ -580,7 +580,7 @@ class PharaohProject:
            A failing evaluation will be treated as False. An empty expression will always match.
         """
         found = []
-        for comp in self.iter_components():
+        for comp in self.iter_components(filtered=filtered):
             if not expression:
                 found.append(comp)
                 continue
@@ -746,7 +746,7 @@ class PharaohProject:
 
         PM.pharaoh_asset_gen_started(self)
         sources = []
-        for comp in self.iter_components():
+        for comp in self.iter_components(filtered=True):
             comp_name = comp["name"]
             comp_asset_build_dir = self.asset_build_dir / comp_name
             for cfilter in component_filters:
@@ -951,7 +951,7 @@ class PharaohProject:
         l1_templates = PM.pharaoh_collect_l1_templates()
         used_templates = set()
         dependent_templates = set()
-        for comp in self._project_settings.get("components", []):
+        for comp in self.iter_components(filtered=True):
             for template in comp.templates:
                 if template in l1_templates:
                     used_templates.add(template)
@@ -1062,7 +1062,7 @@ class PharaohProject:
             Find all error traceback assets in the project grouped by component name.
             """
             error_assets = {}
-            for comp in self.iter_components():
+            for comp in self.iter_components(filtered=True):
                 assets = self.asset_finder.search_assets("asset_type == 'error_traceback'", comp.name)
                 if assets:
                     error_assets[comp.name] = assets
