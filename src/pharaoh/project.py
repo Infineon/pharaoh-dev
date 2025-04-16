@@ -937,12 +937,57 @@ class PharaohProject:
         else:
             log.warning(f"The open_report method is not implemented for builder {builder}!")
 
-    def archive_report(self, dest: PathLike | None = None) -> Path:
+    def _archive_report_compressed(self, dest: Path) -> Path:
+        """
+        Create an archive (zipped) from the build folder.
+
+        :param dest: A destination path to create the archive. Relative paths are relative to the project root.
+                     If omitted, the filename will be taken from the ``report.archive_name`` setting.
+        :return: The path to the archive
+        """
+        if not dest.suffix:
+            dest = dest / self.get_setting("report.archive_name")
+
+        if dest.exists():
+            os.remove(dest)
+        dest.parent.mkdir(parents=True, exist_ok=True)
+
+        base_name = dest.parent / dest.stem
+        fmt = dest.suffix.replace(".", "")
+        shutil.make_archive(str(base_name), fmt, self.sphinx_report_build)
+        log.info(f"Created archive at {dest}")
+
+        return dest
+
+    def _archive_report_uncompressed(self, dest: Path) -> Path:
+        """
+        Create an archive (uncompressed) from the build folder.
+
+        :param dest: A destination path to create the archive. Relative paths are relative to the project root.
+                     If omitted, the filename will be taken from the ``report.archive_name`` setting.
+        :return: The path to the archive
+        """
+        # strip file extension: if it exists, it most likely contains the '.zip' suffix which makes no sense
+        # in this function
+        dest = dest.with_suffix("")
+
+        if dest.exists():
+            os.rmdir(dest)
+
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copytree(self.sphinx_report_build, dest)
+        log.info(f"Created archive at {dest}")
+
+        return dest
+
+    def archive_report(self, dest: PathLike | None = None, suffix: str | None = None, compression: bool = True) -> Path:
         """
         Create an archive from the build folder.
 
         :param dest: A destination path to create the archive. Relative paths are relative to the project root.
                      If omitted, the filename will be taken from the ``report.archive_name`` setting.
+        :param suffix: Suffix to append to the stem of the archive's filename.
+        :param compression: True by default, if set to False, will create an uncompressed folder instead of a zip file.
         :return: The path to the archive
         """
         if not self.sphinx_report_build.exists():
@@ -953,17 +998,14 @@ class PharaohProject:
         if not dest_path.is_absolute():
             dest_path = (self.project_root / dest_path).absolute()
 
-        if not dest_path.suffix:
-            dest_path /= self.get_setting("report.archive_name")
+        # apply suffix to the stem of the filename, not suffix as in file extension - naming is hard ;)
+        if suffix:
+            dest_path = dest_path.with_name(f"{dest_path.stem}{suffix}{dest_path.suffix}")
 
-        if dest_path.exists():
-            os.remove(dest_path)
-        dest_path.parent.mkdir(parents=True, exist_ok=True)
-
-        base_name = dest_path.parent / dest_path.stem
-        fmt = dest_path.suffix.replace(".", "")
-        shutil.make_archive(str(base_name), fmt, self.sphinx_report_build)
-        log.info(f"Created archive at {dest_path}")
+        if compression:
+            dest_path = self._archive_report_compressed(dest_path)
+        else:
+            dest_path = self._archive_report_uncompressed(dest_path)
 
         return dest_path
 

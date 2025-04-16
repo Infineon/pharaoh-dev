@@ -16,9 +16,11 @@ Release History
             proj = PharaohProject(project_root="./pharaoh-report")
             proj.generate_assets()
             proj.build_report()  # this report contains all components
+            proj.archive_report(compression=False, suffix="-full")
 
             proj.filter_components(exclude="3DPieChart.*|MultiStackedBarChart.*")
             proj.build_report()  # this report contains just a subset of the full report
+            proj.archive_report(compression=False, suffix="-light")
 
 0.8.3
 -----
