@@ -273,13 +273,10 @@ def test_add_additional_templates(new_proj):
 
 
 def test_component_filtering(new_proj):
-    new_proj.put_setting(
-        "report.component_filter",
-        {
-            "include": ".*",
-            "exclude": "bar2",
-        },
-    )
+    """Uses convenience function to filter components and build a report."""
+
+    new_proj.filter_components(include="foo.*|ba.*", exclude="bar2")
+
     new_proj.add_component("foo1", "pharaoh_testing.simple")
     new_proj.add_component("foo2", "pharaoh_testing.simple")
     new_proj.add_component("bar1", "pharaoh_testing.simple")

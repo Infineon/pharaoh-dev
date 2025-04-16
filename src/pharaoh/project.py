@@ -592,6 +592,23 @@ class PharaohProject:
                 found.append(comp)
         return found
 
+    def filter_components(self, include: str | None = None, exclude: str | None = None):
+        """
+        Applies a component filter to the project config (report.component_filter.include/exclude).
+        Use this to create variants of the same report (think full/light version).
+        Include- and Exclude-expressions can be used at the same time for efficient filtering.
+
+        :param include: A regular expression which matches on the component names to be included.
+        :param exclude: A regular expression which matches on the component names to be excluded.
+        """
+        if include is None and exclude is None:
+            msg = "No filter expression provided. At least one must be provided."
+            raise ValueError(msg)
+
+        filter_include = ".*" if include is None else include
+        self.put_setting("report.component_filter.include", filter_include)
+        self.put_setting("report.component_filter.exclude", exclude)
+
     def get_resource(self, alias: str, component: str) -> resource.Resource:
         """
         Finds a Resource from a project component by its alias.
