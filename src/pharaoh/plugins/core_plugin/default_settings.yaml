@@ -20,6 +20,11 @@ report:
   html:
     # Show Pharaoh logo on HTML report. Kindly let this enabled for branding, unless it's for external customers ;)
     show_pharaoh_logo: true
+  # Optional: Using the include/exclude filters you can create partial reports using only a subset of the existing
+  # components. Accepts python regex-flavor (https://docs.python.org/3.13/library/re.html#re.fullmatch)
+  component_filter:
+    include: ".*"
+    exclude: null
 
 asset_gen:
   # Create static (png, svg) assets instead of dynamic (html) ones where possible.

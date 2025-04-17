@@ -41,7 +41,7 @@ The first thing to do is generating a Pharaoh project.
             from pharaoh.api import PharaohProject
 
             # Create a project with a default template optimized for HTML output inside current working directory
-            proj = PharaohProject(".")
+            proj = PharaohProject(project_root="./pharaoh-report")
 
             # For overwriting an existing project
             proj = PharaohProject(project_root="path-to-existing-project", overwrite=True)

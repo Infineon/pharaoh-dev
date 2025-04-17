@@ -97,12 +97,38 @@ def test_archive_report(new_proj, tmp_path):
     new_proj.archive_report("archive2.zip")
     assert (new_proj.project_root / "archive2.zip").exists()
 
-    new_proj.archive_report(tmp_path / "archives/archive3.zip")
-    assert (tmp_path / "archives/archive3.zip").exists()
+    new_proj.archive_report("archive3.zip", suffix="-light")
+    assert (new_proj.project_root / "archive3-light.zip").exists()
 
-    new_proj.put_setting("report.archive_name", "archive4.zip")
+    new_proj.archive_report(tmp_path / "archives/archive4.zip")
+    assert (tmp_path / "archives/archive4.zip").exists()
+
+    new_proj.put_setting("report.archive_name", "archive5.zip")
     assert new_proj.build_report() == 0
-    assert not (new_proj.project_root / "archive4.zip").exists()
+    assert not (new_proj.project_root / "archive5.zip").exists()
+
+
+def test_archive_report_uncompressed(new_proj, tmp_path):
+    assert new_proj.build_report() == 0
+
+    # in case the default archive name contains a zip file extension it should use that name for an
+    # uncompressed archive folder name as well but stripping the file extension.
+    new_proj.put_setting("report.archive_name", "archive1.zip")
+    new_proj.archive_report(compression=False)
+    assert (new_proj.project_root / "archive1").is_dir()
+
+    new_proj.archive_report("archive2.zip", compression=False)
+    assert (new_proj.project_root / "archive2").exists()
+
+    new_proj.archive_report("archive3", suffix="-light", compression=False)
+    assert (new_proj.project_root / "archive3-light").exists()
+
+    new_proj.archive_report(tmp_path / "archives/archive4", compression=False)
+    assert (tmp_path / "archives/archive4").exists()
+
+    new_proj.put_setting("report.archive_name", "archive5.zip")
+    assert new_proj.build_report() == 0
+    assert not (new_proj.project_root / "archive5.zip").exists()
 
 
 def test_get_current_component(new_proj):
@@ -270,3 +296,25 @@ def test_add_additional_templates(new_proj):
     assert (new_proj.sphinx_report_project_components / "dummy/asset_scripts/plotly_plots_2.py").exists()
     assert "foo" in new_proj._project_settings.components[0].render_context
     assert "bla" in new_proj._project_settings.components[0].render_context
+
+
+def test_component_filtering(new_proj):
+    """Uses convenience function to filter components and build a report."""
+
+    new_proj.filter_components(include="foo.*|ba.*", exclude="bar2")
+
+    new_proj.add_component("foo1", "pharaoh_testing.simple")
+    new_proj.add_component("foo2", "pharaoh_testing.simple")
+    new_proj.add_component("bar1", "pharaoh_testing.simple")
+    new_proj.add_component("bar2", "pharaoh_testing.simple")
+    new_proj.add_component("baz", "pharaoh_testing.simple")
+    new_proj.save_settings()
+
+    names = [c.name for c in new_proj.iter_components()]
+    assert names == ["foo1", "foo2", "bar1", "bar2", "baz"]
+
+    names = [c.name for c in new_proj.iter_components(filtered=True)]
+    assert names == ["foo1", "foo2", "bar1", "baz"]
+
+    new_proj.generate_assets()
+    assert new_proj.build_report(catch_errors=False) == 0

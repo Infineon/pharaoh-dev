@@ -531,13 +531,36 @@ class PharaohProject:
             log.info(f"Removed components {','.join(removed)}. Saved project.")
         return removed
 
-    def iter_components(self) -> Iterator[omegaconf.DictConfig]:
+    def iter_components(self, filtered: bool = False) -> Iterator[omegaconf.DictConfig]:
         """
         Returns an iterator over all components from a project.
         """
-        yield from self._project_settings.get("components", []) or []
+        filter_include = self.get_setting("report.component_filter.include", ".*")
+        filter_exclude = self.get_setting("report.component_filter.exclude", None)
+        components = self._project_settings.get("components", []) or []
 
-    def find_components(self, expression: str = "") -> list[omegaconf.DictConfig]:
+        # input validation
+        filter_include = ".*" if filter_include is None else filter_include
+        if not isinstance(filter_include, str):
+            msg = "Invalid pharaoh.yaml: report.component_filter.include must be either set to a string or left empty."
+            raise ValueError(msg)
+        if not (filter_exclude is None or isinstance(filter_exclude, str)):
+            msg = "Invalid pharaoh.yaml: report.component_filter.exclude must be either set to a string or left empty."
+            raise ValueError(msg)
+
+        if filtered:
+            for component in components:
+                filters_matched = False
+                if re.fullmatch(filter_include, component.name) is not None and (
+                    filter_exclude is None or re.fullmatch(filter_exclude, component.name) is None
+                ):
+                    filters_matched = True
+                if filters_matched:
+                    yield component
+        else:
+            yield from components
+
+    def find_components(self, expression: str = "", filtered: bool = False) -> list[omegaconf.DictConfig]:
         """
         Find components by their metadata using an evaluated expression.
 
@@ -557,7 +580,7 @@ class PharaohProject:
            A failing evaluation will be treated as False. An empty expression will always match.
         """
         found = []
-        for comp in self.iter_components():
+        for comp in self.iter_components(filtered=filtered):
             if not expression:
                 found.append(comp)
                 continue
@@ -568,6 +591,23 @@ class PharaohProject:
             if result:
                 found.append(comp)
         return found
+
+    def filter_components(self, include: str | None = None, exclude: str | None = None):
+        """
+        Applies a component filter to the project config (report.component_filter.include/exclude).
+        Use this to create variants of the same report (think full/light version).
+        Include- and Exclude-expressions can be used at the same time for efficient filtering.
+
+        :param include: A regular expression which matches on the component names to be included.
+        :param exclude: A regular expression which matches on the component names to be excluded.
+        """
+        if include is None and exclude is None:
+            msg = "No filter expression provided. At least one must be provided."
+            raise ValueError(msg)
+
+        filter_include = ".*" if include is None else include
+        self.put_setting("report.component_filter.include", filter_include)
+        self.put_setting("report.component_filter.exclude", exclude)
 
     def get_resource(self, alias: str, component: str) -> resource.Resource:
         """
@@ -651,6 +691,16 @@ class PharaohProject:
             "autosectionlabel_prefix_document": True,
             # Latex Builder (PDF)
         }
+
+        # compute exclusions based on project config
+        all_names = {c.name for c in self.iter_components()}
+        names_after_filtering = {c.name for c in self.iter_components(filtered=True)}
+        excluded_names = all_names - names_after_filtering
+        for name in excluded_names:
+            config["exclude_patterns"].append(
+                (self.sphinx_report_project_components / name).relative_to(self.sphinx_report_project).as_posix()
+            )
+
         # HTML Builder
         static_path = confdir / "_static"
         assert static_path.exists()
@@ -723,7 +773,7 @@ class PharaohProject:
 
         PM.pharaoh_asset_gen_started(self)
         sources = []
-        for comp in self.iter_components():
+        for comp in self.iter_components(filtered=True):
             comp_name = comp["name"]
             comp_asset_build_dir = self.asset_build_dir / comp_name
             for cfilter in component_filters:
@@ -887,12 +937,57 @@ class PharaohProject:
         else:
             log.warning(f"The open_report method is not implemented for builder {builder}!")
 
-    def archive_report(self, dest: PathLike | None = None) -> Path:
+    def _archive_report_compressed(self, dest: Path) -> Path:
+        """
+        Create an archive (zipped) from the build folder.
+
+        :param dest: A destination path to create the archive. Relative paths are relative to the project root.
+                     If omitted, the filename will be taken from the ``report.archive_name`` setting.
+        :return: The path to the archive
+        """
+        if not dest.suffix:
+            dest = dest / self.get_setting("report.archive_name")
+
+        if dest.exists():
+            os.remove(dest)
+        dest.parent.mkdir(parents=True, exist_ok=True)
+
+        base_name = dest.parent / dest.stem
+        fmt = dest.suffix.replace(".", "")
+        shutil.make_archive(str(base_name), fmt, self.sphinx_report_build)
+        log.info(f"Created archive at {dest}")
+
+        return dest
+
+    def _archive_report_uncompressed(self, dest: Path) -> Path:
+        """
+        Create an archive (uncompressed) from the build folder.
+
+        :param dest: A destination path to create the archive. Relative paths are relative to the project root.
+                     If omitted, the filename will be taken from the ``report.archive_name`` setting.
+        :return: The path to the archive
+        """
+        # strip file extension: if it exists, it most likely contains the '.zip' suffix which makes no sense
+        # in this function
+        dest = dest.with_suffix("")
+
+        if dest.exists():
+            os.rmdir(dest)
+
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copytree(self.sphinx_report_build, dest)
+        log.info(f"Created archive at {dest}")
+
+        return dest
+
+    def archive_report(self, dest: PathLike | None = None, suffix: str | None = None, compression: bool = True) -> Path:
         """
         Create an archive from the build folder.
 
         :param dest: A destination path to create the archive. Relative paths are relative to the project root.
                      If omitted, the filename will be taken from the ``report.archive_name`` setting.
+        :param suffix: Suffix to append to the stem of the archive's filename.
+        :param compression: True by default, if set to False, will create an uncompressed folder instead of a zip file.
         :return: The path to the archive
         """
         if not self.sphinx_report_build.exists():
@@ -903,17 +998,14 @@ class PharaohProject:
         if not dest_path.is_absolute():
             dest_path = (self.project_root / dest_path).absolute()
 
-        if not dest_path.suffix:
-            dest_path /= self.get_setting("report.archive_name")
+        # apply suffix to the stem of the filename, not suffix as in file extension - naming is hard ;)
+        if suffix:
+            dest_path = dest_path.with_name(f"{dest_path.stem}{suffix}{dest_path.suffix}")
 
-        if dest_path.exists():
-            os.remove(dest_path)
-        dest_path.parent.mkdir(parents=True, exist_ok=True)
-
-        base_name = dest_path.parent / dest_path.stem
-        fmt = dest_path.suffix.replace(".", "")
-        shutil.make_archive(str(base_name), fmt, self.sphinx_report_build)
-        log.info(f"Created archive at {dest_path}")
+        if compression:
+            dest_path = self._archive_report_compressed(dest_path)
+        else:
+            dest_path = self._archive_report_uncompressed(dest_path)
 
         return dest_path
 
@@ -928,7 +1020,7 @@ class PharaohProject:
         l1_templates = PM.pharaoh_collect_l1_templates()
         used_templates = set()
         dependent_templates = set()
-        for comp in self._project_settings.get("components", []):
+        for comp in self.iter_components(filtered=True):
             for template in comp.templates:
                 if template in l1_templates:
                     used_templates.add(template)
@@ -1039,7 +1131,7 @@ class PharaohProject:
             Find all error traceback assets in the project grouped by component name.
             """
             error_assets = {}
-            for comp in self.iter_components():
+            for comp in self.iter_components(filtered=True):
                 assets = self.asset_finder.search_assets("asset_type == 'error_traceback'", comp.name)
                 if assets:
                     error_assets[comp.name] = assets

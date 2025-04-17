@@ -1,6 +1,29 @@
 Release History
 ===============
 
+0.9.0
+-----
+
+-   Adds possibility to filter components on an existing pharaoh project.
+    This can be used to create several variants of the same report which contain a subset of the full reports components.
+    To increase ease of use, the ``pharaoh.api.project.archive_project`` method got new options to disable `compression`
+    and add an additional `suffix` to the archives name to create meaningful report names for their specific purpose.
+    Ideally you build your reports via a small script and not the CLI to leverage this flexibility.
+
+    .. code-block:: python
+
+        from pharaoh.api import PharaohProject
+
+        if __name__ == "__main__":
+            proj = PharaohProject(project_root="./pharaoh-report")
+            proj.generate_assets()
+            proj.build_report()  # this report contains all components
+            proj.archive_report(compression=False, suffix="-full")
+
+            proj.filter_components(exclude="3DPieChart.*|MultiStackedBarChart.*")
+            proj.build_report()  # this report contains just a subset of the full report
+            proj.archive_report(compression=False, suffix="-light")
+
 0.8.3
 -----
 

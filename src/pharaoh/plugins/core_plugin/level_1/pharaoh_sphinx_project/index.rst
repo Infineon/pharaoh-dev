@@ -16,6 +16,6 @@
 .. toctree::
     :maxdepth: 2
 
-    {% for component in proj.find_components() %}
+    {% for component in proj.iter_components(filtered=True) %}
     {{ component_rst_path_template.format(component.name) }}
     {% endfor %}
