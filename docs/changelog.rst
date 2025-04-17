@@ -6,6 +6,8 @@ Release History
 
 -   Adds possibility to filter components on an existing pharaoh project.
     This can be used to create several variants of the same report which contain a subset of the full reports components.
+    To increase ease of use, the ``pharaoh.api.project.archive_project`` method got new options to disable `compression`
+    and add an additional `suffix` to the archives name to create meaningful report names for their specific purpose.
     Ideally you build your reports via a small script and not the CLI to leverage this flexibility.
 
     .. code-block:: python
