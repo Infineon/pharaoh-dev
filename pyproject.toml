@@ -44,7 +44,7 @@ urls.Tracker = "https://github.com/Infineon/pharaoh-dev/issues"
 
 dependencies = [
     "attrs",
-    "click", # CLI
+    "click<8.2", # CLI. 8.2.0 drops Python 3.9 support and leads to a fail in CLI test "test_remove"
     "omegaconf", # yaml R/W
     "natsort", # sorting paths naturally
     "pyyaml!=5.3.0",

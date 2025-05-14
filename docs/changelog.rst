@@ -1,6 +1,11 @@
 Release History
 ===============
 
+0.9.1
+-----
+
+-   Pinned click to <8.2 for now, since it drops support for Python 3.9
+
 0.9.0
 -----
 
