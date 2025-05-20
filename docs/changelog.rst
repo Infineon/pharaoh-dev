@@ -1,6 +1,11 @@
 Release History
 ===============
 
+0.9.2
+-----
+
+-   Pinned plotly to <6.1. See [Plotly #5187](https://github.com/plotly/plotly.py/issues/5187).
+
 0.9.1
 -----
 

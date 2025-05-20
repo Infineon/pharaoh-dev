@@ -77,7 +77,8 @@ holoviews = [
 ]
 matplotlib = ["matplotlib"]
 plotly = [
-    "plotly",
+    # write_image fails silently, see https://github.com/plotly/plotly.py/issues/5187
+    "plotly<6.1",
     # Newer kaleido versions leads to deadlocks, see https://github.com/plotly/Kaleido/issues/110"
     "kaleido==0.1.0.post1; platform_system=='Windows'",
     "kaleido>=0.2.0,<=0.2.1; platform_system=='Linux'",
