@@ -189,14 +189,7 @@ class AssetFinder:
             if result:
                 found.append(asset)
 
-        def sort_key(asset):
-            try:
-                return asset.context.asset.index
-            except AttributeError:
-                return 0
-
-        # Sort by asset index, which reflects the order in which the assets were generated in the asset script
-        return sorted(found, key=sort_key)
+        return AssetFinder.sort_assets(found)
 
     def iter_assets(self, components: str | Iterable[str] | None = None) -> Iterator[Asset]:
         """
@@ -226,6 +219,22 @@ class AssetFinder:
             if asset.id == id:
                 return asset
         return None
+
+    @staticmethod
+    def sort_assets(assets: list[Asset]) -> list[Asset]:
+        """
+        Sorts a list of assets by their generation order.
+
+        :param assets: A list of :class:`Asset` instances to sort
+        """
+
+        def sort_key(asset):
+            try:
+                return asset.context.asset.index
+            except AttributeError:
+                return 0
+
+        return sorted(assets, key=sort_key)
 
 
 def asset_groupby(

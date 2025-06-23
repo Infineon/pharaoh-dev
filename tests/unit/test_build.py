@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+import re
 from unittest import mock
 
 import pytest
@@ -124,7 +125,12 @@ fig = px.scatter(
 )
 
 with metadata_context(label="my_plot"):
-    fig.write_html(file="iris_scatter.html")
+    with metadata_context(title="Plot 1"):
+        fig.write_html(file="iris_scatter.html")
+    with metadata_context(title="Plot 2"):
+        fig.write_html(file="iris_scatter.html")
+    with metadata_context(title="Plot 3"):
+        fig.write_html(file="iris_scatter.html")
 '''
     )
 
@@ -134,9 +140,13 @@ with metadata_context(label="my_plot"):
     assert status == 0
     assert (new_proj.sphinx_report_project_components / "dummy/asset_scripts/tmpl.py").exists()
     assert (new_proj.sphinx_report_project_components / "dummy/index_tmpl.rst").exists()
-    assert 'href="#my-plots"' in (new_proj.sphinx_report_build / "components/dummy/index.html").read_text(
-        encoding="utf-8"
-    )
+
+    html_content = (new_proj.sphinx_report_build / "components/dummy/index.html").read_text(encoding="utf-8")
+    assert 'href="#my-plots"' in html_content
+
+    rubrics = re.findall(r'<span class="std std-ref">(Plot \d)</span>', html_content)
+    # Check if the plots are sorted by generation index
+    assert rubrics == ["Plot 1", "Plot 2", "Plot 3"]
     # new_proj.open_report()
 
 

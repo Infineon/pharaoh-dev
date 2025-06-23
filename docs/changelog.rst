@@ -1,6 +1,13 @@
 Release History
 ===============
 
+0.9.3
+-----
+
+-   Fixed an issue where the Pharaoh asset directive was adding assets in the wrong order,
+    instead of the order they were generated in.
+
+
 0.9.2
 -----
 

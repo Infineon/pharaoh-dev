@@ -228,7 +228,8 @@ class PharaohAssetDirective(Directive):
                 line = line.strip()
                 if line:
                     assets.extend(asset_finder.search_assets(line, list(component_selection)))
-        assets = list(set(assets))  # Filter potential duplicates added by multiple "overlapping" asset filters
+        # Filter potential duplicates added by multiple "overlapping" asset filters
+        assets = asset_finder.sort_assets(list(set(assets)))
         if not len(assets) and not asset_optional:
             msg = "No assets matched!\n"
             raise Exception(msg)
