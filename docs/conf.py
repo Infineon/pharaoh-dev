@@ -41,23 +41,19 @@ toc_object_entries_show_parents = "hide"
 
 pygments_style = "default"
 templates_path = ["."]
-html_theme = "sphinx_rtd_theme"
+html_theme = "sphinx_nefertiti"
 html_static_path = ["_static"]
 html_logo = "_static/icon.png"
-# html_favicon = "_static/favicon.ico"
-html_style = "sphinx_rtd_theme_overrides.css"
 html_theme_options = {
-    "logo_only": True,
-    "display_version": True,
-    "prev_next_buttons_location": "bottom",
-    "style_external_links": False,
-    "vcs_pageview_mode": "",
-    "style_nav_header_background": "#ededed",
-    # Toc options
-    "collapse_navigation": False,
-    "sticky_navigation": True,
-    "navigation_depth": 7,
-    "includehidden": True,
+    "show_colorset_choices": True,
+    "current_version": version,
+    "repository_url": "https://github.com/Infineon/pharaoh-dev",
+    "repository_name": "Pharaoh Report",
+    "logo": "icon.png",
+    "logo_location": "sidebar",
+    "logo_height": 200,
+    "logo_width": 200,
+    "doc_headers_font": "Nunito",
 }
 
 html_use_smartypants = True

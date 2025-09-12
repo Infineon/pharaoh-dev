@@ -103,6 +103,7 @@ docs = [
     "sphinxcontrib-jquery",
     "sphinx-jinja",
     "sphinx-copybutton",
+    "sphinx-nefertiti>=0.8.8",
 ]
 dev = [
     "pytest",
