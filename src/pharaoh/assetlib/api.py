@@ -1,4 +1,4 @@
-# flake8: noqa: F401,F403
+# flake8: noqa: F403
 """
 This module contains API functions related to asset generation.
 When asset scripts are accessing those API functions, the functions can access the project information by themselves.

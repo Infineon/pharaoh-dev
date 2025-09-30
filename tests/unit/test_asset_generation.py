@@ -224,7 +224,7 @@ def test_execute_asset_script_directly(new_proj):
     )
     asset_py = new_proj.sphinx_report_project_components / "dummy_1" / "asset_scripts" / "assets.py"
     p = sp.Popen(args=[sys.executable, asset_py], stderr=sp.PIPE, stdout=sp.PIPE, cwd=asset_py.parent, text=True)
-    out, err = p.communicate()
+    _out, err = p.communicate()
     if p.returncode != 0:
         raise RuntimeError(err)
 
