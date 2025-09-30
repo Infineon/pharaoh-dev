@@ -44,6 +44,7 @@ templates_path = ["."]
 html_theme = "sphinx_nefertiti"
 html_static_path = ["_static"]
 html_logo = "_static/icon.png"
+html_css_files = ["custom.css"]
 html_theme_options = {
     "show_colorset_choices": True,
     "current_version": version,
