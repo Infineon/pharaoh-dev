@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pharaoh &mdash; Pharaoh 0.9.4.dev5+gb54425102 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx_rtd_theme_overrides.css?v=6ccba6a1" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=b1c8eef7"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="_static/copybutton.js?v=f281be69"></script>
+        <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Introduction" href="intro.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #ededed" >
+
+          
+          
+          <a href="#">
+            
+              <img src="_static/icon.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                Pharaoh v0.9.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#working-principle">Working Principle</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#installation-via-pip">Installation via Pip</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#create-a-virtual-environment">Create a virtual environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#install">Install</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#extras">Extras</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user_guide.html#preface">Preface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide.html#project-generation">Project Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide.html#update-settings">Update Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide.html#manage-components">Manage Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide.html#manage-asset-scripts">Manage Asset Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide.html#modify-templates">Modify Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="template_designer_guide.html">Template Designer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/index.html">Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reference/project_structure.html">Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference/settings.html">Settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/settings.html#default-settings">Default Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/settings.html#custom-settings">Custom Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/settings.html#accessing-settings">Accessing Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/settings.html#custom-resolvers">Custom Resolvers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/components.html">Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/components.html#what-s-a-component">What’s a Component?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/components.html#resources">Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/components.html#templates">Templates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/components.html#managing-components">Managing Components</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/components.html#adding-components">Adding Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/components.html#updating-components">Updating Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/components.html#removing-components">Removing Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/components.html#finding-components">Finding Components</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="reference/components.html#built-in-templates">Built-In Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/assets.html">Assets</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/assets.html#what-s-an-asset">What’s an Asset?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/assets.html#executing-asset-generation">Executing Asset Generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/assets.html#debugging-asset-scripts">Debugging Asset Scripts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/assets.html#implementing-asset-scripts">Implementing Asset Scripts</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/assets.html#metadata-stack">Metadata Stack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/assets.html#manually-registering-assets">Manually Registering Assets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/assets.html#catching-errors">Catching Errors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/assets.html#patched-frameworks">Patched Frameworks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/assets.html#force-static-exports">Force Static Exports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/assets.html#matlab-integration">Matlab Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="reference/assets.html#asset-lookup">Asset Lookup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/assets.html#asset-finder">Asset Finder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/assets.html#manual-include">Manual Include</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/assets.html#grouping-assets-by-metadata">Grouping Assets By Metadata</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/directive.html">Pharaoh Directive</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/directive.html#directive-options">Directive Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/directive.html#asset-templates">Asset Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/building.html">Building</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/building.html#configuration">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/building.html#build-api">Build API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/building.html#archiving">Archiving</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/templating.html">Templating</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/templating.html#generation-time-templating">Generation-time Templating</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/templating.html#basics">Basics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/templating.html#single-file-templates">Single-file Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="reference/templating.html#build-time-templating">Build-time Templating</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/templating.html#template-inheritance">Template Inheritance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/templating.html#rendering-context">Rendering Context</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/templating.html#extending-template-syntax">Extending Template Syntax</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/api.html">API Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/api.html#pharaoh-api-module">Pharaoh API Module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/api.html#pharaoh.api.get_project"><code class="docutils literal notranslate"><span class="pre">get_project()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api.html#pharaoh.project.PharaohProject"><code class="docutils literal notranslate"><span class="pre">PharaohProject</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.project.PharaohProject.PROJECT_SETTINGS_YAML"><code class="docutils literal notranslate"><span class="pre">PROJECT_SETTINGS_YAML</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.project.PharaohProject.__init__"><code class="docutils literal notranslate"><span class="pre">__init__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.project.PharaohProject.add_component"><code class="docutils literal notranslate"><span class="pre">add_component()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.project.PharaohProject.add_template_to_component"><code class="docutils literal notranslate"><span class="pre">add_template_to_component()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.project.PharaohProject.archive_report"><code class="docutils literal notranslate"><span class="pre">archive_report()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.project.PharaohProject.asset_build_dir"><code class="docutils literal notranslate"><span class="pre">asset_build_dir</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.project.PharaohProject.asset_finder"><code class="docutils literal notranslate"><span class="pre">asset_finder</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.project.PharaohProject.build_report"><code class="docutils literal notranslate"><span class="pre">build_report()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.project.PharaohProject.filter_components"><code class="docutils literal notranslate"><span class="pre">filter_components()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.project.PharaohProject.find_components"><code class="docutils literal notranslate"><span class="pre">find_components()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.project.PharaohProject.generate_assets"><code class="docutils literal notranslate"><span class="pre">generate_assets()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.project.PharaohProject.get_default_sphinx_configuration"><code class="docutils literal notranslate"><span class="pre">get_default_sphinx_configuration()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.project.PharaohProject.get_resource"><code class="docutils literal notranslate"><span class="pre">get_resource()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.project.PharaohProject.get_setting"><code class="docutils literal notranslate"><span class="pre">get_setting()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.project.PharaohProject.get_settings"><code class="docutils literal notranslate"><span class="pre">get_settings()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.project.PharaohProject.iter_components"><code class="docutils literal notranslate"><span class="pre">iter_components()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.project.PharaohProject.iter_resources"><code class="docutils literal notranslate"><span class="pre">iter_resources()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.project.PharaohProject.load_settings"><code class="docutils literal notranslate"><span class="pre">load_settings()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.project.PharaohProject.open_report"><code class="docutils literal notranslate"><span class="pre">open_report()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.project.PharaohProject.project_root"><code class="docutils literal notranslate"><span class="pre">project_root</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.project.PharaohProject.put_setting"><code class="docutils literal notranslate"><span class="pre">put_setting()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.project.PharaohProject.remove_component"><code class="docutils literal notranslate"><span class="pre">remove_component()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.project.PharaohProject.save_settings"><code class="docutils literal notranslate"><span class="pre">save_settings()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.project.PharaohProject.settings_file"><code class="docutils literal notranslate"><span class="pre">settings_file</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.project.PharaohProject.sphinx_report_build"><code class="docutils literal notranslate"><span class="pre">sphinx_report_build</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.project.PharaohProject.sphinx_report_project"><code class="docutils literal notranslate"><span class="pre">sphinx_report_project</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.project.PharaohProject.sphinx_report_project_components"><code class="docutils literal notranslate"><span class="pre">sphinx_report_project_components</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.project.PharaohProject.update_resource"><code class="docutils literal notranslate"><span class="pre">update_resource()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="reference/api.html#asset-generation-api-module">Asset Generation API Module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.api.catch_exceptions"><code class="docutils literal notranslate"><span class="pre">catch_exceptions()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.api.find_components"><code class="docutils literal notranslate"><span class="pre">find_components()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.api.get_asset_finder"><code class="docutils literal notranslate"><span class="pre">get_asset_finder()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.api.get_current_component"><code class="docutils literal notranslate"><span class="pre">get_current_component()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.api.get_resource"><code class="docutils literal notranslate"><span class="pre">get_resource()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.api.metadata_context"><code class="docutils literal notranslate"><span class="pre">metadata_context()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.api.register_asset"><code class="docutils literal notranslate"><span class="pre">register_asset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.api.register_templating_context"><code class="docutils literal notranslate"><span class="pre">register_templating_context()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.finder.AssetFinder"><code class="docutils literal notranslate"><span class="pre">AssetFinder</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.finder.AssetFinder.__init__"><code class="docutils literal notranslate"><span class="pre">__init__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.finder.AssetFinder.discover_assets"><code class="docutils literal notranslate"><span class="pre">discover_assets()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.finder.AssetFinder.get_asset_by_id"><code class="docutils literal notranslate"><span class="pre">get_asset_by_id()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.finder.AssetFinder.iter_assets"><code class="docutils literal notranslate"><span class="pre">iter_assets()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.finder.AssetFinder.search_assets"><code class="docutils literal notranslate"><span class="pre">search_assets()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.finder.AssetFinder.sort_assets"><code class="docutils literal notranslate"><span class="pre">sort_assets()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.finder.Asset"><code class="docutils literal notranslate"><span class="pre">Asset</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.finder.Asset.copy_to"><code class="docutils literal notranslate"><span class="pre">copy_to()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.finder.Asset.read_bytes"><code class="docutils literal notranslate"><span class="pre">read_bytes()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.finder.Asset.read_json"><code class="docutils literal notranslate"><span class="pre">read_json()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.finder.Asset.read_text"><code class="docutils literal notranslate"><span class="pre">read_text()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.finder.Asset.read_yaml"><code class="docutils literal notranslate"><span class="pre">read_yaml()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.finder.asset_groupby"><code class="docutils literal notranslate"><span class="pre">asset_groupby()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="reference/api.html#resources">Resources</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.resource.FileResource"><code class="docutils literal notranslate"><span class="pre">FileResource</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.resource.FileResource.first_match"><code class="docutils literal notranslate"><span class="pre">first_match()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.resource.FileResource.get_files"><code class="docutils literal notranslate"><span class="pre">get_files()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.resource.FileResource.get_match"><code class="docutils literal notranslate"><span class="pre">get_match()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.resource.FileResource.last_match"><code class="docutils literal notranslate"><span class="pre">last_match()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.resource.FileResource.locate"><code class="docutils literal notranslate"><span class="pre">locate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.resource.CustomResource"><code class="docutils literal notranslate"><span class="pre">CustomResource</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.resource.Resource"><code class="docutils literal notranslate"><span class="pre">Resource</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.resource.LocalResource"><code class="docutils literal notranslate"><span class="pre">LocalResource</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.resource.LocalResource.locate"><code class="docutils literal notranslate"><span class="pre">locate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.resource.TransformedResource"><code class="docutils literal notranslate"><span class="pre">TransformedResource</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.resource.TransformedResource.transform"><code class="docutils literal notranslate"><span class="pre">transform()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="reference/api.html#matlab-integration-api">Matlab Integration API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.api.Matlab"><code class="docutils literal notranslate"><span class="pre">Matlab</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.api.Matlab.__enter__"><code class="docutils literal notranslate"><span class="pre">__enter__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.api.Matlab.__exit__"><code class="docutils literal notranslate"><span class="pre">__exit__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.api.Matlab.__init__"><code class="docutils literal notranslate"><span class="pre">__init__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.api.Matlab.connect"><code class="docutils literal notranslate"><span class="pre">connect()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.api.Matlab.eng"><code class="docutils literal notranslate"><span class="pre">eng</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.api.Matlab.execute_function"><code class="docutils literal notranslate"><span class="pre">execute_function()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.api.Matlab.execute_script"><code class="docutils literal notranslate"><span class="pre">execute_script()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#pharaoh.assetlib.api.Matlab.show_gui"><code class="docutils literal notranslate"><span class="pre">show_gui()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="reference/api.html#templating-builtins">Templating Builtins</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/api.html#jinja2-builtins">Jinja2 Builtins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api.html#pharaoh-extension">Pharaoh Extension</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#globals">Globals</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="reference/api.html#pharaoh.templating.second_level.env_globals.assert_true"><code class="docutils literal notranslate"><span class="pre">assert_true()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="reference/api.html#pharaoh.templating.second_level.env_globals.fglob"><code class="docutils literal notranslate"><span class="pre">fglob()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="reference/api.html#pharaoh.templating.second_level.env_globals.hrule"><code class="docutils literal notranslate"><span class="pre">hrule()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="reference/api.html#pharaoh.templating.second_level.env_globals.raise_helper"><code class="docutils literal notranslate"><span class="pre">raise_helper()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="reference/api.html#pharaoh.templating.second_level.env_globals.heading"><code class="docutils literal notranslate"><span class="pre">heading()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="reference/api.html#pharaoh.templating.second_level.env_globals.rand_id"><code class="docutils literal notranslate"><span class="pre">rand_id()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="reference/api.html#pharaoh.templating.second_level.env_globals.read_text"><code class="docutils literal notranslate"><span class="pre">read_text()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="reference/api.html#filters">Filters</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="reference/api.html#pharaoh.templating.second_level.env_filters.hasattr_"><code class="docutils literal notranslate"><span class="pre">hasattr_()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="reference/api.html#pharaoh.templating.second_level.env_filters.required"><code class="docutils literal notranslate"><span class="pre">required()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="reference/api.html#pharaoh.templating.second_level.env_filters.rep"><code class="docutils literal notranslate"><span class="pre">rep()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="reference/api.html#pharaoh.templating.second_level.env_filters.or_default"><code class="docutils literal notranslate"><span class="pre">or_default()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="reference/api.html#pharaoh.templating.second_level.env_filters.oc_resolve"><code class="docutils literal notranslate"><span class="pre">oc_resolve()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="reference/api.html#pharaoh.templating.second_level.env_filters.oc_get"><code class="docutils literal notranslate"><span class="pre">oc_get()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="reference/api.html#pharaoh.templating.second_level.env_filters.exists"><code class="docutils literal notranslate"><span class="pre">exists()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="reference/api.html#pharaoh.templating.second_level.env_filters.to_path"><code class="docutils literal notranslate"><span class="pre">to_path()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="reference/api.html#pharaoh.templating.second_level.env_filters.md2html"><code class="docutils literal notranslate"><span class="pre">md2html()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="reference/api.html#pharaoh.templating.second_level.env_filters.rsub"><code class="docutils literal notranslate"><span class="pre">rsub()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api.html#ansible-filters">Ansible Filters</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="reference/api.html#plugin-api">Plugin API</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/cli.html">CLI Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/cli.html#preface">Preface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/cli.html#commands">Commands</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/cli.html#new">New</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/cli.html#add">Add</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/cli.html#update-resource">Update-resource</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/cli.html#add-template">Add-template</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/cli.html#remove">Remove</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/cli.html#env">Env</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/cli.html#generate">Generate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/cli.html#build">Build</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/cli.html#show-report">Show-report</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/cli.html#archive">Archive</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/cli.html#info">Info</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/cli.html#print-plugins">Print-plugins</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="plugins/index.html">Plugins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="plugins/plugin.html">Plugin Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="plugins/plugin.html#module-pharaoh.plugins.spec">Hookspec Markers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="plugins/plugin.html#pharaoh.plugins.spec.pharaoh_add_cli_commands"><code class="docutils literal notranslate"><span class="pre">pharaoh_add_cli_commands()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="plugins/plugin.html#pharaoh.plugins.spec.pharaoh_asset_gen_prepare_resources"><code class="docutils literal notranslate"><span class="pre">pharaoh_asset_gen_prepare_resources()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="plugins/plugin.html#pharaoh.plugins.spec.pharaoh_asset_gen_started"><code class="docutils literal notranslate"><span class="pre">pharaoh_asset_gen_started()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="plugins/plugin.html#pharaoh.plugins.spec.pharaoh_build_finished"><code class="docutils literal notranslate"><span class="pre">pharaoh_build_finished()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="plugins/plugin.html#pharaoh.plugins.spec.pharaoh_build_started"><code class="docutils literal notranslate"><span class="pre">pharaoh_build_started()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="plugins/plugin.html#pharaoh.plugins.spec.pharaoh_collect_default_settings"><code class="docutils literal notranslate"><span class="pre">pharaoh_collect_default_settings()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="plugins/plugin.html#pharaoh.plugins.spec.pharaoh_collect_l1_templates"><code class="docutils literal notranslate"><span class="pre">pharaoh_collect_l1_templates()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="plugins/plugin.html#pharaoh.plugins.spec.pharaoh_collect_l2_templates"><code class="docutils literal notranslate"><span class="pre">pharaoh_collect_l2_templates()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="plugins/plugin.html#pharaoh.plugins.spec.pharaoh_collect_resource_types"><code class="docutils literal notranslate"><span class="pre">pharaoh_collect_resource_types()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="plugins/plugin.html#pharaoh.plugins.spec.pharaoh_configure_sphinx"><code class="docutils literal notranslate"><span class="pre">pharaoh_configure_sphinx()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="plugins/plugin.html#pharaoh.plugins.spec.pharaoh_find_asset_render_template"><code class="docutils literal notranslate"><span class="pre">pharaoh_find_asset_render_template()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="plugins/plugin.html#pharaoh.plugins.spec.pharaoh_get_asset_render_template_mappings"><code class="docutils literal notranslate"><span class="pre">pharaoh_get_asset_render_template_mappings()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="plugins/plugin.html#pharaoh.plugins.spec.pharaoh_modify_gitignore"><code class="docutils literal notranslate"><span class="pre">pharaoh_modify_gitignore()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="plugins/plugin.html#pharaoh.plugins.spec.pharaoh_project_created"><code class="docutils literal notranslate"><span class="pre">pharaoh_project_created()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="plugins/plugin.html#pharaoh.plugins.spec.pharaoh_sphinx_app_inited"><code class="docutils literal notranslate"><span class="pre">pharaoh_sphinx_app_inited()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/demo_reports.html">Demo Reports</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples/demo_reports.html#html">HTML</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="examples/demo_reports.html#measurement-report">Measurement Report</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="examples/demo_reports.html#confluence">Confluence</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="examples/demo_reports.html#trend-report">Trend Report</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples/asset_scripts.html">Asset Scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contact.html">Contact</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contact.html#help">Help!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contact.html#bug-reports">Bug reports</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Release History</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id1">0.9.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id2">0.9.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id3">0.9.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id4">0.9.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id5">0.8.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id6">0.8.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id7">0.8.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id8">0.8.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id9">0.7.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id10">0.7.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id11">0.7.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id12">0.7.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id13">0.7.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id14">0.6.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id15">0.6.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id16">0.6.0</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dev.html">Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dev.html#getting-started">Getting started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dev.html#setup">Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dev.html#running-from-source-tree">Running from source tree</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dev.html#running-tests">Running tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dev.html#running-linters-and-code-formatters">Running linters and code formatters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dev.html#code-style-guide">Code style guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dev.html#building-documentation">Building documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dev.html#contributing">Contributing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dev.html#submitting-pull-requests">Submitting pull requests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dev.html#automated-testing">Automated testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dev.html#changelog-entries">Changelog entries</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dev.html#contents-of-a-changelog-entry">Contents of a changelog entry</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="dev.html#creating-a-new-release">Creating a new release</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dev.html#current-maintainers">Current maintainers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #ededed" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Pharaoh</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Pharaoh</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pharaoh">
+<h1>Pharaoh<a class="headerlink" href="#pharaoh" title="Link to this heading"></a></h1>
+<p>Pharaoh is a <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/quickstart.html">Sphinx</a>-based Python framework for
+generating reports in various format (HTML, Confluence, PDF) by combining the power of configurable
+<a class="reference external" href="https://jinja.palletsprojects.com/en/3.1.x/intro/">Jinja</a> templates and Python scripts for asset (tables, plots, pictures, etc…) generation.</p>
+<a class="reference internal image-reference" href="_images/overview.png"><img alt="_images/overview.png" src="_images/overview.png" style="width: 1005.0px; height: 485.25px;" /></a>
+</section>
+<section id="table-of-contents">
+<h1>Table of Contents<a class="headerlink" href="#table-of-contents" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#working-principle">Working Principle</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#installation-via-pip">Installation via Pip</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#create-a-virtual-environment">Create a virtual environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#install">Install</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#extras">Extras</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user_guide.html#preface">Preface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide.html#project-generation">Project Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide.html#update-settings">Update Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide.html#manage-components">Manage Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide.html#manage-asset-scripts">Manage Asset Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide.html#modify-templates">Modify Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="template_designer_guide.html">Template Designer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/index.html">Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reference/project_structure.html">Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference/settings.html">Settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/settings.html#default-settings">Default Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/settings.html#custom-settings">Custom Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/settings.html#accessing-settings">Accessing Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/settings.html#custom-resolvers">Custom Resolvers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/components.html">Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/components.html#what-s-a-component">What’s a Component?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/components.html#resources">Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/components.html#templates">Templates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/components.html#managing-components">Managing Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/components.html#built-in-templates">Built-In Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/assets.html">Assets</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/assets.html#what-s-an-asset">What’s an Asset?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/assets.html#executing-asset-generation">Executing Asset Generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/assets.html#debugging-asset-scripts">Debugging Asset Scripts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/assets.html#implementing-asset-scripts">Implementing Asset Scripts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/assets.html#asset-lookup">Asset Lookup</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/directive.html">Pharaoh Directive</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/directive.html#directive-options">Directive Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/directive.html#asset-templates">Asset Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/building.html">Building</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/building.html#configuration">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/building.html#build-api">Build API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/building.html#archiving">Archiving</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/templating.html">Templating</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/templating.html#generation-time-templating">Generation-time Templating</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/templating.html#build-time-templating">Build-time Templating</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/api.html">API Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/api.html#pharaoh-api-module">Pharaoh API Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/api.html#asset-generation-api-module">Asset Generation API Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/api.html#resources">Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/api.html#matlab-integration-api">Matlab Integration API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/api.html#templating-builtins">Templating Builtins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/api.html#plugin-api">Plugin API</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/cli.html">CLI Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/cli.html#preface">Preface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/cli.html#commands">Commands</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="plugins/index.html">Plugins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="plugins/plugin.html">Plugin Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="plugins/plugin.html#module-pharaoh.plugins.spec">Hookspec Markers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/demo_reports.html">Demo Reports</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples/demo_reports.html#html">HTML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/demo_reports.html#confluence">Confluence</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples/asset_scripts.html">Asset Scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contact.html">Contact</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contact.html#help">Help!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contact.html#bug-reports">Bug reports</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Release History</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id1">0.9.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id2">0.9.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id3">0.9.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id4">0.9.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id5">0.8.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id6">0.8.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id7">0.8.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id8">0.8.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id9">0.7.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id10">0.7.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id11">0.7.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id12">0.7.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id13">0.7.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id14">0.6.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id15">0.6.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id16">0.6.0</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dev.html">Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dev.html#getting-started">Getting started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dev.html#setup">Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dev.html#running-from-source-tree">Running from source tree</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dev.html#running-tests">Running tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dev.html#running-linters-and-code-formatters">Running linters and code formatters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dev.html#code-style-guide">Code style guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dev.html#building-documentation">Building documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dev.html#contributing">Contributing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dev.html#submitting-pull-requests">Submitting pull requests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dev.html#automated-testing">Automated testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dev.html#changelog-entries">Changelog entries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dev.html#creating-a-new-release">Creating a new release</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="indices-and-tables">
+<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="intro.html" class="btn btn-neutral float-right" title="Introduction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .
+      <span class="lastupdated">Last updated on Sep 30, 2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

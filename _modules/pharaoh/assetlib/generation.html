@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pharaoh.assetlib.generation &mdash; Pharaoh 0.9.4.dev5+gb54425102 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_rtd_theme_overrides.css?v=6ccba6a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=b1c8eef7"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=f281be69"></script>
+        <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #ededed" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/icon.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                Pharaoh v0.9.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../intro.html#working-principle">Working Principle</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#installation-via-pip">Installation via Pip</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#create-a-virtual-environment">Create a virtual environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#install">Install</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#extras">Extras</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../user_guide.html#preface">Preface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../user_guide.html#project-generation">Project Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../user_guide.html#update-settings">Update Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../user_guide.html#manage-components">Manage Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../user_guide.html#manage-asset-scripts">Manage Asset Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../user_guide.html#modify-templates">Modify Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../template_designer_guide.html">Template Designer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/project_structure.html">Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/settings.html">Settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/settings.html#default-settings">Default Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/settings.html#custom-settings">Custom Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/settings.html#accessing-settings">Accessing Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/settings.html#custom-resolvers">Custom Resolvers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/components.html">Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/components.html#what-s-a-component">What’s a Component?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/components.html#resources">Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/components.html#templates">Templates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/components.html#managing-components">Managing Components</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/components.html#adding-components">Adding Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/components.html#updating-components">Updating Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/components.html#removing-components">Removing Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/components.html#finding-components">Finding Components</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/components.html#built-in-templates">Built-In Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/assets.html">Assets</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/assets.html#what-s-an-asset">What’s an Asset?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/assets.html#executing-asset-generation">Executing Asset Generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/assets.html#debugging-asset-scripts">Debugging Asset Scripts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/assets.html#implementing-asset-scripts">Implementing Asset Scripts</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/assets.html#metadata-stack">Metadata Stack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/assets.html#manually-registering-assets">Manually Registering Assets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/assets.html#catching-errors">Catching Errors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/assets.html#patched-frameworks">Patched Frameworks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/assets.html#force-static-exports">Force Static Exports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/assets.html#matlab-integration">Matlab Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/assets.html#asset-lookup">Asset Lookup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/assets.html#asset-finder">Asset Finder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/assets.html#manual-include">Manual Include</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/assets.html#grouping-assets-by-metadata">Grouping Assets By Metadata</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/directive.html">Pharaoh Directive</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/directive.html#directive-options">Directive Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/directive.html#asset-templates">Asset Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/building.html">Building</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/building.html#configuration">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/building.html#build-api">Build API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/building.html#archiving">Archiving</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/templating.html">Templating</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/templating.html#generation-time-templating">Generation-time Templating</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/templating.html#basics">Basics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/templating.html#single-file-templates">Single-file Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/templating.html#build-time-templating">Build-time Templating</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/templating.html#template-inheritance">Template Inheritance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/templating.html#rendering-context">Rendering Context</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/templating.html#extending-template-syntax">Extending Template Syntax</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/api.html">API Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/api.html#pharaoh-api-module">Pharaoh API Module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/api.html#pharaoh.api.get_project"><code class="docutils literal notranslate"><span class="pre">get_project()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/api.html#pharaoh.project.PharaohProject"><code class="docutils literal notranslate"><span class="pre">PharaohProject</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.project.PharaohProject.PROJECT_SETTINGS_YAML"><code class="docutils literal notranslate"><span class="pre">PROJECT_SETTINGS_YAML</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.project.PharaohProject.__init__"><code class="docutils literal notranslate"><span class="pre">__init__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.project.PharaohProject.add_component"><code class="docutils literal notranslate"><span class="pre">add_component()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.project.PharaohProject.add_template_to_component"><code class="docutils literal notranslate"><span class="pre">add_template_to_component()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.project.PharaohProject.archive_report"><code class="docutils literal notranslate"><span class="pre">archive_report()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.project.PharaohProject.asset_build_dir"><code class="docutils literal notranslate"><span class="pre">asset_build_dir</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.project.PharaohProject.asset_finder"><code class="docutils literal notranslate"><span class="pre">asset_finder</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.project.PharaohProject.build_report"><code class="docutils literal notranslate"><span class="pre">build_report()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.project.PharaohProject.filter_components"><code class="docutils literal notranslate"><span class="pre">filter_components()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.project.PharaohProject.find_components"><code class="docutils literal notranslate"><span class="pre">find_components()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.project.PharaohProject.generate_assets"><code class="docutils literal notranslate"><span class="pre">generate_assets()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.project.PharaohProject.get_default_sphinx_configuration"><code class="docutils literal notranslate"><span class="pre">get_default_sphinx_configuration()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.project.PharaohProject.get_resource"><code class="docutils literal notranslate"><span class="pre">get_resource()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.project.PharaohProject.get_setting"><code class="docutils literal notranslate"><span class="pre">get_setting()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.project.PharaohProject.get_settings"><code class="docutils literal notranslate"><span class="pre">get_settings()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.project.PharaohProject.iter_components"><code class="docutils literal notranslate"><span class="pre">iter_components()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.project.PharaohProject.iter_resources"><code class="docutils literal notranslate"><span class="pre">iter_resources()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.project.PharaohProject.load_settings"><code class="docutils literal notranslate"><span class="pre">load_settings()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.project.PharaohProject.open_report"><code class="docutils literal notranslate"><span class="pre">open_report()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.project.PharaohProject.project_root"><code class="docutils literal notranslate"><span class="pre">project_root</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.project.PharaohProject.put_setting"><code class="docutils literal notranslate"><span class="pre">put_setting()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.project.PharaohProject.remove_component"><code class="docutils literal notranslate"><span class="pre">remove_component()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.project.PharaohProject.save_settings"><code class="docutils literal notranslate"><span class="pre">save_settings()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.project.PharaohProject.settings_file"><code class="docutils literal notranslate"><span class="pre">settings_file</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.project.PharaohProject.sphinx_report_build"><code class="docutils literal notranslate"><span class="pre">sphinx_report_build</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.project.PharaohProject.sphinx_report_project"><code class="docutils literal notranslate"><span class="pre">sphinx_report_project</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.project.PharaohProject.sphinx_report_project_components"><code class="docutils literal notranslate"><span class="pre">sphinx_report_project_components</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.project.PharaohProject.update_resource"><code class="docutils literal notranslate"><span class="pre">update_resource()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/api.html#asset-generation-api-module">Asset Generation API Module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.api.catch_exceptions"><code class="docutils literal notranslate"><span class="pre">catch_exceptions()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.api.find_components"><code class="docutils literal notranslate"><span class="pre">find_components()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.api.get_asset_finder"><code class="docutils literal notranslate"><span class="pre">get_asset_finder()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.api.get_current_component"><code class="docutils literal notranslate"><span class="pre">get_current_component()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.api.get_resource"><code class="docutils literal notranslate"><span class="pre">get_resource()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.api.metadata_context"><code class="docutils literal notranslate"><span class="pre">metadata_context()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.api.register_asset"><code class="docutils literal notranslate"><span class="pre">register_asset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.api.register_templating_context"><code class="docutils literal notranslate"><span class="pre">register_templating_context()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.finder.AssetFinder"><code class="docutils literal notranslate"><span class="pre">AssetFinder</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.finder.AssetFinder.__init__"><code class="docutils literal notranslate"><span class="pre">__init__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.finder.AssetFinder.discover_assets"><code class="docutils literal notranslate"><span class="pre">discover_assets()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.finder.AssetFinder.get_asset_by_id"><code class="docutils literal notranslate"><span class="pre">get_asset_by_id()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.finder.AssetFinder.iter_assets"><code class="docutils literal notranslate"><span class="pre">iter_assets()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.finder.AssetFinder.search_assets"><code class="docutils literal notranslate"><span class="pre">search_assets()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.finder.AssetFinder.sort_assets"><code class="docutils literal notranslate"><span class="pre">sort_assets()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.finder.Asset"><code class="docutils literal notranslate"><span class="pre">Asset</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.finder.Asset.copy_to"><code class="docutils literal notranslate"><span class="pre">copy_to()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.finder.Asset.read_bytes"><code class="docutils literal notranslate"><span class="pre">read_bytes()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.finder.Asset.read_json"><code class="docutils literal notranslate"><span class="pre">read_json()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.finder.Asset.read_text"><code class="docutils literal notranslate"><span class="pre">read_text()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.finder.Asset.read_yaml"><code class="docutils literal notranslate"><span class="pre">read_yaml()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.finder.asset_groupby"><code class="docutils literal notranslate"><span class="pre">asset_groupby()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/api.html#resources">Resources</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.resource.FileResource"><code class="docutils literal notranslate"><span class="pre">FileResource</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.resource.FileResource.first_match"><code class="docutils literal notranslate"><span class="pre">first_match()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.resource.FileResource.get_files"><code class="docutils literal notranslate"><span class="pre">get_files()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.resource.FileResource.get_match"><code class="docutils literal notranslate"><span class="pre">get_match()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.resource.FileResource.last_match"><code class="docutils literal notranslate"><span class="pre">last_match()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.resource.FileResource.locate"><code class="docutils literal notranslate"><span class="pre">locate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.resource.CustomResource"><code class="docutils literal notranslate"><span class="pre">CustomResource</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.resource.Resource"><code class="docutils literal notranslate"><span class="pre">Resource</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.resource.LocalResource"><code class="docutils literal notranslate"><span class="pre">LocalResource</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.resource.LocalResource.locate"><code class="docutils literal notranslate"><span class="pre">locate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.resource.TransformedResource"><code class="docutils literal notranslate"><span class="pre">TransformedResource</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.resource.TransformedResource.transform"><code class="docutils literal notranslate"><span class="pre">transform()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/api.html#matlab-integration-api">Matlab Integration API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.api.Matlab"><code class="docutils literal notranslate"><span class="pre">Matlab</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.api.Matlab.__enter__"><code class="docutils literal notranslate"><span class="pre">__enter__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.api.Matlab.__exit__"><code class="docutils literal notranslate"><span class="pre">__exit__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.api.Matlab.__init__"><code class="docutils literal notranslate"><span class="pre">__init__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.api.Matlab.connect"><code class="docutils literal notranslate"><span class="pre">connect()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.api.Matlab.eng"><code class="docutils literal notranslate"><span class="pre">eng</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.api.Matlab.execute_function"><code class="docutils literal notranslate"><span class="pre">execute_function()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.api.Matlab.execute_script"><code class="docutils literal notranslate"><span class="pre">execute_script()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#pharaoh.assetlib.api.Matlab.show_gui"><code class="docutils literal notranslate"><span class="pre">show_gui()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/api.html#templating-builtins">Templating Builtins</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/api.html#jinja2-builtins">Jinja2 Builtins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/api.html#pharaoh-extension">Pharaoh Extension</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#globals">Globals</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="../../../reference/api.html#pharaoh.templating.second_level.env_globals.assert_true"><code class="docutils literal notranslate"><span class="pre">assert_true()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="../../../reference/api.html#pharaoh.templating.second_level.env_globals.fglob"><code class="docutils literal notranslate"><span class="pre">fglob()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="../../../reference/api.html#pharaoh.templating.second_level.env_globals.hrule"><code class="docutils literal notranslate"><span class="pre">hrule()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="../../../reference/api.html#pharaoh.templating.second_level.env_globals.raise_helper"><code class="docutils literal notranslate"><span class="pre">raise_helper()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="../../../reference/api.html#pharaoh.templating.second_level.env_globals.heading"><code class="docutils literal notranslate"><span class="pre">heading()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="../../../reference/api.html#pharaoh.templating.second_level.env_globals.rand_id"><code class="docutils literal notranslate"><span class="pre">rand_id()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="../../../reference/api.html#pharaoh.templating.second_level.env_globals.read_text"><code class="docutils literal notranslate"><span class="pre">read_text()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../../../reference/api.html#filters">Filters</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="../../../reference/api.html#pharaoh.templating.second_level.env_filters.hasattr_"><code class="docutils literal notranslate"><span class="pre">hasattr_()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="../../../reference/api.html#pharaoh.templating.second_level.env_filters.required"><code class="docutils literal notranslate"><span class="pre">required()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="../../../reference/api.html#pharaoh.templating.second_level.env_filters.rep"><code class="docutils literal notranslate"><span class="pre">rep()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="../../../reference/api.html#pharaoh.templating.second_level.env_filters.or_default"><code class="docutils literal notranslate"><span class="pre">or_default()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="../../../reference/api.html#pharaoh.templating.second_level.env_filters.oc_resolve"><code class="docutils literal notranslate"><span class="pre">oc_resolve()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="../../../reference/api.html#pharaoh.templating.second_level.env_filters.oc_get"><code class="docutils literal notranslate"><span class="pre">oc_get()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="../../../reference/api.html#pharaoh.templating.second_level.env_filters.exists"><code class="docutils literal notranslate"><span class="pre">exists()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="../../../reference/api.html#pharaoh.templating.second_level.env_filters.to_path"><code class="docutils literal notranslate"><span class="pre">to_path()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="../../../reference/api.html#pharaoh.templating.second_level.env_filters.md2html"><code class="docutils literal notranslate"><span class="pre">md2html()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="../../../reference/api.html#pharaoh.templating.second_level.env_filters.rsub"><code class="docutils literal notranslate"><span class="pre">rsub()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/api.html#ansible-filters">Ansible Filters</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/api.html#plugin-api">Plugin API</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/cli.html">CLI Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/cli.html#preface">Preface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/cli.html#commands">Commands</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/cli.html#new">New</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/cli.html#add">Add</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/cli.html#update-resource">Update-resource</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/cli.html#add-template">Add-template</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/cli.html#remove">Remove</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/cli.html#env">Env</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/cli.html#generate">Generate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/cli.html#build">Build</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/cli.html#show-report">Show-report</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/cli.html#archive">Archive</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/cli.html#info">Info</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/cli.html#print-plugins">Print-plugins</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../plugins/index.html">Plugins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../plugins/plugin.html">Plugin Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../plugins/plugin.html#module-pharaoh.plugins.spec">Hookspec Markers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../plugins/plugin.html#pharaoh.plugins.spec.pharaoh_add_cli_commands"><code class="docutils literal notranslate"><span class="pre">pharaoh_add_cli_commands()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../plugins/plugin.html#pharaoh.plugins.spec.pharaoh_asset_gen_prepare_resources"><code class="docutils literal notranslate"><span class="pre">pharaoh_asset_gen_prepare_resources()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../plugins/plugin.html#pharaoh.plugins.spec.pharaoh_asset_gen_started"><code class="docutils literal notranslate"><span class="pre">pharaoh_asset_gen_started()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../plugins/plugin.html#pharaoh.plugins.spec.pharaoh_build_finished"><code class="docutils literal notranslate"><span class="pre">pharaoh_build_finished()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../plugins/plugin.html#pharaoh.plugins.spec.pharaoh_build_started"><code class="docutils literal notranslate"><span class="pre">pharaoh_build_started()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../plugins/plugin.html#pharaoh.plugins.spec.pharaoh_collect_default_settings"><code class="docutils literal notranslate"><span class="pre">pharaoh_collect_default_settings()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../plugins/plugin.html#pharaoh.plugins.spec.pharaoh_collect_l1_templates"><code class="docutils literal notranslate"><span class="pre">pharaoh_collect_l1_templates()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../plugins/plugin.html#pharaoh.plugins.spec.pharaoh_collect_l2_templates"><code class="docutils literal notranslate"><span class="pre">pharaoh_collect_l2_templates()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../plugins/plugin.html#pharaoh.plugins.spec.pharaoh_collect_resource_types"><code class="docutils literal notranslate"><span class="pre">pharaoh_collect_resource_types()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../plugins/plugin.html#pharaoh.plugins.spec.pharaoh_configure_sphinx"><code class="docutils literal notranslate"><span class="pre">pharaoh_configure_sphinx()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../plugins/plugin.html#pharaoh.plugins.spec.pharaoh_find_asset_render_template"><code class="docutils literal notranslate"><span class="pre">pharaoh_find_asset_render_template()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../plugins/plugin.html#pharaoh.plugins.spec.pharaoh_get_asset_render_template_mappings"><code class="docutils literal notranslate"><span class="pre">pharaoh_get_asset_render_template_mappings()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../plugins/plugin.html#pharaoh.plugins.spec.pharaoh_modify_gitignore"><code class="docutils literal notranslate"><span class="pre">pharaoh_modify_gitignore()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../plugins/plugin.html#pharaoh.plugins.spec.pharaoh_project_created"><code class="docutils literal notranslate"><span class="pre">pharaoh_project_created()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../plugins/plugin.html#pharaoh.plugins.spec.pharaoh_sphinx_app_inited"><code class="docutils literal notranslate"><span class="pre">pharaoh_sphinx_app_inited()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/demo_reports.html">Demo Reports</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/demo_reports.html#html">HTML</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/demo_reports.html#measurement-report">Measurement Report</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/demo_reports.html#confluence">Confluence</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/demo_reports.html#trend-report">Trend Report</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/asset_scripts.html">Asset Scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact.html">Contact</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../contact.html#help">Help!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contact.html#bug-reports">Bug reports</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release History</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id1">0.9.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id2">0.9.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id3">0.9.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id4">0.9.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id5">0.8.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id6">0.8.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id7">0.8.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id8">0.8.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id9">0.7.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id10">0.7.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id11">0.7.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id12">0.7.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id13">0.7.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id14">0.6.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id15">0.6.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id16">0.6.0</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dev.html">Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../dev.html#getting-started">Getting started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../dev.html#setup">Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dev.html#running-from-source-tree">Running from source tree</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dev.html#running-tests">Running tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dev.html#running-linters-and-code-formatters">Running linters and code formatters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dev.html#code-style-guide">Code style guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dev.html#building-documentation">Building documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dev.html#contributing">Contributing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../dev.html#submitting-pull-requests">Submitting pull requests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dev.html#automated-testing">Automated testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dev.html#changelog-entries">Changelog entries</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../dev.html#contents-of-a-changelog-entry">Contents of a changelog entry</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dev.html#creating-a-new-release">Creating a new release</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../dev.html#current-maintainers">Current maintainers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #ededed" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Pharaoh</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pharaoh.assetlib.generation</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for pharaoh.assetlib.generation</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">concurrent.futures</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">contextlib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">io</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging.handlers</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">multiprocessing</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">traceback</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">partial</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">types</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModuleType</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">pharaoh.log</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pharaoh</span><span class="w"> </span><span class="kn">import</span> <span class="n">project</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pharaoh.assetlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">patches</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pharaoh.assetlib.context</span><span class="w"> </span><span class="kn">import</span> <span class="n">context_stack</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pharaoh.assetlib.finder</span><span class="w"> </span><span class="kn">import</span> <span class="n">Asset</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pharaoh.templating.second_level.sphinx_ext.asset_tmpl</span><span class="w"> </span><span class="kn">import</span> <span class="n">find_asset_template</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pharaoh.util.contextlib_chdir</span><span class="w"> </span><span class="kn">import</span> <span class="n">chdir</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pharaoh.util.json_encoder</span><span class="w"> </span><span class="kn">import</span> <span class="n">CustomJSONEncoder</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Iterable</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">queue</span><span class="w"> </span><span class="kn">import</span> <span class="n">Queue</span>
+
+<span class="n">log</span> <span class="o">=</span> <span class="n">pharaoh</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">log</span>
+
+<span class="n">PathLike</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Path</span><span class="p">]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_assets</span><span class="p">(</span><span class="n">project_root</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">asset_src</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">component_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">mp_log_queue</span><span class="p">:</span> <span class="n">Queue</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="c1"># Since this function is always called in a process by generate_assets_parallel,</span>
+    <span class="c1"># we need to remove at least all file handlers so child-processes don&#39;t log to the same file</span>
+    <span class="c1"># as the parent process, otherwise race conditions may occur.</span>
+    <span class="c1"># So we just remove all handlers and add a QueueHandler</span>
+    <span class="c1"># to send all log records to the parent in order to handle them.</span>
+    <span class="k">if</span> <span class="n">mp_log_queue</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
+        <span class="k">for</span> <span class="n">hdl</span> <span class="ow">in</span> <span class="n">log</span><span class="o">.</span><span class="n">handlers</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">removeHandler</span><span class="p">(</span><span class="n">hdl</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">handlers</span><span class="o">.</span><span class="n">QueueHandler</span><span class="p">(</span><span class="n">mp_log_queue</span><span class="p">))</span>
+
+    <span class="c1"># Also forbid the project instance to add loggers we just removed</span>
+    <span class="n">proj</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">PharaohProject</span><span class="p">(</span><span class="n">project_root</span><span class="o">=</span><span class="n">project_root</span><span class="p">,</span> <span class="n">logging_add_filehandler</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">context_stack</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">script_path</span> <span class="o">=</span> <span class="n">asset_src</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">project_root</span><span class="p">)</span><span class="o">.</span><span class="n">as_posix</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="n">script_path</span> <span class="o">=</span> <span class="n">asset_src</span><span class="o">.</span><span class="n">as_posix</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">asset_src</span><span class="o">.</span><span class="n">suffix</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;.py&quot;</span><span class="p">:</span>
+        <span class="n">script_ignore_pattern</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">get_setting</span><span class="p">(</span><span class="s2">&quot;asset_gen.script_ignore_pattern&quot;</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="p">(</span>
+            <span class="n">patches</span><span class="o">.</span><span class="n">patch_3rd_party_libraries</span><span class="p">(),</span>
+            <span class="n">context_stack</span><span class="o">.</span><span class="n">new_context</span><span class="p">(</span>
+                <span class="n">context_name</span><span class="o">=</span><span class="s2">&quot;generate_assets&quot;</span><span class="p">,</span>
+                <span class="n">asset</span><span class="o">=</span><span class="p">{</span>
+                    <span class="s2">&quot;script_name&quot;</span><span class="p">:</span> <span class="n">asset_src</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                    <span class="s2">&quot;script_path&quot;</span><span class="p">:</span> <span class="n">asset_src</span><span class="p">,</span>
+                    <span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                    <span class="s2">&quot;component_name&quot;</span><span class="p">:</span> <span class="n">component_name</span><span class="p">,</span>
+                <span class="p">},</span>
+            <span class="p">),</span>
+        <span class="p">):</span>
+            <span class="n">code</span> <span class="o">=</span> <span class="n">asset_src</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+
+            <span class="n">first_line</span> <span class="o">=</span> <span class="n">code</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">maxsplit</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="n">script_ignore_pattern</span><span class="p">,</span> <span class="n">asset_src</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="ow">or</span> <span class="n">re</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span>
+                <span class="sa">r</span><span class="s2">&quot;^# *pharaoh?: *ignore *&quot;</span><span class="p">,</span> <span class="n">first_line</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span>
+            <span class="p">):</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ignoring file </span><span class="si">{</span><span class="n">script_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">return</span>
+
+            <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Generating assets from script </span><span class="si">{</span><span class="n">script_path</span><span class="si">!r}</span><span class="s2">...&quot;</span><span class="p">)</span>
+            <span class="n">asset_module</span> <span class="o">=</span> <span class="n">module_from_file</span><span class="p">(</span><span class="n">asset_src</span><span class="p">)</span>
+
+            <span class="n">WAVEWATSON_LEGACY_INPLACE</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;WAVEWATSON_LEGACY_INPLACE&quot;</span><span class="p">)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;WAVEWATSON_LEGACY_INPLACE&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;0&quot;</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">run_module</span><span class="p">(</span><span class="n">asset_module</span><span class="p">,</span> <span class="n">code</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;An exception was raised when executing module &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">asset_src</span><span class="p">)</span><span class="si">!r}</span><span class="s2">:</span><span class="se">\n\n</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">Traceback:</span><span class="se">\n</span><span class="si">{</span><span class="n">traceback</span><span class="o">.</span><span class="n">format_exc</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="kc">None</span>
+            <span class="k">finally</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">WAVEWATSON_LEGACY_INPLACE</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">del</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;WAVEWATSON_LEGACY_INPLACE&quot;</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;WAVEWATSON_LEGACY_INPLACE&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">WAVEWATSON_LEGACY_INPLACE</span>
+
+    <span class="k">elif</span> <span class="n">asset_src</span><span class="o">.</span><span class="n">suffix</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;.ipynb&quot;</span><span class="p">:</span>
+        <span class="c1"># import locally, otherwise Sphinx autodoc on pharaoh.assetlib.api fails because of nbformat package and this</span>
+        <span class="c1"># issue: https://github.com/sphinx-doc/sphinx/issues/11662</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">nbformat</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">nbconvert.preprocessors</span><span class="w"> </span><span class="kn">import</span> <span class="n">CellExecutionError</span><span class="p">,</span> <span class="n">ExecutePreprocessor</span>
+
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Generating assets from notebook </span><span class="si">{</span><span class="n">script_path</span><span class="si">!r}</span><span class="s2">...&quot;</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">asset_src</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+            <span class="n">nb</span> <span class="o">=</span> <span class="n">nbformat</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">as_version</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+        <span class="n">initial_node</span> <span class="o">=</span> <span class="n">nbformat</span><span class="o">.</span><span class="n">notebooknode</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;cell_type&quot;</span><span class="p">:</span> <span class="s2">&quot;code&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;execution_count&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;000000&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;outputs&quot;</span><span class="p">:</span> <span class="p">[],</span>
+                <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{},</span>
+                <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">import os</span>
+<span class="s2">from pharaoh.api import PharaohProject</span>
+<span class="s2">from pharaoh.assetlib.api import metadata_context</span>
+<span class="s2">from pharaoh.assetlib.patches import patch_3rd_party_libraries</span>
+
+<span class="s2">proj = PharaohProject(project_root=&quot;</span><span class="si">{</span><span class="n">project_root</span><span class="o">.</span><span class="n">as_posix</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;)</span>
+<span class="s2">patcher = patch_3rd_party_libraries()</span>
+<span class="s2">patcher.__enter__()</span>
+<span class="s2">metadata_context(</span>
+<span class="s2">    context_name=&quot;generate_assets&quot;,</span>
+<span class="s2">    asset=dict(</span>
+<span class="s2">        script_name=&quot;</span><span class="si">{</span><span class="n">asset_src</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;,</span>
+<span class="s2">        script_path=&quot;</span><span class="si">{</span><span class="n">asset_src</span><span class="o">.</span><span class="n">as_posix</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;,</span>
+<span class="s2">        component_name=&quot;</span><span class="si">{</span><span class="n">component_name</span><span class="si">}</span><span class="s2">&quot;,</span>
+<span class="s2">        index=0</span>
+<span class="s2">    )</span>
+<span class="s2">).activate()</span>
+
+<span class="s2">os.environ[&quot;WAVEWATSON_LEGACY_INPLACE&quot;] = &quot;0&quot;</span>
+<span class="s2">os.environ[&quot;JPY_SESSION_NAME&quot;] = &quot;</span><span class="si">{</span><span class="n">asset_src</span><span class="o">.</span><span class="n">as_posix</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+        <span class="c1"># Remark: JPY_SESSION_NAME is normally set by Jupyter runtime. In our case we use the nbconvert preprocessor</span>
+        <span class="c1"># so the variable is not set. So we have do set it manually to the current notebook path in order for the</span>
+        <span class="c1"># pharaoh.assetlib.api.get_current_component function to be able to find the &quot;executing&quot; script..</span>
+
+        <span class="n">nb</span><span class="o">.</span><span class="n">cells</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">initial_node</span><span class="p">)</span>
+
+        <span class="n">ep</span> <span class="o">=</span> <span class="n">ExecutePreprocessor</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+        <span class="n">subdir</span> <span class="o">=</span> <span class="n">component_name</span> <span class="ow">or</span> <span class="s2">&quot;default&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">ep</span><span class="o">.</span><span class="n">preprocess</span><span class="p">(</span><span class="n">nb</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">asset_src</span><span class="o">.</span><span class="n">parent</span><span class="p">)}})</span>
+
+            <span class="n">completed_notebooks_path</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">asset_build_dir</span> <span class="o">/</span> <span class="s2">&quot;completed_notebooks&quot;</span> <span class="o">/</span> <span class="n">subdir</span> <span class="o">/</span> <span class="n">asset_src</span><span class="o">.</span><span class="n">name</span>
+            <span class="n">completed_notebooks_path</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">completed_notebooks_path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+                <span class="n">nbformat</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">nb</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">CellExecutionError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">failed_notebooks_path</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">asset_build_dir</span> <span class="o">/</span> <span class="s2">&quot;failed_notebooks&quot;</span> <span class="o">/</span> <span class="n">subdir</span> <span class="o">/</span> <span class="n">asset_src</span><span class="o">.</span><span class="n">name</span>
+            <span class="n">failed_notebooks_path</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">failed_notebooks_path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+                <span class="n">nbformat</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">nb</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;An exception was raised when executing notebook &#39;</span><span class="si">{</span><span class="n">asset_src</span><span class="o">.</span><span class="n">stem</span><span class="si">}</span><span class="s2">&#39;: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;Check the notebook for errors/traces: </span><span class="si">{</span><span class="n">failed_notebooks_path</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+
+            <span class="c1"># Remove all 7-bit C1 ANSI sequences for better readability</span>
+            <span class="n">ansi_escape</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+<span class="w">                </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">                \x1B  # ESC</span>
+<span class="sd">                (?:   # 7-bit C1 Fe (except CSI)</span>
+<span class="sd">                    [@-Z\\-_]</span>
+<span class="sd">                |     # or [ for CSI, followed by a control sequence</span>
+<span class="sd">                    \[</span>
+<span class="sd">                    [0-?]*  # Parameter bytes</span>
+<span class="sd">                    [ -/]*  # Intermediate bytes</span>
+<span class="sd">                    [@-~]   # Final byte</span>
+<span class="sd">                )</span>
+<span class="sd">            &quot;&quot;&quot;</span><span class="p">,</span>
+                <span class="n">re</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="n">ansi_escape</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="kc">None</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_assets_parallel</span><span class="p">(</span>
+    <span class="n">project_root</span><span class="p">:</span> <span class="n">PathLike</span><span class="p">,</span> <span class="n">asset_sources</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Path</span><span class="p">]],</span> <span class="n">workers</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">=</span> <span class="s2">&quot;auto&quot;</span>
+<span class="p">):</span>
+    <span class="n">project_root</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">project_root</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">workers</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="n">workers</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">workers</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">workers</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">workers</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;auto&quot;</span><span class="p">:</span>
+            <span class="n">workers</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Argument worker may only be an integer number or the string &#39;auto&#39;!&quot;</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Executing asset generation with </span><span class="si">{</span><span class="n">workers</span><span class="si">}</span><span class="s2"> worker processes&quot;</span><span class="p">)</span>
+    <span class="n">generate_asset_partial</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">generate_assets</span><span class="p">,</span> <span class="n">project_root</span><span class="o">=</span><span class="n">project_root</span><span class="p">)</span>
+
+    <span class="n">mp_manager</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Manager</span><span class="p">()</span>
+    <span class="n">mp_log_queue</span> <span class="o">=</span> <span class="n">mp_manager</span><span class="o">.</span><span class="n">Queue</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1"># The queue listener collects all log records handled via the queue handler (defined inside generate_assets)</span>
+    <span class="c1"># in order to log them in the parent process</span>
+    <span class="n">ql</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">handlers</span><span class="o">.</span><span class="n">QueueListener</span><span class="p">(</span><span class="n">mp_log_queue</span><span class="p">,</span> <span class="o">*</span><span class="n">log</span><span class="o">.</span><span class="n">handlers</span><span class="p">,</span> <span class="n">respect_handler_level</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">ql</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">concurrent</span><span class="o">.</span><span class="n">futures</span><span class="o">.</span><span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="n">workers</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+        <span class="n">futures_map</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span>
+                <span class="n">generate_asset_partial</span><span class="p">,</span> <span class="n">asset_src</span><span class="o">=</span><span class="n">asset_source</span><span class="p">,</span> <span class="n">component_name</span><span class="o">=</span><span class="n">component_name</span><span class="p">,</span> <span class="n">mp_log_queue</span><span class="o">=</span><span class="n">mp_log_queue</span>
+            <span class="p">):</span> <span class="n">asset_source</span>
+            <span class="k">for</span> <span class="n">component_name</span><span class="p">,</span> <span class="n">asset_source</span> <span class="ow">in</span> <span class="n">asset_sources</span>
+        <span class="p">}</span>
+        <span class="k">for</span> <span class="n">future</span> <span class="ow">in</span> <span class="n">concurrent</span><span class="o">.</span><span class="n">futures</span><span class="o">.</span><span class="n">as_completed</span><span class="p">(</span><span class="n">futures_map</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+                <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">futures_map</span><span class="p">[</span><span class="n">future</span><span class="p">],</span> <span class="n">result</span><span class="p">))</span>
+            <span class="k">except</span> <span class="ne">SystemExit</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">code</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">futures_map</span><span class="p">[</span><span class="n">future</span><span class="p">],</span> <span class="n">result</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">futures_map</span><span class="p">[</span><span class="n">future</span><span class="p">],</span> <span class="n">e</span><span class="p">))</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">futures_map</span><span class="p">[</span><span class="n">future</span><span class="p">],</span> <span class="n">e</span><span class="p">))</span>
+    <span class="n">ql</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">results</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">module_from_file</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ModuleType</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Creates a module from file at runtime.</span>
+
+<span class="sd">    :param path: Path to the module source code.</span>
+<span class="sd">    :return: A fresh module</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">module_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="n">module_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;asset_module_</span><span class="si">{</span><span class="n">module_path</span><span class="o">.</span><span class="n">stem</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;_&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;_&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">module</span> <span class="o">=</span> <span class="n">ModuleType</span><span class="p">(</span><span class="n">module_name</span><span class="p">)</span>
+    <span class="n">module</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s2">&quot;__file__&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">module_path</span><span class="o">.</span><span class="n">absolute</span><span class="p">())</span>
+    <span class="n">module</span><span class="o">.</span><span class="n">__path__</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">module_path</span><span class="o">.</span><span class="n">parent</span><span class="p">)]</span>
+    <span class="n">module</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s2">&quot;__name__&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;__main__&quot;</span>
+    <span class="n">module</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s2">&quot;__module_name__&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">module_name</span>
+
+    <span class="k">return</span> <span class="n">module</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">run_module</span><span class="p">(</span><span class="n">module</span><span class="p">:</span> <span class="n">ModuleType</span><span class="p">,</span> <span class="n">code</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Execute the configured source code in a module.</span>
+
+<span class="sd">    :param module: A module object.</span>
+<span class="sd">    :param code: The code to be run inside the module</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">compiled_code</span> <span class="o">=</span> <span class="nb">compile</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">module</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s2">&quot;__file__&quot;</span><span class="p">],</span> <span class="s2">&quot;exec&quot;</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">chdir</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">module</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s2">&quot;__file__&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">parent</span><span class="p">):</span>
+        <span class="n">exec</span><span class="p">(</span><span class="n">compiled_code</span><span class="p">,</span> <span class="n">module</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="register_asset">
+<a class="viewcode-back" href="../../../reference/api.html#pharaoh.assetlib.api.register_asset">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">register_asset</span><span class="p">(</span>
+    <span class="n">file</span><span class="p">:</span> <span class="n">PathLike</span><span class="p">,</span>
+    <span class="n">metadata</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">template</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">data</span><span class="p">:</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">copy2build</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Asset</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Register an asset manually. The file will be copied (if data is None and &#39;file&#39; is a real file) or</span>
+<span class="sd">    written (if data is given) to the asset build folder of the current Pharaoh project.</span>
+
+<span class="sd">    :param file: The filename. Must exist even if data is set, to have a filename to store the asset and to</span>
+<span class="sd">        automatically determine the template (if not set via template argument).</span>
+<span class="sd">    :param metadata: Additional metadata to store on the asset.</span>
+<span class="sd">    :param template: The template used to render the asset. If omitted, it is inferred by the file extension.</span>
+
+<span class="sd">        .. seealso:: :ref:`reference/directive:Asset Templates`</span>
+
+<span class="sd">    :param data: An io.BytesIO instance. Used if the asset is generated in memory and should be stored to disk by</span>
+<span class="sd">                 this function.</span>
+<span class="sd">    :param copy2build: If True, the asset will be copied to the asset build directory,</span>
+<span class="sd">        even if not referenced in the template.</span>
+
+<span class="sd">        Background: Pharaoh stores all assets in the project directory and copies them to the build directory only if</span>
+<span class="sd">        copy2build is set to True or on-demand by Pharaoh. For example if an HTML file is rendered using an iframe,</span>
+<span class="sd">        the HTML file has to be copied to the build folder where the iframe can later include it.</span>
+
+<span class="sd">    :returns: The file path where the asset will be actually stored</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">active_app</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">get_project</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="c1"># If there is no Pharaoh application yet, the calling file is presumably executed standalone,</span>
+        <span class="c1"># so we have to skip exporting any files</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="n">component_name</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;component&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Unknown keyword arguments &quot;</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+
+    <span class="n">file</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">template</span><span class="p">:</span>
+        <span class="n">suffix</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">suffix</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">pharaoh.plugins.plugin_manager</span><span class="w"> </span><span class="kn">import</span> <span class="n">PM</span>
+
+        <span class="n">template</span> <span class="o">=</span> <span class="n">PM</span><span class="o">.</span><span class="n">pharaoh_get_asset_render_template_mappings</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">suffix</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">template</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">find_asset_template</span><span class="p">(</span><span class="n">template</span><span class="p">)</span>  <span class="c1"># will fail if template does not exist</span>
+
+    <span class="k">if</span> <span class="n">template</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;iframe&quot;</span><span class="p">,):</span>
+        <span class="n">copy2build</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="c1"># If this function is used in an asset script that is executed directly, the component name is not added to the</span>
+    <span class="c1"># metadata context, so we have to find the component via the callstack and pass it to _build_asset_filepath</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">pharaoh.assetlib.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_current_component</span>
+
+    <span class="k">if</span> <span class="n">component_name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">component_name</span> <span class="o">=</span> <span class="n">get_current_component</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">LookupError</span><span class="p">:</span>  <span class="c1"># raised if method is not executed from inside a component</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="s2">&quot;When register_asset is called outside a component of a Pharaoh project, keyword argument &quot;</span>
+                <span class="s2">&quot;&#39;component&#39; must be set!&quot;</span>
+            <span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="kc">None</span>
+    <span class="n">asset_file_path</span> <span class="o">=</span> <span class="n">active_app</span><span class="o">.</span><span class="n">_build_asset_filepath</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">component_name</span><span class="p">)</span>
+
+    <span class="n">metadata</span> <span class="o">=</span> <span class="n">metadata</span> <span class="ow">or</span> <span class="p">{}</span>
+    <span class="n">metadata</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;context_name&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">metadata</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;asset&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">context_stack</span><span class="o">.</span><span class="n">new_context</span><span class="p">(</span>
+        <span class="n">context_name</span><span class="o">=</span><span class="s2">&quot;manual_registry&quot;</span><span class="p">,</span>
+        <span class="n">asset</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;user_filepath&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">file</span><span class="p">),</span>
+            <span class="s2">&quot;file&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">asset_file_path</span><span class="p">),</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">asset_file_path</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="s2">&quot;stem&quot;</span><span class="p">:</span> <span class="n">asset_file_path</span><span class="o">.</span><span class="n">stem</span><span class="p">,</span>
+            <span class="s2">&quot;suffix&quot;</span><span class="p">:</span> <span class="n">asset_file_path</span><span class="o">.</span><span class="n">suffix</span><span class="p">,</span>
+            <span class="s2">&quot;template&quot;</span><span class="p">:</span> <span class="n">template</span><span class="p">,</span>
+            <span class="s2">&quot;copy2build&quot;</span><span class="p">:</span> <span class="n">copy2build</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="o">**</span><span class="n">metadata</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="k">with</span> <span class="n">contextlib</span><span class="o">.</span><span class="n">suppress</span><span class="p">(</span><span class="ne">LookupError</span><span class="p">):</span>
+            <span class="c1"># If asset scripts are executed directly, this context does not exist</span>
+            <span class="n">context_stack</span><span class="o">.</span><span class="n">get_parent_context</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;generate_assets&quot;</span><span class="p">)[</span><span class="s2">&quot;asset&quot;</span><span class="p">][</span><span class="s2">&quot;index&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">):</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">asset_file_path</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+                <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">getbuffer</span><span class="p">()))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">file</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+                <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">absolute</span><span class="p">(),</span> <span class="n">asset_file_path</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">file</span><span class="o">.</span><span class="n">is_dir</span><span class="p">():</span>
+                <span class="n">shutil</span><span class="o">.</span><span class="n">copytree</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">asset_file_path</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">file</span><span class="si">}</span><span class="s2"> does not exist!&quot;</span>
+                <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="n">info_file</span> <span class="o">=</span> <span class="n">context_stack</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">asset_file_path</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Asset</span><span class="p">(</span><span class="n">info_file</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="register_templating_context">
+<a class="viewcode-back" href="../../../reference/api.html#pharaoh.assetlib.api.register_templating_context">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">register_templating_context</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Path</span> <span class="o">|</span> <span class="nb">dict</span> <span class="o">|</span> <span class="nb">list</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Register a data context for the build-time templating stage.</span>
+<span class="sd">    The data may be given directly as dict/list or via a json or yaml file.</span>
+
+<span class="sd">    This function is designed to be used within asset scripts, to easily register data you extract from resources</span>
+<span class="sd">    for the templating process.</span>
+
+<span class="sd">    Example::</span>
+
+<span class="sd">        from pharaoh.assetlib.api import register_templating_context</span>
+
+<span class="sd">        register_templating_context(name=&quot;foo&quot;, context={&quot;bar&quot;: &quot;baz&quot;})</span>
+<span class="sd">        # will be accessed like this: {{ ctx.local.foo.bar.baz }}</span>
+
+<span class="sd">    :param name: The name under which the data context is available inside Jinja templates.</span>
+<span class="sd">        Access like this (name: mycontext)::</span>
+
+<span class="sd">            {% set mycontext = ctx.local.mycontext %}</span>
+
+<span class="sd">    :param context: Either a str or :external:class:`Path &lt;pathlib.Path&gt;` instance pointing to a json or yaml</span>
+<span class="sd">        file, or a dict or list. All data must contain only json-compatible types, otherwise the data cannot be stored.</span>
+<span class="sd">    :param metadata: The given context will be internally registered as an asset with following metadata:</span>
+<span class="sd">        ``dict(pharaoh_templating_context=name, **metadata)``</span>
+<span class="sd">    :param kwargs: Keyword arguments that are mostly (except ``component``) passed to ``json.dumps(...)``, in case</span>
+<span class="sd">        ``context`` is a dict or list.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">component</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;component&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">metadata</span> <span class="o">=</span> <span class="n">metadata</span> <span class="ow">or</span> <span class="p">{}</span>
+    <span class="n">metadata</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;pharaoh_templating_context&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;cls&quot;</span><span class="p">,</span> <span class="n">CustomJSONEncoder</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;name must be a non-empty string!&quot;</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Path</span><span class="p">)):</span>
+        <span class="n">file</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">file</span><span class="o">.</span><span class="n">suffix</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;.json&quot;</span><span class="p">,</span> <span class="s2">&quot;.yaml&quot;</span><span class="p">):</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;If context is a file path, it&#39;s suffix must be either .json or .yaml!&quot;</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="n">register_asset</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">pharaoh_templating_context</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">metadata</span><span class="p">),</span> <span class="n">component</span><span class="o">=</span><span class="n">component</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
+        <span class="n">register_asset</span><span class="p">(</span>
+            <span class="s2">&quot;pharaoh_templating_context.json&quot;</span><span class="p">,</span>
+            <span class="n">metadata</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">pharaoh_templating_context</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">metadata</span><span class="p">),</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+            <span class="n">component</span><span class="o">=</span><span class="n">component</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Unsupported type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">context</span><span class="p">)</span><span class="si">}</span><span class="s2">!&quot;</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .
+      <span class="lastupdated">Last updated on Sep 30, 2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

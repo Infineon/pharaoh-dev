@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assets &mdash; Pharaoh 0.9.4.dev5+gb54425102 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx_rtd_theme_overrides.css?v=6ccba6a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=b1c8eef7"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+        <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Pharaoh Directive" href="directive.html" />
+    <link rel="prev" title="Components" href="components.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #ededed" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/icon.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                Pharaoh v0.9.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro.html#working-principle">Working Principle</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#installation-via-pip">Installation via Pip</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#create-a-virtual-environment">Create a virtual environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#install">Install</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#extras">Extras</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide.html#preface">Preface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide.html#project-generation">Project Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide.html#update-settings">Update Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide.html#manage-components">Manage Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide.html#manage-asset-scripts">Manage Asset Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide.html#modify-templates">Modify Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../template_designer_guide.html">Template Designer Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="project_structure.html">Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="settings.html">Settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="settings.html#default-settings">Default Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="settings.html#custom-settings">Custom Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="settings.html#accessing-settings">Accessing Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="settings.html#custom-resolvers">Custom Resolvers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="components.html">Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="components.html#what-s-a-component">What’s a Component?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="components.html#resources">Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="components.html#templates">Templates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="components.html#managing-components">Managing Components</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="components.html#adding-components">Adding Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="components.html#updating-components">Updating Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="components.html#removing-components">Removing Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="components.html#finding-components">Finding Components</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="components.html#built-in-templates">Built-In Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Assets</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#what-s-an-asset">What’s an Asset?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#executing-asset-generation">Executing Asset Generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#debugging-asset-scripts">Debugging Asset Scripts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#implementing-asset-scripts">Implementing Asset Scripts</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#metadata-stack">Metadata Stack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#manually-registering-assets">Manually Registering Assets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#catching-errors">Catching Errors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#patched-frameworks">Patched Frameworks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#force-static-exports">Force Static Exports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#matlab-integration">Matlab Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#asset-lookup">Asset Lookup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#asset-finder">Asset Finder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#manual-include">Manual Include</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#grouping-assets-by-metadata">Grouping Assets By Metadata</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="directive.html">Pharaoh Directive</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="directive.html#directive-options">Directive Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="directive.html#asset-templates">Asset Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="building.html">Building</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="building.html#configuration">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="building.html#build-api">Build API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="building.html#archiving">Archiving</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="templating.html">Templating</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="templating.html#generation-time-templating">Generation-time Templating</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="templating.html#basics">Basics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="templating.html#single-file-templates">Single-file Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="templating.html#build-time-templating">Build-time Templating</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="templating.html#template-inheritance">Template Inheritance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="templating.html#rendering-context">Rendering Context</a></li>
+<li class="toctree-l4"><a class="reference internal" href="templating.html#extending-template-syntax">Extending Template Syntax</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.html">API Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.html#pharaoh-api-module">Pharaoh API Module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#pharaoh.api.get_project"><code class="docutils literal notranslate"><span class="pre">get_project()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#pharaoh.project.PharaohProject"><code class="docutils literal notranslate"><span class="pre">PharaohProject</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.project.PharaohProject.PROJECT_SETTINGS_YAML"><code class="docutils literal notranslate"><span class="pre">PROJECT_SETTINGS_YAML</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.project.PharaohProject.__init__"><code class="docutils literal notranslate"><span class="pre">__init__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.project.PharaohProject.add_component"><code class="docutils literal notranslate"><span class="pre">add_component()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.project.PharaohProject.add_template_to_component"><code class="docutils literal notranslate"><span class="pre">add_template_to_component()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.project.PharaohProject.archive_report"><code class="docutils literal notranslate"><span class="pre">archive_report()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.project.PharaohProject.asset_build_dir"><code class="docutils literal notranslate"><span class="pre">asset_build_dir</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.project.PharaohProject.asset_finder"><code class="docutils literal notranslate"><span class="pre">asset_finder</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.project.PharaohProject.build_report"><code class="docutils literal notranslate"><span class="pre">build_report()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.project.PharaohProject.filter_components"><code class="docutils literal notranslate"><span class="pre">filter_components()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.project.PharaohProject.find_components"><code class="docutils literal notranslate"><span class="pre">find_components()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.project.PharaohProject.generate_assets"><code class="docutils literal notranslate"><span class="pre">generate_assets()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.project.PharaohProject.get_default_sphinx_configuration"><code class="docutils literal notranslate"><span class="pre">get_default_sphinx_configuration()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.project.PharaohProject.get_resource"><code class="docutils literal notranslate"><span class="pre">get_resource()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.project.PharaohProject.get_setting"><code class="docutils literal notranslate"><span class="pre">get_setting()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.project.PharaohProject.get_settings"><code class="docutils literal notranslate"><span class="pre">get_settings()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.project.PharaohProject.iter_components"><code class="docutils literal notranslate"><span class="pre">iter_components()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.project.PharaohProject.iter_resources"><code class="docutils literal notranslate"><span class="pre">iter_resources()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.project.PharaohProject.load_settings"><code class="docutils literal notranslate"><span class="pre">load_settings()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.project.PharaohProject.open_report"><code class="docutils literal notranslate"><span class="pre">open_report()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.project.PharaohProject.project_root"><code class="docutils literal notranslate"><span class="pre">project_root</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.project.PharaohProject.put_setting"><code class="docutils literal notranslate"><span class="pre">put_setting()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.project.PharaohProject.remove_component"><code class="docutils literal notranslate"><span class="pre">remove_component()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.project.PharaohProject.save_settings"><code class="docutils literal notranslate"><span class="pre">save_settings()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.project.PharaohProject.settings_file"><code class="docutils literal notranslate"><span class="pre">settings_file</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.project.PharaohProject.sphinx_report_build"><code class="docutils literal notranslate"><span class="pre">sphinx_report_build</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.project.PharaohProject.sphinx_report_project"><code class="docutils literal notranslate"><span class="pre">sphinx_report_project</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.project.PharaohProject.sphinx_report_project_components"><code class="docutils literal notranslate"><span class="pre">sphinx_report_project_components</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.project.PharaohProject.update_resource"><code class="docutils literal notranslate"><span class="pre">update_resource()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#asset-generation-api-module">Asset Generation API Module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#pharaoh.assetlib.api.catch_exceptions"><code class="docutils literal notranslate"><span class="pre">catch_exceptions()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#pharaoh.assetlib.api.find_components"><code class="docutils literal notranslate"><span class="pre">find_components()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#pharaoh.assetlib.api.get_asset_finder"><code class="docutils literal notranslate"><span class="pre">get_asset_finder()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#pharaoh.assetlib.api.get_current_component"><code class="docutils literal notranslate"><span class="pre">get_current_component()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#pharaoh.assetlib.api.get_resource"><code class="docutils literal notranslate"><span class="pre">get_resource()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#pharaoh.assetlib.api.metadata_context"><code class="docutils literal notranslate"><span class="pre">metadata_context()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#pharaoh.assetlib.api.register_asset"><code class="docutils literal notranslate"><span class="pre">register_asset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#pharaoh.assetlib.api.register_templating_context"><code class="docutils literal notranslate"><span class="pre">register_templating_context()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#pharaoh.assetlib.finder.AssetFinder"><code class="docutils literal notranslate"><span class="pre">AssetFinder</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.assetlib.finder.AssetFinder.__init__"><code class="docutils literal notranslate"><span class="pre">__init__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.assetlib.finder.AssetFinder.discover_assets"><code class="docutils literal notranslate"><span class="pre">discover_assets()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.assetlib.finder.AssetFinder.get_asset_by_id"><code class="docutils literal notranslate"><span class="pre">get_asset_by_id()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.assetlib.finder.AssetFinder.iter_assets"><code class="docutils literal notranslate"><span class="pre">iter_assets()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.assetlib.finder.AssetFinder.search_assets"><code class="docutils literal notranslate"><span class="pre">search_assets()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.assetlib.finder.AssetFinder.sort_assets"><code class="docutils literal notranslate"><span class="pre">sort_assets()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#pharaoh.assetlib.finder.Asset"><code class="docutils literal notranslate"><span class="pre">Asset</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.assetlib.finder.Asset.copy_to"><code class="docutils literal notranslate"><span class="pre">copy_to()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.assetlib.finder.Asset.read_bytes"><code class="docutils literal notranslate"><span class="pre">read_bytes()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.assetlib.finder.Asset.read_json"><code class="docutils literal notranslate"><span class="pre">read_json()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.assetlib.finder.Asset.read_text"><code class="docutils literal notranslate"><span class="pre">read_text()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.assetlib.finder.Asset.read_yaml"><code class="docutils literal notranslate"><span class="pre">read_yaml()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#pharaoh.assetlib.finder.asset_groupby"><code class="docutils literal notranslate"><span class="pre">asset_groupby()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#resources">Resources</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#pharaoh.assetlib.resource.FileResource"><code class="docutils literal notranslate"><span class="pre">FileResource</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.assetlib.resource.FileResource.first_match"><code class="docutils literal notranslate"><span class="pre">first_match()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.assetlib.resource.FileResource.get_files"><code class="docutils literal notranslate"><span class="pre">get_files()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.assetlib.resource.FileResource.get_match"><code class="docutils literal notranslate"><span class="pre">get_match()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.assetlib.resource.FileResource.last_match"><code class="docutils literal notranslate"><span class="pre">last_match()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.assetlib.resource.FileResource.locate"><code class="docutils literal notranslate"><span class="pre">locate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#pharaoh.assetlib.resource.CustomResource"><code class="docutils literal notranslate"><span class="pre">CustomResource</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#pharaoh.assetlib.resource.Resource"><code class="docutils literal notranslate"><span class="pre">Resource</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#pharaoh.assetlib.resource.LocalResource"><code class="docutils literal notranslate"><span class="pre">LocalResource</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.assetlib.resource.LocalResource.locate"><code class="docutils literal notranslate"><span class="pre">locate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#pharaoh.assetlib.resource.TransformedResource"><code class="docutils literal notranslate"><span class="pre">TransformedResource</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.assetlib.resource.TransformedResource.transform"><code class="docutils literal notranslate"><span class="pre">transform()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#matlab-integration-api">Matlab Integration API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#pharaoh.assetlib.api.Matlab"><code class="docutils literal notranslate"><span class="pre">Matlab</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.assetlib.api.Matlab.__enter__"><code class="docutils literal notranslate"><span class="pre">__enter__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.assetlib.api.Matlab.__exit__"><code class="docutils literal notranslate"><span class="pre">__exit__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.assetlib.api.Matlab.__init__"><code class="docutils literal notranslate"><span class="pre">__init__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.assetlib.api.Matlab.connect"><code class="docutils literal notranslate"><span class="pre">connect()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.assetlib.api.Matlab.eng"><code class="docutils literal notranslate"><span class="pre">eng</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.assetlib.api.Matlab.execute_function"><code class="docutils literal notranslate"><span class="pre">execute_function()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.assetlib.api.Matlab.execute_script"><code class="docutils literal notranslate"><span class="pre">execute_script()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#pharaoh.assetlib.api.Matlab.show_gui"><code class="docutils literal notranslate"><span class="pre">show_gui()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#templating-builtins">Templating Builtins</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#jinja2-builtins">Jinja2 Builtins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#pharaoh-extension">Pharaoh Extension</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="api.html#globals">Globals</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="api.html#pharaoh.templating.second_level.env_globals.assert_true"><code class="docutils literal notranslate"><span class="pre">assert_true()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="api.html#pharaoh.templating.second_level.env_globals.fglob"><code class="docutils literal notranslate"><span class="pre">fglob()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="api.html#pharaoh.templating.second_level.env_globals.hrule"><code class="docutils literal notranslate"><span class="pre">hrule()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="api.html#pharaoh.templating.second_level.env_globals.raise_helper"><code class="docutils literal notranslate"><span class="pre">raise_helper()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="api.html#pharaoh.templating.second_level.env_globals.heading"><code class="docutils literal notranslate"><span class="pre">heading()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="api.html#pharaoh.templating.second_level.env_globals.rand_id"><code class="docutils literal notranslate"><span class="pre">rand_id()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="api.html#pharaoh.templating.second_level.env_globals.read_text"><code class="docutils literal notranslate"><span class="pre">read_text()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#filters">Filters</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="api.html#pharaoh.templating.second_level.env_filters.hasattr_"><code class="docutils literal notranslate"><span class="pre">hasattr_()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="api.html#pharaoh.templating.second_level.env_filters.required"><code class="docutils literal notranslate"><span class="pre">required()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="api.html#pharaoh.templating.second_level.env_filters.rep"><code class="docutils literal notranslate"><span class="pre">rep()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="api.html#pharaoh.templating.second_level.env_filters.or_default"><code class="docutils literal notranslate"><span class="pre">or_default()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="api.html#pharaoh.templating.second_level.env_filters.oc_resolve"><code class="docutils literal notranslate"><span class="pre">oc_resolve()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="api.html#pharaoh.templating.second_level.env_filters.oc_get"><code class="docutils literal notranslate"><span class="pre">oc_get()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="api.html#pharaoh.templating.second_level.env_filters.exists"><code class="docutils literal notranslate"><span class="pre">exists()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="api.html#pharaoh.templating.second_level.env_filters.to_path"><code class="docutils literal notranslate"><span class="pre">to_path()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="api.html#pharaoh.templating.second_level.env_filters.md2html"><code class="docutils literal notranslate"><span class="pre">md2html()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="api.html#pharaoh.templating.second_level.env_filters.rsub"><code class="docutils literal notranslate"><span class="pre">rsub()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#ansible-filters">Ansible Filters</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#plugin-api">Plugin API</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html">CLI Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cli.html#preface">Preface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cli.html#commands">Commands</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cli.html#new">New</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cli.html#add">Add</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cli.html#update-resource">Update-resource</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cli.html#add-template">Add-template</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cli.html#remove">Remove</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cli.html#env">Env</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cli.html#generate">Generate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cli.html#build">Build</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cli.html#show-report">Show-report</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cli.html#archive">Archive</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cli.html#info">Info</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cli.html#print-plugins">Print-plugins</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins/index.html">Plugins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../plugins/plugin.html">Plugin Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../plugins/plugin.html#module-pharaoh.plugins.spec">Hookspec Markers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../plugins/plugin.html#pharaoh.plugins.spec.pharaoh_add_cli_commands"><code class="docutils literal notranslate"><span class="pre">pharaoh_add_cli_commands()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../plugins/plugin.html#pharaoh.plugins.spec.pharaoh_asset_gen_prepare_resources"><code class="docutils literal notranslate"><span class="pre">pharaoh_asset_gen_prepare_resources()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../plugins/plugin.html#pharaoh.plugins.spec.pharaoh_asset_gen_started"><code class="docutils literal notranslate"><span class="pre">pharaoh_asset_gen_started()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../plugins/plugin.html#pharaoh.plugins.spec.pharaoh_build_finished"><code class="docutils literal notranslate"><span class="pre">pharaoh_build_finished()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../plugins/plugin.html#pharaoh.plugins.spec.pharaoh_build_started"><code class="docutils literal notranslate"><span class="pre">pharaoh_build_started()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../plugins/plugin.html#pharaoh.plugins.spec.pharaoh_collect_default_settings"><code class="docutils literal notranslate"><span class="pre">pharaoh_collect_default_settings()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../plugins/plugin.html#pharaoh.plugins.spec.pharaoh_collect_l1_templates"><code class="docutils literal notranslate"><span class="pre">pharaoh_collect_l1_templates()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../plugins/plugin.html#pharaoh.plugins.spec.pharaoh_collect_l2_templates"><code class="docutils literal notranslate"><span class="pre">pharaoh_collect_l2_templates()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../plugins/plugin.html#pharaoh.plugins.spec.pharaoh_collect_resource_types"><code class="docutils literal notranslate"><span class="pre">pharaoh_collect_resource_types()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../plugins/plugin.html#pharaoh.plugins.spec.pharaoh_configure_sphinx"><code class="docutils literal notranslate"><span class="pre">pharaoh_configure_sphinx()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../plugins/plugin.html#pharaoh.plugins.spec.pharaoh_find_asset_render_template"><code class="docutils literal notranslate"><span class="pre">pharaoh_find_asset_render_template()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../plugins/plugin.html#pharaoh.plugins.spec.pharaoh_get_asset_render_template_mappings"><code class="docutils literal notranslate"><span class="pre">pharaoh_get_asset_render_template_mappings()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../plugins/plugin.html#pharaoh.plugins.spec.pharaoh_modify_gitignore"><code class="docutils literal notranslate"><span class="pre">pharaoh_modify_gitignore()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../plugins/plugin.html#pharaoh.plugins.spec.pharaoh_project_created"><code class="docutils literal notranslate"><span class="pre">pharaoh_project_created()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../plugins/plugin.html#pharaoh.plugins.spec.pharaoh_sphinx_app_inited"><code class="docutils literal notranslate"><span class="pre">pharaoh_sphinx_app_inited()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/demo_reports.html">Demo Reports</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/demo_reports.html#html">HTML</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../examples/demo_reports.html#measurement-report">Measurement Report</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/demo_reports.html#confluence">Confluence</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../examples/demo_reports.html#trend-report">Trend Report</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/asset_scripts.html">Asset Scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contact.html">Contact</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contact.html#help">Help!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contact.html#bug-reports">Bug reports</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release History</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id1">0.9.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id2">0.9.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id3">0.9.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id4">0.9.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id5">0.8.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id6">0.8.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id7">0.8.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id8">0.8.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id9">0.7.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id10">0.7.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id11">0.7.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id12">0.7.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id13">0.7.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id14">0.6.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id15">0.6.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id16">0.6.0</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dev.html">Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dev.html#getting-started">Getting started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dev.html#setup">Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev.html#running-from-source-tree">Running from source tree</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev.html#running-tests">Running tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev.html#running-linters-and-code-formatters">Running linters and code formatters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev.html#code-style-guide">Code style guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev.html#building-documentation">Building documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../dev.html#contributing">Contributing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dev.html#submitting-pull-requests">Submitting pull requests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev.html#automated-testing">Automated testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev.html#changelog-entries">Changelog entries</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../dev.html#contents-of-a-changelog-entry">Contents of a changelog entry</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../dev.html#creating-a-new-release">Creating a new release</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../dev.html#current-maintainers">Current maintainers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #ededed" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Pharaoh</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Reference</a></li>
+      <li class="breadcrumb-item active">Assets</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/reference/assets.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="assets">
+<h1>Assets<a class="headerlink" href="#assets" title="Link to this heading"></a></h1>
+<section id="what-s-an-asset">
+<h2>What’s an Asset?<a class="headerlink" href="#what-s-an-asset" title="Link to this heading"></a></h2>
+<p>Each Pharaoh components has a directory called <code class="docutils literal notranslate"><span class="pre">asset_scripts</span></code>, that contain scripts Python scripts or
+Jupyter Notebooks, that extract information from resources (local result files like HDF5, databases or other sources)
+and transform this information into plot, tables and any other kind of types.</p>
+<p>The generated files are called <strong>Assets</strong> and may be directly referenced/embedded by a template
+(like a picture, plot or table) or indirectly referenced by a template to provide context values for template rendering.</p>
+<p>The component’s templates then <em>consume</em> these assets while Sphinx renders the template to HTML.
+<em>Consume</em> means that some of the assets are directly included in the template via the
+<a class="reference internal" href="directive.html#pharaoh-directive"><span class="std std-ref">Pharaoh asset directive</span></a> and others are read by
+<a class="reference internal" href="templating.html#rendering-context"><span class="std std-ref">local context scripts</span></a> to use their content during templating.</p>
+</section>
+<section id="executing-asset-generation">
+<h2>Executing Asset Generation<a class="headerlink" href="#executing-asset-generation" title="Link to this heading"></a></h2>
+<p>Asset generation is executed before the actual Sphinx build via
+<a class="reference internal" href="api.html#pharaoh.project.PharaohProject.generate_assets" title="pharaoh.project.PharaohProject.generate_assets"><code class="xref py py-func docutils literal notranslate"><span class="pre">generate_assets()</span></code></a>.</p>
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">PharaohProject.</span></span><span class="sig-name descname"><span class="pre">generate_assets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_filters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">('.*',)</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Path</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/pharaoh/project.html#PharaohProject.generate_assets"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Generate all assets by executing the asset scripts of a selected or all components.</p>
+<p>All asset scripts are executed in separate parallel child processes
+(number of workers determined by <code class="docutils literal notranslate"><span class="pre">asset_gen.worker_processes</span></code> setting;
+setting 0 executes all asset scripts sequentially in the current process).</p>
+<p>Setting <code class="docutils literal notranslate"><span class="pre">asset_gen.script_ignore_pattern</span></code> determines if a script is ignored.</p>
+<p>Putting the comment <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">pharaoh:</span> <span class="pre">ignore</span></code> at the start of a script will also ignore the file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>component_filters</strong> – A list of regular expressions that are matched against each component name.
+If a component name matches any of the regular expressions, the component’s
+assets are regenerated (containing directory will be cleared)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p>Besides calling the API function, also the CLI can be used:</p>
+<ul>
+<li><p>From within PyCharm or wherever you have the <strong>venv</strong> activated that has Pharaoh installed, you can use the
+<a class="reference internal" href="cli.html#cli"><span class="std std-ref">Pharaoh CLI</span></a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">Pharaoh</span> <span class="n">project</span> <span class="n">directory</span><span class="o">&gt;</span>
+<span class="n">pharaoh</span> <span class="n">generate</span>  <span class="c1"># for generating assets of all components</span>
+<span class="n">pharaoh</span> <span class="n">generate</span> <span class="o">-</span><span class="n">f</span> <span class="s2">&quot;dummy_.*&quot;</span>  <span class="c1"># for generating assets of all components starting with &quot;dummy_&quot;</span>
+<span class="n">pharaoh</span> <span class="n">generate</span> <span class="o">-</span><span class="n">f</span> <span class="n">dummy_1</span>  <span class="o">-</span><span class="n">f</span> <span class="n">dummy_2</span>  <span class="c1"># only for dummy_1 and dummy_2</span>
+</pre></div>
+</div>
+</li>
+<li><p>Via a terminal (PS or CMD) from within the project directory, where CMD scripts are generated for your convenience:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span>\<span class="n">pharaoh</span><span class="o">-</span><span class="n">generate</span><span class="o">-</span><span class="n">assets</span><span class="o">.</span><span class="n">cmd</span>  <span class="c1"># for generating assets of all components</span>
+<span class="o">.</span>\<span class="n">pharaoh</span><span class="o">.</span><span class="n">cmd</span> <span class="n">generate</span> <span class="o">-</span><span class="n">f</span> <span class="n">dummy_1</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="debugging-asset-scripts">
+<h2>Debugging Asset Scripts<a class="headerlink" href="#debugging-asset-scripts" title="Link to this heading"></a></h2>
+<p>Asset scripts can be debugged in two different ways:</p>
+<ul>
+<li><p>Via Pharaoh Asset Generation</p>
+<p>Generated Pharaoh project ship a debug script <code class="docutils literal notranslate"><span class="pre">debug.py</span></code>.
+Just open your generated project in an IDE with an interpreter/venv that has Pharaoh installed and start a debug
+session on <code class="docutils literal notranslate"><span class="pre">debug.py</span></code>.</p>
+<p>The script should be modified to your current needs, e.g. if you just want to debug asset generation,
+comment out the <code class="docutils literal notranslate"><span class="pre">proj.build_report()</span></code> line. If you like to debug asset scripts of a single component,
+pass the component name like this <code class="docutils literal notranslate"><span class="pre">proj.generate_assets(component_filters=(&quot;dummy_1&quot;,))</span></code>.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>If the setting <code class="docutils literal notranslate"><span class="pre">asset_gen.worker_processes</span></code> is set to a non-zero integer or <code class="docutils literal notranslate"><span class="pre">&quot;auto&quot;</span></code>,
+then asset scripts are executed as child processes.</p>
+<p>Make sure you have the PyCharm debugger option
+<code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">|</span> <span class="pre">Settings</span> <span class="pre">|</span> <span class="pre">Build,</span> <span class="pre">Execution,</span> <span class="pre">Deployment</span> <span class="pre">|</span> <span class="pre">Python</span> <span class="pre">Debugger</span> <span class="pre">-&gt;</span>
+<span class="pre">Attach</span> <span class="pre">to</span> <span class="pre">subprocess</span> <span class="pre">automatically</span> <span class="pre">while</span> <span class="pre">debugging</span></code> enabled.</p>
+</div>
+</li>
+<li><p>Directly debug your script</p>
+<p>You can execute your asset scripts directly via your IDE of choice. Any functions you import from
+<a class="reference internal" href="api.html#pharaoh-api-module"><span class="std std-ref">pharaoh.api</span></a> or
+<a class="reference internal" href="api.html#asset-generation-api-module"><span class="std std-ref">pharaoh.assetlib.api</span></a> are built in a way to support
+being executed outside of a Pharaoh asset generation.</p>
+<p>The main difference is, that Pharaoh is not monkey-patching any toolkit (Plotly, Bokeh, Pandas) function,
+so the functions are behaving according to their official documentation.
+So statements like <code class="docutils literal notranslate"><span class="pre">`fig.write_image(&quot;myplot.png&quot;)</span></code> are storing the plot in the current working directory
+(this is the same directory your asset script is in), instead of <code class="docutils literal notranslate"><span class="pre">report-project\.asset_build</span></code>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#patched-frameworks"><span class="std std-ref">Patched Frameworks</span></a></p>
+</div>
+</li>
+</ul>
+</section>
+<section id="implementing-asset-scripts">
+<h2>Implementing Asset Scripts<a class="headerlink" href="#implementing-asset-scripts" title="Link to this heading"></a></h2>
+<p>This section shows how asset scripts are developed.</p>
+<p>For simplicity we will show first how to generate assets without the use of resources.
+An example on how to access resources can be found in the <a class="reference internal" href="components.html#resources"><span class="std std-ref">Resources Reference</span></a>.</p>
+<p>Refresher: A components asset scripts are always located in the component’s subdirectory <code class="docutils literal notranslate"><span class="pre">asset_scripts</span></code>.</p>
+<p>The script names do not matter but certain names may be ignored
+(see <a class="reference internal" href="api.html#pharaoh.project.PharaohProject.generate_assets" title="pharaoh.project.PharaohProject.generate_assets"><code class="xref py py-func docutils literal notranslate"><span class="pre">generate_assets()</span></code></a>).</p>
+<p>Let’s assume we want to make a plot as our first asset in a script called <code class="docutils literal notranslate"><span class="pre">my_plot.py</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">plotly.express</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">px</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pharaoh.assetlib.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">metadata_context</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="n">data_frame</span><span class="o">=</span><span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">iris</span><span class="p">(),</span>  <span class="c1"># Famous example IRIS data set</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;sepal_width&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span>
+    <span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;IRIS Example&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="k">with</span> <span class="n">metadata_context</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;my_plot&quot;</span><span class="p">):</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">write_html</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="s2">&quot;iris_scatter.html&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now let’s analyse what we got:</p>
+<ol class="arabic">
+<li><p><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">plotly.express</span> <span class="pre">as</span> <span class="pre">px</span></code></p>
+<p>Import a plotting framework of choice. Some frameworks are better supported by Pharaoh than others, we’ll see this
+later also in the <a class="reference internal" href="#patched-frameworks"><span class="std std-ref">Patched Frameworks</span></a> section.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">pharaoh.assetlib.api</span> <span class="pre">import</span> <span class="pre">metadata_context</span></code></p>
+<p>Any API function you will need can be imported from the <code class="docutils literal notranslate"><span class="pre">pharaoh.assetlib.api</span></code> module.
+The purpose of <code class="docutils literal notranslate"><span class="pre">metadata_context</span></code> is explained later.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fig</span> <span class="pre">=</span> <span class="pre">px.scatter(...)</span></code></p>
+<p>Create a Plotly figure with some example data.
+Your own scripts would actually read the resources specified with the component and create plots, tables etc.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">metadata_context(label=&quot;my_plot&quot;):</span></code></p>
+<p>This context manager determines the metadata the asset will be stored with.
+This metadata is then used to include assets in a template, in this case this would look like this:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.. pharaoh-asset::
+    :filter: label == &quot;my_plot&quot;
+    :template: iframe
+    :iframe-width: 500px
+    :iframe-height: 500px
+</pre></div>
+</div>
+<p>This so-called <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html">Sphinx directive</a>
+is a custom Sphinx directive (<a class="reference internal" href="directive.html#pharaoh-directive"><span class="std std-ref">click here for docs</span></a>)
+Pharaoh adds via the plugin system of Sphinx.</p>
+<p><code class="docutils literal notranslate"><span class="pre">metadata_context</span></code> is explained in more detail in the <a class="reference internal" href="#metadata-stack"><span class="std std-ref">next section</span></a>.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fig.write_html(file=&quot;iris_scatter.html&quot;)</span></code></p>
+<p>This is where Pharaoh is doing it’s <em>magic</em>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">plotly.graph_objects.Figure.write_html</span></code> is one of many function which is
+<a class="reference external" href="https://medium.com/&#64;chipiga86/python-monkey-patching-like-a-boss-87d7ddb8098e">monkey-patched</a>
+by Pharaoh. More info about the other patched frameworks you can find <a class="reference internal" href="#patched-frameworks"><span class="std std-ref">here</span></a>.</p>
+<p>If the asset script is executed via Pharaoh, the patched <code class="docutils literal notranslate"><span class="pre">write_html</span></code> function will not store the plot to
+<code class="docutils literal notranslate"><span class="pre">&quot;iris_scatter.html&quot;</span></code> in the current working directory, but rather in a predefined location for assets inside
+your Pharaoh project <code class="docutils literal notranslate"><span class="pre">report_project/.asset_build/&lt;component-name&gt;</span></code> with a unique suffix, for example
+<code class="docutils literal notranslate"><span class="pre">iris_scatter_9c30799b.html</span></code>.</p>
+<p>Next to the actual asset, an <strong>asset-info</strong> file <code class="docutils literal notranslate"><span class="pre">iris_scatter_9c30799b.assetinfo</span></code>
+is stored that holds the metadata for the asset.
+Here is a (shortened) content example:</p>
+<div class="highlight-json notranslate" id="example-asset-info"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;asset&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;script_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;my_plot.py&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;script_path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;C:\\...\\project\\report-project\\components\\dummy_1\\asset_scripts\\my_plot.py&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;index&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;component_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;dummy_1&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;user_filepath&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;iris_scatter.html&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;file&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;C:\\...\\project\\report-project\\.asset_build\\dummy_1\\iris_scatter_9c30799b.html&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;iris_scatter_9c30799b.html&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;stem&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;iris_scatter_9c30799b&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;suffix&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;.html&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;template&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;raw_html&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;my_plot&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This has following advantages:</p>
+<ul>
+<li><p>Finding names for assets is completely unnecessary, since they get a unique name assigned and are included in
+templating through their metadata rather than their file name.
+You could basically name all your assets <code class="docutils literal notranslate"><span class="pre">asset.&lt;suffix&gt;</span></code>.</p>
+<p>So for example if you would create a single plot of a signal for 100 operating conditions like Vdd,
+you would not add the value of Vdd to the file name, but rather put it in the metadata
+(see <a class="reference internal" href="#metadata-stack"><span class="std std-ref">here</span></a>) and name the file always <code class="docutils literal notranslate"><span class="pre">&quot;&lt;signal-name&gt;.png&quot;</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Though the assets name does not matter, its suffix does.
+It is used internally to infer the template to render it, so make sure you add it.</p>
+</div>
+</li>
+<li><p>If the script is directly executed by the user, <code class="docutils literal notranslate"><span class="pre">write_html</span></code> is not patched and saves the plot to
+<code class="docutils literal notranslate"><span class="pre">&quot;iris_scatter.html&quot;</span></code> in the current working directory.</p></li>
+</ul>
+</li>
+</ol>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="../examples/asset_scripts.html#asset-scripts"><span class="std std-ref">Asset Script Examples</span></a></p>
+</div>
+<section id="metadata-stack">
+<h3>Metadata Stack<a class="headerlink" href="#metadata-stack" title="Link to this heading"></a></h3>
+<p>The metadata stack is a construct that helps assigning metadata to generated assets.</p>
+<p>Use the context manager returned by
+<a class="reference internal" href="api.html#pharaoh.assetlib.api.metadata_context" title="pharaoh.assetlib.api.metadata_context"><code class="xref py py-func docutils literal notranslate"><span class="pre">metadata_context()</span></code></a> in your asset scripts
+to dynamically add/remove/update metadata that is added to your assets.</p>
+<p>Let’s explained based on an example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pharaoh.assetlib.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">metadata_context</span><span class="p">,</span> <span class="n">register_asset</span>
+
+<span class="c1"># Will have no metadata (except the default ones added by Pharaoh)</span>
+<span class="n">register_asset</span><span class="p">(</span><span class="s2">&quot;&lt;some-file&gt;&quot;</span><span class="p">)</span>
+
+<span class="c1"># Will have metadata: {&quot;foo&quot;: &quot;bar&quot;} only</span>
+<span class="n">register_asset</span><span class="p">(</span><span class="s2">&quot;&lt;some-file&gt;&quot;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="n">foo</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">))</span>
+
+<span class="k">with</span> <span class="n">metadata_context</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">register_asset</span><span class="p">(</span><span class="s2">&quot;&lt;some-file&gt;&quot;</span><span class="p">)</span>  <span class="c1"># Will have metadata: {&quot;a&quot;: 1} only</span>
+
+    <span class="k">with</span> <span class="n">metadata_context</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+        <span class="n">register_asset</span><span class="p">(</span><span class="s2">&quot;&lt;some-file&gt;&quot;</span><span class="p">)</span>  <span class="c1"># Will have metadata: {&quot;a&quot;: 2, &quot;b&quot;: 3}</span>
+
+    <span class="k">with</span> <span class="n">metadata_context</span><span class="p">(</span><span class="n">c</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+        <span class="n">register_asset</span><span class="p">(</span><span class="s2">&quot;&lt;some-file&gt;&quot;</span><span class="p">)</span>  <span class="c1"># Will have metadata: {&quot;a&quot;: 1, &quot;c&quot;: 4}</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">metadata_context</span><span class="p">(</span><span class="n">e</span><span class="o">=</span><span class="n">i</span><span class="p">):</span>
+            <span class="n">register_asset</span><span class="p">(</span><span class="s2">&quot;&lt;some-file&gt;&quot;</span><span class="p">)</span>  <span class="c1"># Will have metadata: {&quot;a&quot;: 1, &quot;e&quot;: i}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you don’t want to use the context manager, because the metadata should be set globally in the script anyway
+or you’re asset script is a Jupyter Notebook (no context manager over multiple cells possible),
+you can also use the <code class="xref py py-func docutils literal notranslate"><span class="pre">activate()</span></code> and <code class="xref py py-func docutils literal notranslate"><span class="pre">deactivate()</span></code> method:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">metadata_context</span><span class="p">(</span><span class="o">...</span><span class="p">)</span><span class="o">.</span><span class="n">activate</span><span class="p">()</span>
+<span class="n">register_asset</span><span class="p">(</span><span class="s2">&quot;&lt;some-file&gt;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Or if you want to deactivate the context again:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="o">=</span> <span class="n">metadata_context</span><span class="p">(</span><span class="o">...</span><span class="p">)</span><span class="o">.</span><span class="n">activate</span><span class="p">()</span>
+<span class="n">register_asset</span><span class="p">(</span><span class="s2">&quot;&lt;some-file&gt;&quot;</span><span class="p">)</span>
+<span class="n">mc</span><span class="o">.</span><span class="n">deactivate</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>The function <a class="reference internal" href="api.html#pharaoh.assetlib.api.register_asset" title="pharaoh.assetlib.api.register_asset"><code class="xref py py-func docutils literal notranslate"><span class="pre">register_asset()</span></code></a> is explained in the next section.</p>
+</section>
+<section id="manually-registering-assets">
+<h3>Manually Registering Assets<a class="headerlink" href="#manually-registering-assets" title="Link to this heading"></a></h3>
+<p>The function <a class="reference internal" href="api.html#pharaoh.assetlib.api.register_asset" title="pharaoh.assetlib.api.register_asset"><code class="xref py py-func docutils literal notranslate"><span class="pre">register_asset()</span></code></a> may be used to manually register
+assets of any type.</p>
+<p>This is mainly used if you like to create assets that are not generated via
+<a class="reference internal" href="#patched-frameworks"><span class="std std-ref">patched framework functions</span></a>, like txt, json, rst files or
+generated via frameworks not yet supported, like <em>seaborn</em>.</p>
+<p>Here some examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">register_asset</span><span class="p">(</span><span class="s2">&quot;some-path.html&quot;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;my_html_snippet&quot;</span><span class="p">),</span> <span class="n">template</span><span class="o">=</span><span class="s2">&quot;raw_html&quot;</span><span class="p">)</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;&quot;&quot;&lt;div&gt;&lt;p&gt;This HTML text was generated by an asset script!&lt;/p&gt;&lt;/div&gt;&quot;&quot;&quot;</span>
+<span class="n">register_asset</span><span class="p">(</span><span class="s2">&quot;raw.html&quot;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;my_html_snippet&quot;</span><span class="p">),</span> <span class="n">template</span><span class="o">=</span><span class="s2">&quot;raw_html&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;&quot;&quot;.. important:: This reStructuredText text was generated by an asset script!&quot;&quot;&quot;</span>
+<span class="n">register_asset</span><span class="p">(</span><span class="s2">&quot;raw.rst&quot;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;my_rst_snippet&quot;</span><span class="p">),</span> <span class="n">template</span><span class="o">=</span><span class="s2">&quot;raw_rst&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;This text was generated by an asset script and will be included via &quot;literalinclude&quot;&#39;</span>
+<span class="n">register_asset</span><span class="p">(</span><span class="s2">&quot;raw.txt&quot;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;my_txt_snippet&quot;</span><span class="p">),</span> <span class="n">template</span><span class="o">=</span><span class="s2">&quot;raw_txt&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="catching-errors">
+<h3>Catching Errors<a class="headerlink" href="#catching-errors" title="Link to this heading"></a></h3>
+<p>If uncaught exceptions occur in asset scripts, Pharaoh will catch them and log them to the console
+as well as fail the generation process and report to the user.</p>
+<p>Sometimes this might not be desired, especially for bigger reports where errors in asset scripts
+might occur occasionally, but nevertheless the report should be generated.</p>
+<p>To catch errors and include them in the report, you can use
+<a class="reference internal" href="api.html#pharaoh.assetlib.api.catch_exceptions" title="pharaoh.assetlib.api.catch_exceptions"><code class="xref py py-func docutils literal notranslate"><span class="pre">pharaoh.assetlib.api.catch_exceptions()</span></code></a> as a context manager:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pharaoh.assetlib.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">catch_exceptions</span>
+
+<span class="k">with</span> <span class="n">catch_exceptions</span><span class="p">():</span>
+    <span class="n">generate_asset_that_raises</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>If you want to include the exception message in the report
+instead of the actual asset which failed generating, make sure <code class="docutils literal notranslate"><span class="pre">catch_exceptions</span></code>
+is used within the same <code class="docutils literal notranslate"><span class="pre">metadata_context</span></code> .</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># do this!</span>
+<span class="k">with</span> <span class="n">metadata_context</span><span class="p">(</span><span class="n">foo</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">):</span>  <span class="c1"># error asset will have the same metadata</span>
+    <span class="k">with</span> <span class="n">catch_exceptions</span><span class="p">():</span>
+        <span class="n">generate_asset_that_raises</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+
+<span class="c1"># NOT this!</span>
+<span class="k">with</span> <span class="n">catch_exceptions</span><span class="p">():</span>  <span class="c1"># error asset won&#39;t have the same metadata</span>
+    <span class="k">with</span> <span class="n">metadata_context</span><span class="p">(</span><span class="n">foo</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">):</span>
+        <span class="n">generate_asset_that_raises</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="c1"># Now the Sphinx directive `.. pharaoh-asset::` will include the error message instead of the asset.</span>
+</pre></div>
+</div>
+</div>
+<p>In the report, the rendered error message &amp; traceback will look like this:</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text"><svg version="1.1" width="2.0em" height="2.0em" class="sd-octicon sd-octicon-bug sd-text-danger" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.72.22a.75.75 0 0 1 1.06 0l1.204 1.203A4.98 4.98 0 0 1 12 1c.717 0 1.4.151 2.016.423L15.22.22a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-.971.972A4.991 4.991 0 0 1 17 6v1.104a2.755 2.755 0 0 1 1.917 1.974l1.998-.999a.75.75 0 0 1 .67 1.342L19 10.714V13.5l3.25.003a.75.75 0 0 1 0 1.5L19 15.001V16c0 .568-.068 1.134-.204 1.686l.04.018 2.75 1.375a.75.75 0 1 1-.671 1.342l-2.638-1.319A6.998 6.998 0 0 1 12 23a6.998 6.998 0 0 1-6.197-3.742l-2.758 1.181a.752.752 0 0 1-1.064-.776.752.752 0 0 1 .474-.602l2.795-1.199A6.976 6.976 0 0 1 5 16v-.996H1.75a.75.75 0 0 1 0-1.5H5v-2.79L2.415 9.42a.75.75 0 0 1 .67-1.342l1.998.999A2.756 2.756 0 0 1 7 7.104V6a4.99 4.99 0 0 1 1.69-3.748l-.97-.972a.75.75 0 0 1 0-1.06ZM6.5 9.75V16a5.5 5.5 0 1 0 11 0V9.75c0-.69-.56-1.25-1.25-1.25h-8.5c-.69 0-1.25.56-1.25 1.25ZM8.5 7h7V6a3.5 3.5 0 1 0-7 0Z"></path></svg> This is a ValueError</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Traceback (most recent call last):
+  File &quot;C:\Users\loibljoh\AppData\Local\Temp\pytest-of-loibljoh\pytest-1342\test_error_report_component_wi0\project\report-project\components\dummy\asset_scripts\assets.py&quot;, line 5, in &lt;module&gt;
+    raise ValueError(&quot;This is a ValueError&quot;)
+ValueError: This is a ValueError
+</pre></div>
+</div>
+</div>
+</details><p>To explicitly render the error asset in the report template, you can use the following code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="c1"># Search all error assets in the current component #}</span>
+<span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="n">asset</span> <span class="ow">in</span> <span class="n">search_error_assets</span><span class="p">()</span> <span class="o">%</span><span class="p">}</span>
+<span class="o">..</span> <span class="n">pharaoh</span><span class="o">-</span><span class="n">asset</span><span class="p">::</span> <span class="p">{{</span> <span class="n">asset</span><span class="o">.</span><span class="n">id</span> <span class="p">}}</span>
+
+<span class="p">{</span><span class="o">%</span> <span class="n">endfor</span> <span class="o">%</span><span class="p">}</span>
+
+
+<span class="p">{</span><span class="c1"># Search all error assets in all components #}</span>
+<span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="n">component</span><span class="p">,</span> <span class="n">assets</span> <span class="ow">in</span> <span class="n">search_error_assets_global</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="o">%</span><span class="p">}</span>
+<span class="p">{{</span> <span class="n">h3</span><span class="p">(</span><span class="n">component</span><span class="p">)</span> <span class="p">}}</span>
+
+<span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="n">asset</span> <span class="ow">in</span> <span class="n">assets</span> <span class="o">%</span><span class="p">}</span>
+<span class="o">..</span> <span class="n">pharaoh</span><span class="o">-</span><span class="n">asset</span><span class="p">::</span> <span class="p">{{</span> <span class="n">asset</span><span class="o">.</span><span class="n">id</span> <span class="p">}}</span>
+
+<span class="p">{</span><span class="o">%</span> <span class="n">endfor</span> <span class="o">%</span><span class="p">}</span>
+<span class="p">{</span><span class="o">%</span> <span class="n">endfor</span> <span class="o">%</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="patched-frameworks">
+<h3>Patched Frameworks<a class="headerlink" href="#patched-frameworks" title="Link to this heading"></a></h3>
+<p>Pharaoh <a class="reference external" href="https://medium.com/&#64;chipiga86/python-monkey-patching-like-a-boss-87d7ddb8098e">monkey-patches</a>
+plot/table export functions of popular tools like Pandas, Plotly etc.</p>
+<p>This has the advantage, that users can work with the official plotting APIs of the respective frameworks
+without having to take care about <a class="reference internal" href="#manually-registering-assets"><span class="std std-ref">Manually Registering Assets</span></a>.</p>
+<p>The following APIs are patched by Pharaoh:</p>
+<dl>
+<dt>Pandas</dt><dd><ul>
+<li><p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_html.html">pandas.DataFrame.to_html()</a></p>
+<p>Automatically sets metadata <code class="docutils literal notranslate"><span class="pre">template=&quot;datatable&quot;</span></code> (see <a class="reference internal" href="directive.html#asset-templates"><span class="std std-ref">Asset Templates</span></a>) .</p>
+</li>
+<li><p>but NOT <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.io.formats.style.Styler.to_html.html#pandas-io-formats-style-styler-to-html">pandas.io.formats.style.Styler.to_html()</a></p>
+<p>Styler instances have to be exported manually:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">html_file_name</span> <span class="o">=</span> <span class="s2">&quot;styled_table.html&quot;</span>
+<span class="n">styler</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="n">buf</span><span class="o">=</span><span class="n">html_file_name</span><span class="p">)</span>
+<span class="n">register_asset</span><span class="p">(</span><span class="n">html_file_name</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="s2">&quot;datatable&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;blabla&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;ints&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+        <span class="s2">&quot;float&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">],</span>
+        <span class="s2">&quot;hex&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;0x11&quot;</span><span class="p">,</span> <span class="s2">&quot;0x12&quot;</span><span class="p">,</span> <span class="s2">&quot;0x13&quot;</span><span class="p">],</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="n">buf</span><span class="o">=</span><span class="s2">&quot;table.html&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+<dt>Plotly</dt><dd><ul>
+<li><p><a class="reference external" href="https://plotly.github.io/plotly.py-docs/generated/plotly.io.show.html">plotly.io.show()</a></p>
+<p>When running in Pharaoh asset generation, this function is patched to prevent showing the plot in the browser.</p>
+</li>
+<li><p><a class="reference external" href="https://plotly.github.io/plotly.py-docs/generated/plotly.io.write_image.html">plotly.io.write_image()</a></p></li>
+<li><p><a class="reference external" href="https://plotly.github.io/plotly.py-docs/generated/plotly.io.write_html.html">plotly.io.write_html()</a></p>
+<p>Supports <a class="reference internal" href="#force-static-exports"><span class="std std-ref">Force Static Exports</span></a>.</p>
+</li>
+</ul>
+<p>Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">plotly.express</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">px</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="n">data_frame</span><span class="o">=</span><span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">iris</span><span class="p">(),</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;sepal_width&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;A title&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">write_image</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="s2">&quot;iris_scatter1.svg&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">write_html</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="s2">&quot;iris_scatter2.html&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">write_image</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="s2">&quot;iris_scatter3.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p>Bokeh</p>
+<blockquote>
+<div><ul>
+<li><p><a class="reference external" href="https://docs.bokeh.org/en/latest/docs/reference/io.html#bokeh.io.show">bokeh.io.show()</a></p>
+<p>When running in Pharaoh asset generation, this function is patched to prevent showing the plot in the browser.</p>
+</li>
+<li><p><a class="reference external" href="https://docs.bokeh.org/en/latest/docs/reference/io.html#bokeh.io.save">bokeh.io.saving.save()</a></p>
+<p>Supports <a class="reference internal" href="#force-static-exports"><span class="std std-ref">Force Static Exports</span></a>.</p>
+</li>
+<li><p><a class="reference external" href="https://docs.bokeh.org/en/latest/docs/reference/io.html#bokeh.io.export_png">bokeh.io.export_png()</a></p></li>
+<li><p><a class="reference external" href="https://docs.bokeh.org/en/latest/docs/reference/io.html#bokeh.io.export.export_png">bokeh.io.export.export_png()</a></p></li>
+<li><p><a class="reference external" href="https://docs.bokeh.org/en/latest/docs/reference/io.html#bokeh.io.export_svg">bokeh.io.export_svg()</a></p></li>
+<li><p><a class="reference external" href="https://docs.bokeh.org/en/latest/docs/reference/io.html#bokeh.io.export.export_svg">bokeh.io.export.export_svg()</a></p></li>
+</ul>
+<p>Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">bokeh.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">save</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">bokeh.plotting</span><span class="w"> </span><span class="kn">import</span> <span class="n">figure</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">bokeh.sampledata.iris</span><span class="w"> </span><span class="kn">import</span> <span class="n">flowers</span>
+
+<span class="n">colormap</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;setosa&quot;</span><span class="p">:</span> <span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;versicolor&quot;</span><span class="p">:</span> <span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="s2">&quot;virginica&quot;</span><span class="p">:</span> <span class="s2">&quot;blue&quot;</span><span class="p">}</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">colormap</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">flowers</span><span class="p">[</span><span class="s2">&quot;species&quot;</span><span class="p">]]</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Iris Morphology&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">axis_label</span> <span class="o">=</span> <span class="s2">&quot;Petal Length&quot;</span>
+<span class="n">p</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">axis_label</span> <span class="o">=</span> <span class="s2">&quot;Petal Width&quot;</span>
+<span class="n">p</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">flowers</span><span class="p">[</span><span class="s2">&quot;petal_length&quot;</span><span class="p">],</span> <span class="n">flowers</span><span class="p">[</span><span class="s2">&quot;petal_width&quot;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span> <span class="n">fill_alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">save</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;iris_scatter.html&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Matplotlib</p>
+<blockquote>
+<div><ul>
+<li><p><a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.show.html">matplotlib.pyplot.show()</a></p>
+<p>When running in Pharaoh asset generation, this function is patched to prevent showing the plot in the browser.</p>
+</li>
+<li><p><a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.figure.Figure.show.html">matplotlib.figure.Figure.show()</a></p>
+<p>When running in Pharaoh asset generation, this function is patched to prevent showing the plot in the browser.</p>
+</li>
+<li><p><a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.figure.Figure.savefig.html#matplotlib.figure.Figure.savefig">matplotlib.figure.Figure.savefig()</a></p></li>
+</ul>
+<p>Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">),</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">t</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;time (s)&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;voltage (mV)&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;About as simple as it gets, folks&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;test.png&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></blockquote>
+<dl>
+<dt>Holoviews</dt><dd><ul>
+<li><p><a class="reference external" href="https://holoviews.org/reference_manual/holoviews.util.html#holoviews.util.save">holoviews.util.save()</a>
+with backends Bokeh, Plotly and Matplotlib.</p>
+<p>Supports <a class="reference internal" href="#force-static-exports"><span class="std std-ref">Force Static Exports</span></a>.</p>
+</li>
+</ul>
+<p>Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">holoviews</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">hv</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">[(</span><span class="n">i</span><span class="p">,</span> <span class="nb">chr</span><span class="p">(</span><span class="mi">97</span> <span class="o">+</span> <span class="n">j</span><span class="p">),</span> <span class="n">i</span> <span class="o">*</span> <span class="n">j</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">j</span><span class="p">]</span>
+
+<span class="k">with</span> <span class="n">metadata_context</span><span class="p">(</span><span class="n">ext</span><span class="o">=</span><span class="s2">&quot;plotly&quot;</span><span class="p">):</span>
+    <span class="n">hv</span><span class="o">.</span><span class="n">extension</span><span class="p">(</span><span class="s2">&quot;plotly&quot;</span><span class="p">)</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">hv</span><span class="o">.</span><span class="n">HeatMap</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">opts</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;RdBu_r&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+    <span class="n">hv</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;heatmap_holo_plotly.html&quot;</span><span class="p">)</span>
+    <span class="n">hv</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;heatmap_holo_plotly.svg&quot;</span><span class="p">)</span>
+    <span class="n">hv</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;heatmap_holo_plotly.png&quot;</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">metadata_context</span><span class="p">(</span><span class="n">ext</span><span class="o">=</span><span class="s2">&quot;bokeh&quot;</span><span class="p">):</span>
+    <span class="n">hv</span><span class="o">.</span><span class="n">extension</span><span class="p">(</span><span class="s2">&quot;bokeh&quot;</span><span class="p">)</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">hv</span><span class="o">.</span><span class="n">HeatMap</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">opts</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;RdBu_r&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+    <span class="n">hv</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;heatmap_holo_bokeh.html&quot;</span><span class="p">)</span>
+    <span class="n">hv</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;heatmap_holo_bokeh.png&quot;</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">metadata_context</span><span class="p">(</span><span class="n">ext</span><span class="o">=</span><span class="s2">&quot;matplotlib&quot;</span><span class="p">):</span>
+    <span class="n">hv</span><span class="o">.</span><span class="n">extension</span><span class="p">(</span><span class="s2">&quot;matplotlib&quot;</span><span class="p">)</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">hv</span><span class="o">.</span><span class="n">HeatMap</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">opts</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;RdBu_r&quot;</span><span class="p">)</span>
+    <span class="n">hv</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;heatmap_holo_mpl.svg&quot;</span><span class="p">)</span>
+    <span class="n">hv</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;heatmap_holo_mpl.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p><code class="docutils literal notranslate"><span class="pre">plotly.graph_objects.Figure.write_html</span></code> is one of many function which is</p>
+<p>by Pharaoh. More info about the other patched frameworks you can find <a class="reference internal" href="#patched-frameworks"><span class="std std-ref">here</span></a>.</p>
+<p>If the asset script is executed via Pharaoh, the patched <code class="docutils literal notranslate"><span class="pre">write_html</span></code> function will not store the plot to
+<code class="docutils literal notranslate"><span class="pre">&quot;iris_scatter.html&quot;</span></code> in the current working directory, but rather in a predefined location for assets inside
+your Pharaoh project <code class="docutils literal notranslate"><span class="pre">report_project/.asset_build/&lt;component-name&gt;</span></code> with a unique suffix, for example
+<code class="docutils literal notranslate"><span class="pre">iris_scatter_9c30799b.html</span></code>.</p>
+</section>
+<section id="force-static-exports">
+<h3>Force Static Exports<a class="headerlink" href="#force-static-exports" title="Link to this heading"></a></h3>
+<p>While for debugging and interactive review it’s nice to have all plots rendered as dynamic elements in HTML,
+other build targets might be used for export purposes like Confluence or LaTeX.</p>
+<p>Since those targets don’t support embedding dynamic HTML elements you would have to tweak your asset generation scripts
+to export different formats for different report output formats, which is suboptimal.</p>
+<p>Pharaoh therefore provides a setting <code class="docutils literal notranslate"><span class="pre">asset_gen.force_static</span></code> which can be used to signal asset scripts
+to export static assets instead of HTML.</p>
+<p>For all patched plotting APIs, if <code class="docutils literal notranslate"><span class="pre">asset_gen.force_static</span></code> is set to <code class="docutils literal notranslate"><span class="pre">true</span></code>,
+Pharaoh takes care and exports static images instead of HTML when plotting APIs like
+<a class="reference external" href="https://plotly.github.io/plotly.py-docs/generated/plotly.io.write_html.html">plotly.io.write_html()</a> is used.</p>
+<p>Since not all frameworks are patched, you might have to add support by yourself inside asset scripts like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">altair</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">alt</span>  <span class="c1"># altair not supported at the moment</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pharaoh.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_project</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pharaoh.assetlib.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">register_asset</span>
+
+<span class="n">pharaoh_project</span> <span class="o">=</span> <span class="n">get_project</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>
+<span class="n">force_static</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">get_setting</span><span class="p">(</span><span class="s2">&quot;asset_gen.force_static&quot;</span><span class="p">)</span>
+
+<span class="n">chart</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">force_static</span><span class="p">:</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;chart.png&quot;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;chart.html&quot;</span>
+
+<span class="n">chart</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+<span class="n">register_asset</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="n">plotting_framework</span><span class="o">=</span><span class="s2">&quot;altair&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="settings.html#accessing-settings"><span class="std std-ref">Accessing Settings</span></a></p>
+</div>
+</section>
+<section id="matlab-integration">
+<h3>Matlab Integration<a class="headerlink" href="#matlab-integration" title="Link to this heading"></a></h3>
+<p>Pharaoh supports generating assets via Matlab scripts/function through the
+Matlab API <a class="reference internal" href="api.html#pharaoh.assetlib.api.Matlab" title="pharaoh.assetlib.api.Matlab"><code class="xref py py-class docutils literal notranslate"><span class="pre">pharaoh.assetlib.api.Matlab</span></code></a>.</p>
+<p>The asset scripts still have to be Python scripts and any asset the Matlab scripts generate, have to be
+manually registered using <a class="reference internal" href="api.html#pharaoh.assetlib.api.register_asset" title="pharaoh.assetlib.api.register_asset"><code class="xref py py-func docutils literal notranslate"><span class="pre">register_asset()</span></code></a>.</p>
+<p>Here an example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pharaoh.assetlib.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">Matlab</span><span class="p">,</span> <span class="n">register_asset</span><span class="p">,</span> <span class="n">FileResource</span><span class="p">,</span> <span class="n">get_resource</span>
+
+<span class="n">resource</span><span class="p">:</span> <span class="n">FileResource</span> <span class="o">=</span> <span class="n">get_resource</span><span class="p">(</span><span class="n">alias</span><span class="o">=</span><span class="s2">&quot;&lt;resource_alias&gt;&quot;</span><span class="p">)</span>
+<span class="n">some_resource_path</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="n">resource</span><span class="o">.</span><span class="n">locate</span><span class="p">()</span>
+
+<span class="k">with</span> <span class="n">Matlab</span><span class="p">()</span> <span class="k">as</span> <span class="n">matlab</span><span class="p">:</span>
+    <span class="n">plot_path</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">matlab</span><span class="o">.</span><span class="n">execute_function</span><span class="p">(</span><span class="s2">&quot;generate_plot&quot;</span><span class="p">,</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">some_resource_path</span><span class="p">)],</span> <span class="n">nargout</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">register_asset</span><span class="p">(</span><span class="n">plot_path</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="n">from_matlab</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">foo</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>To use the Matlab API you have to install an additional dependency, depending on your Matlab version:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>R2020B: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">matlabengine==9.9.*</span></code></p></li>
+<li><p>R2021A: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">matlabengine==9.10.*</span></code></p></li>
+<li><p>R2021B: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">matlabengine==9.11.*</span></code></p></li>
+<li><p>R2022A: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">matlabengine==9.12.*</span></code></p></li>
+<li><p>R2022B: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">matlabengine==9.13.*</span></code></p></li>
+<li><p>R2023A: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">matlabengine==9.14.*</span></code></p></li>
+<li><p>R2023B: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">matlabengine==9.15.*</span></code></p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<section id="asset-lookup">
+<h2>Asset Lookup<a class="headerlink" href="#asset-lookup" title="Link to this heading"></a></h2>
+<p>This section deals with how to access assets in <a class="reference internal" href="templating.html#rendering-context"><span class="std std-ref">local context scripts</span></a> and <a class="reference internal" href="templating.html#build-time-templating"><span class="std std-ref">build-time templates</span></a>.</p>
+<section id="asset-finder">
+<h3>Asset Finder<a class="headerlink" href="#asset-finder" title="Link to this heading"></a></h3>
+<p>The <a class="reference internal" href="api.html#pharaoh.assetlib.finder.AssetFinder" title="pharaoh.assetlib.finder.AssetFinder"><code class="xref py py-class docutils literal notranslate"><span class="pre">AssetFinder</span></code></a> is responsible for discovering and searching assets
+based on filters using <a class="reference internal" href="api.html#pharaoh.assetlib.finder.AssetFinder.search_assets" title="pharaoh.assetlib.finder.AssetFinder.search_assets"><code class="xref py py-func docutils literal notranslate"><span class="pre">AssetFinder.search_assets()</span></code></a>.</p>
+<p>This function is available in various places:</p>
+<ul>
+<li><p>In <a class="reference internal" href="templating.html#rendering-context"><span class="std std-ref">local context scripts</span></a>.</p>
+<p>The following script searches all JSON files that have <code class="docutils literal notranslate"><span class="pre">&quot;context_name&quot;</span></code> set,
+loads them and exports their content as context for <a class="reference internal" href="templating.html#build-time-templating"><span class="std std-ref">build-time templating</span></a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pharaoh.assetlib.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_asset_finder</span><span class="p">,</span> <span class="n">get_current_component</span>
+
+<span class="n">finder</span> <span class="o">=</span> <span class="n">get_asset_finder</span><span class="p">()</span>
+<span class="n">component_name</span> <span class="o">=</span> <span class="n">get_current_component</span><span class="p">()</span>
+
+<span class="n">context</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">asset</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">context_name</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">asset</span><span class="o">.</span><span class="n">read_text</span><span class="p">())</span>
+    <span class="k">for</span> <span class="n">asset</span> <span class="ow">in</span> <span class="n">finder</span><span class="o">.</span><span class="n">search_assets</span><span class="p">(</span>
+        <span class="s1">&#39;asset.suffix == &quot;.json&quot; and &quot;context_name&quot; in asset.context&#39;</span><span class="p">,</span>
+        <span class="p">[</span><span class="n">component_name</span><span class="p">]</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+<span class="n">context</span><span class="p">[</span><span class="s2">&quot;component_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">component_name</span>
+<span class="k">return</span> <span class="n">context</span>
+</pre></div>
+</div>
+<p>In some use cases this is used to make measurement information available during templating
+to render the information in a table.</p>
+</li>
+<li><p>In templates inside <a class="reference external" href="https://jinja.palletsprojects.com/en/3.0.x/templates/#list-of-control-structures">Jinja statements</a>.</p>
+<p>The following snippet searches all image assets of the <strong>current</strong> component
+(the component the template is rendered in) and stores the list of assets in a variable:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">%</span> <span class="nb">set</span> <span class="n">image_assets</span> <span class="o">=</span> <span class="n">search_assets</span><span class="p">(</span><span class="s2">&quot;asset.suffix in [&#39;.png&#39;, &#39;.svg&#39;]&quot;</span><span class="p">)</span> <span class="o">%</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>The following snippet searches all image assets of the <strong>all</strong> components in the project.
+This can be used to create components that summarize information from other components.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">%</span> <span class="nb">set</span> <span class="n">all_image_assets</span> <span class="o">=</span> <span class="n">search_assets_global</span><span class="p">(</span><span class="s2">&quot;asset.suffix in [&#39;.png&#39;, &#39;.svg&#39;]&quot;</span><span class="p">)</span> <span class="o">%</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>The used functions <code class="docutils literal notranslate"><span class="pre">search_assets</span></code> and <code class="docutils literal notranslate"><span class="pre">search_assets_global</span></code> are
+<a class="reference external" href="https://www.learnpython.org/en/Partial_functions">partial functions</a> where the <code class="docutils literal notranslate"><span class="pre">component</span></code> argument is preset.</p>
+</li>
+</ul>
+</section>
+<section id="manual-include">
+<h3>Manual Include<a class="headerlink" href="#manual-include" title="Link to this heading"></a></h3>
+<p>If you like to include some of your assets manually, the template environment provides
+two functions for your convenience, that return the (relative) path of an asset to the including template:</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">asset_rel_path_from_project(asset)</span></code></dt><dd><p>Returns the relative path from the Sphinx source directory to the passed asset.
+This path is needed for Sphinx directives that themselves take care to copy the asset into the build directory,
+like directives <code class="docutils literal notranslate"><span class="pre">literalinclude</span></code>, <code class="docutils literal notranslate"><span class="pre">image</span></code> and <code class="docutils literal notranslate"><span class="pre">figure</span></code>.</p>
+<p>Here’s an example:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{% set matches = search_assets(&quot;&lt;some condition&gt;&quot;) %}
+
+.. figure:: {{ asset_rel_path_from_project(matches[0]) }}
+   :scale: 50 %
+
+   This is the caption of the figure (a simple paragraph).
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">asset_rel_path_from_project(matches[0])</span> <span class="pre">}}</span></code> would render something like this:
+<code class="docutils literal notranslate"><span class="pre">/.asset_build/dummy/mytxt_f65223c4.txt</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">asset_rel_path_from_build(asset)</span></code></dt><dd><p>Returns the relative path from the Sphinx build directory to the passed asset.
+This path is needed for Sphinx directives that themselves do <strong>NOT</strong> take care to copy the asset into the
+build directory, like when using the <code class="docutils literal notranslate"><span class="pre">raw_html</span></code> directive and including a picture or HTMl file using an iframe.</p>
+<p>In this case calling <code class="docutils literal notranslate"><span class="pre">asset_rel_path_from_build</span></code> will automatically copy the asset from the asset build folder
+to the build directory and return it’s relative path from the including template.</p>
+<p>Here’s an example:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{% set matches = search_assets(&quot;&lt;some condition&gt;&quot;) %}
+
+.. raw:: html
+
+    &lt;iframe src=&quot;{{ asset_rel_path_from_build(matches[0]) }}&quot;
+        loading=&quot;lazy&quot;
+    &gt;&lt;/iframe&gt;&lt;br&gt;
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">asset_rel_path_from_build(matches[0])</span> <span class="pre">}}</span></code> would render something like this:
+<code class="docutils literal notranslate"><span class="pre">../../pharaoh_assets/iris_scatter_3e7d7ab7.html</span></code></p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Another way to include assets with a custom template is to use the <code class="docutils literal notranslate"><span class="pre">template</span></code>
+<a class="reference internal" href="directive.html#directive-options"><span class="std std-ref">option</span></a> of the
+<a class="reference internal" href="directive.html#pharaoh-directive"><span class="std std-ref">Pharaoh asset directive</span></a> with a path to your custom template.</p>
+</div>
+</section>
+<section id="grouping-assets-by-metadata">
+<h3>Grouping Assets By Metadata<a class="headerlink" href="#grouping-assets-by-metadata" title="Link to this heading"></a></h3>
+<p>Imaging in your asset scripts you are creating a plot for a measured signal for many different operating conditions:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>from pharaoh.assetlib.api import metadata_context
+
+for vdd in (8.0, 10.0, 12.0):
+    for iout in (1.0, 2.0, 5.0):
+        with metadata_context(vdd=vdd, iout=iout, signal_name=&quot;idd&quot;):
+            fig = ...
+            fig.write_image(file=&quot;idd_plot.png&quot;)
+</pre></div>
+</div>
+<p>Now in your report you may like to have all those plots added separately each with it’s own title containing the
+values of either <code class="docutils literal notranslate"><span class="pre">vdd</span></code> or <code class="docutils literal notranslate"><span class="pre">iout</span></code>.</p>
+<p>Defining the template like this is not really viable, since in the template you usually have no idea about what values
+were iterated over in the asset script. But let’s assume you know, then this would be the template:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{% for vdd in (8.0, 10.0, 12.0) %}
+{{ heading(&quot;Plots for Vdd:%.1fV, Iout:%.1fA&quot; % vout, 2) }}
+
+{% for iout in (1.0, 2.0, 5.0) %}
+{{ heading(&quot;Plots for Iout:%.1fA&quot; % iout, 3) }}
+
+.. pharaoh-asset:: vdd == {{ vdd }} and iout == {{ iout }} and signal_name == &#39;idd&#39;
+
+{% endfor %}
+{% endfor %}
+</pre></div>
+</div>
+<p>But luckily there is a better option using <a class="reference internal" href="api.html#pharaoh.assetlib.finder.asset_groupby" title="pharaoh.assetlib.finder.asset_groupby"><code class="xref py py-func docutils literal notranslate"><span class="pre">asset_groupby</span></code></a> to
+group assets first by <code class="docutils literal notranslate"><span class="pre">vdd</span></code> and then by <code class="docutils literal notranslate"><span class="pre">iout</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{% set idd_plots = search_assets(&quot;signal_name == &#39;idd&#39;&quot;) %}
+{% for vdd, assets_grby_vdd in agroupby(idd_plots, key=&quot;vdd&quot;).items() %}
+{{ heading(&quot;Plots for Vdd:%.1fV&quot; % vout, 2) }}
+
+    {% for iout, assets_grby_iout in agroupby(assets_grby_vdd, key=&quot;iout&quot;).items() %}
+{{ heading(&quot;Plots for Iout:%.1fA&quot; % iout, 3) }}
+
+        {% for asset in assets_grby_iout %}
+.. pharaoh-asset:: {{ asset.id }}
+
+        {% endfor %}
+    {% endfor %}
+{% endfor %}
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">agroupby</span></code> is an alias for <code class="docutils literal notranslate"><span class="pre">asset_groupby</span></code>. Both are available as global function during templating.</p>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="components.html" class="btn btn-neutral float-left" title="Components" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="directive.html" class="btn btn-neutral float-right" title="Pharaoh Directive" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .
+      <span class="lastupdated">Last updated on Sep 30, 2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
