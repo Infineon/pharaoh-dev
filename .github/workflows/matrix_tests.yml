@@ -42,7 +42,7 @@ jobs:
         env:
           PYTEST_XDIST_AUTO_NUM_WORKERS: 0
       - name: On fail upload pytest results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         if: failure()
         with:
           name: pytest-results-${{ matrix.os }}-${{ matrix.py }}
