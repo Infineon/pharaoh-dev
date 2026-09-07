@@ -282,7 +282,7 @@ class PharaohTemplateEnv(jinja2.Environment):
             # In this case under Python 3.7, the following parent.is_dir() is failing because os.stat
             # does not allow <> in the file path, Python 3.9 does, apparently.
             # So we split off the suffix after <> (which would be done anyway using the "parent.parent" statement).
-            parent = parent.split("<>")[0]
+            parent = parent.split("<>", maxsplit=1)[0]
         parent_path = Path(parent)
         if not parent_path.is_dir():
             parent_path = parent_path.parent
