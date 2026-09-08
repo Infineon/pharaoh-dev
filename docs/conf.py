@@ -3,15 +3,11 @@ from __future__ import annotations
 import datetime
 import os
 
-import sphinx
-
 import pharaoh
 from pharaoh.cli import cli
 from pharaoh.plugins.core_plugin.plugin import DEFAULT_ASSET_TEMPLATE_MAPPING
 from pharaoh.plugins.plugin_manager import PM
 from pharaoh.templating.second_level import env_filters, env_globals, env_tests
-
-assert sphinx.version_info[0] == 7
 
 extensions = [
     "sphinx.ext.autodoc",
@@ -48,7 +44,6 @@ html_logo = "_static/icon.png"
 html_style = "sphinx_rtd_theme_overrides.css"
 html_theme_options = {
     "logo_only": True,
-    "display_version": True,
     "prev_next_buttons_location": "bottom",
     "style_external_links": False,
     "vcs_pageview_mode": "",

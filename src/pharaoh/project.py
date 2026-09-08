@@ -735,7 +735,6 @@ class PharaohProject:
                 "html_style": "sphinx_rtd_theme_overrides.css",
                 "html_theme": "sphinx_rtd_theme",
                 "html_theme_options": {
-                    "display_version": False,
                     "prev_next_buttons_location": "both",
                     "style_external_links": False,
                     "collapse_navigation": False,
