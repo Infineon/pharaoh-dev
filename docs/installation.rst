@@ -8,7 +8,11 @@ Requirements
 Any of the following Python versions are compatible.
 If you don't have any installed, please download and execute a version by clicking the links below.
 
-    -   **Python 3.11 (recommended)**
+    -   **Python 3.13 (recommended)**
+        [`Download Python 3.13 <https://www.python.org/downloads/release/python-31315/>`_]
+    -   **Python 3.12**
+        [`Download Python 3.12 <https://www.python.org/downloads/release/python-3120/>`_]
+    -   **Python 3.11**
         [`Download Python 3.11.4 <https://www.python.org/ftp/python/3.11.4/python-3.11.4-amd64.exe>`_]
     -   **Python 3.10**
         [`Download Python 3.10.11 <https://www.python.org/ftp/python/3.10.11/python-3.10.11-amd64.exe>`_]

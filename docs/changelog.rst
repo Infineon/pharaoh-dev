@@ -1,6 +1,12 @@
 Release History
 ===============
 
+0.10.0
+------
+
+-   Added support for Sphinx 9.
+
+
 0.9.3
 -----
 
