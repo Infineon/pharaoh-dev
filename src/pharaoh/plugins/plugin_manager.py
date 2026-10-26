@@ -29,7 +29,7 @@ _plugin_result_cache: dict[str, dict] = {}
 @wrapt.decorator
 def cached(wrapped, instance, args, kwargs):
     func = wrapped.__name__
-    key = (args, tuple(kwargs))
+    key = (args, tuple(sorted(kwargs.items())))
     try:
         return _plugin_result_cache[func][key]
     except KeyError:
