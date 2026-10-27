@@ -1,0 +1,18 @@
+/* This line is theme specific - it includes the base theme CSS */
+@import 'css/theme.css';       /* for the Read the Docs theme */
+
+/* Disable page width limit */
+.wy-nav-content {
+   max-width: None
+}
+
+/* Make the version text darker */
+.wy-side-nav-search>div.version {
+    color:hsla(0, 0%, 0%, 0.7)
+}
+
+/*Fix for Sphinx 5.0+ prints double colons for roles: https://github.com/sphinx-doc/sphinx/issues/10594*/
+/*See also: https://stackoverflow.com/questions/70426337/sphinx-documentation-showing-double-colon-in-fields*/
+html.writer-html5 .rst-content dl.field-list>dt:after {
+    content: ""
+}
