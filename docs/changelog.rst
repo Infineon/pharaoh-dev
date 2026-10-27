@@ -1,6 +1,13 @@
 Release History
 ===============
 
+0.11.0
+------
+
+-   Fix deprecations for OmegaConf 2.4.0
+-   Fix cache collisions for keyword template names. Thanks to @UmutAlisoglu.
+
+
 0.10.0
 ------
 
