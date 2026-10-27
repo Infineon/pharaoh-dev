@@ -139,12 +139,12 @@ def test_generate_ipynb_asset(new_proj):
 
 
 def test_generate_failing_python_asset(new_proj):
-    with pytest.raises(Exception, match=".*failing.py"):
+    with pytest.raises(Exception, match=r".*failing\.py"):
         generate_assets(new_proj.project_root, example_assets / "failing.py")
 
 
 def test_generate_failing_ipynb_asset(new_proj):
-    with pytest.raises(Exception, match=".*failing.ipynb"):
+    with pytest.raises(Exception, match=r".*failing\.ipynb"):
         generate_assets(new_proj.project_root, example_assets / "failing.ipynb")
     files = list(new_proj.asset_build_dir.rglob("*.ipynb"))
     assert len(files) == 1

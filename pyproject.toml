@@ -248,6 +248,7 @@ select = [
 ]
 ignore = [
     "PLW2901",  # Pylint - warnings: redefined-loop-name
+    "PLC0415",  # Deferred imports support optional dependencies and avoid import cycles.
     "E501", # https://docs.astral.sh/ruff/faq/#is-the-ruff-linter-compatible-with-black
 ]
 exclude = [
