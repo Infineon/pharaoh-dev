@@ -39,3 +39,41 @@ def test_plugin_discovery():
         # Instantiating the plugin manager a second time will overwrite the caches of the global singleton, so
         # we have to reset the cache here so following tests are working with the singleton plugin manager instance.
         clear_cache()
+
+
+@pytest.mark.parametrize("keyword", [False, True])
+@pytest.mark.parametrize(("first", "second"), [("image", "raw_txt"), ("raw_txt", "image")])
+def test_asset_template_cache_distinguishes_names(keyword, first, second):
+    try:
+        pm = PharaohPluginManager()
+
+        def lookup(name):
+            if keyword:
+                return pm.pharaoh_find_asset_render_template(template_name=name)
+            return pm.pharaoh_find_asset_render_template(name)
+
+        with mock.patch.object(
+            pm.pm.hook,
+            "pharaoh_find_asset_render_template",
+            wraps=pm.pm.hook.pharaoh_find_asset_render_template,
+        ) as hook:
+            first_result = lookup(first)
+            second_result = lookup(second)
+
+            assert [path.name for path in first_result] == [f"{first}.rst.jinja2"]
+            assert [path.name for path in second_result] == [f"{second}.rst.jinja2"]
+            assert lookup(first) is first_result
+            assert hook.call_count == 2
+    finally:
+        clear_cache()
+
+
+def test_missing_keyword_template_is_not_hidden_by_cache():
+    try:
+        pm = PharaohPluginManager()
+        pm.pharaoh_find_asset_render_template(template_name="image")
+
+        with pytest.raises(LookupError, match="Cannot find template 'missing_template'"):
+            pm.pharaoh_find_asset_render_template(template_name="missing_template")
+    finally:
+        clear_cache()
