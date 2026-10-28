@@ -127,6 +127,18 @@ class PharaohPluginManager:
 
             yield plugin_module
 
+    def pharaoh_get_project_class(self) -> type[PharaohProject]:
+        """Return the plugin-selected project class, or the standard class."""
+        from pharaoh.project import PharaohProject
+
+        project_class = self.pm.hook.pharaoh_get_project_class()
+        if project_class is None:
+            return PharaohProject
+        if not isinstance(project_class, type) or not issubclass(project_class, PharaohProject):
+            msg = "pharaoh_get_project_class must return a PharaohProject subclass or None"
+            raise TypeError(msg)
+        return project_class
+
     @cached
     def pharaoh_collect_l1_templates(self) -> dict[str, L1Template]:
         """

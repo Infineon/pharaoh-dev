@@ -32,7 +32,7 @@ class PharaohDirectiveError(Exception):
 
 
 def setup(app: PharaohSphinx):
-    app.pharaoh_proj = pharaoh.project.PharaohProject(os.path.dirname(app.confdir))
+    app.pharaoh_proj = pharaoh.project.get_project(os.path.dirname(app.confdir))
     setup.app = app  # type: ignore[attr-defined]
     setup.config = app.config  # type: ignore[attr-defined]
     setup.confdir = app.confdir  # type: ignore[attr-defined]

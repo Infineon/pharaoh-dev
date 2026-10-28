@@ -22,6 +22,16 @@ if TYPE_CHECKING:
     from .template import L1Template
 
 
+@_spec(firstresult=True)
+def pharaoh_get_project_class() -> type[PharaohProject] | None:
+    """Return a PharaohProject subclass for CLI creation and project discovery.
+
+    The first non-None result is used. Without an implementation, PharaohProject
+    remains the default. Import the project class inside the hook to avoid
+    circular imports during plugin discovery.
+    """
+
+
 @_spec
 def pharaoh_collect_l1_templates() -> list[L1Template]:
     """
