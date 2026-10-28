@@ -1,6 +1,12 @@
 Release History
 ===============
 
+Unreleased
+----------
+
+-   Add a plugin hook for selecting a custom Pharaoh project class.
+
+
 0.11.0
 ------
 

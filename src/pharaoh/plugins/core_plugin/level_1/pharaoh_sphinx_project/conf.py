@@ -11,10 +11,10 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any, Callable
 
-from pharaoh.api import PharaohProject
+from pharaoh.api import get_project
 
 THISDIR = Path(__file__).parent
-proj = PharaohProject(project_root=THISDIR.parent)
+proj = get_project(THISDIR.parent)
 extensions: list[str] = []
 
 # Dynamic updates of local Sphinx configuration with defaults from Pharaoh project.
