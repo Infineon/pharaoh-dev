@@ -70,7 +70,12 @@ class PharaohPluginManager:
 
         self.pm.load_setuptools_entrypoints(NAME)
         for plugin in self._discover_plugin_modules():
-            self.pm.register(plugin)
+            # File-based plugins share the module name "plugin".
+            # Keep the first name and identify further modules by their file.
+            name = plugin.__name__
+            if self.pm.has_plugin(name):
+                name = f"{name}:{plugin.__file__}"
+            self.pm.register(plugin, name=name)
         self.pm.register(pharaoh.plugins.core_plugin.plugin, name="pharaoh_core")
         self.pm.check_pending()
 
@@ -103,11 +108,15 @@ class PharaohPluginManager:
 
         :return: An iterable of plugins
         """
+        seen_paths = set()
         for path_item in os.environ.get("PHARAOH_PLUGINS", "").strip("\"'").split(";"):
             path_item = path_item.strip().strip("\"'")
             if not path_item:
                 continue
-            path = Path(path_item) / "plugin.py"
+            path = (Path(path_item) / "plugin.py").resolve()
+            if path in seen_paths:
+                continue
+            seen_paths.add(path)
             if not path.exists():
                 msg = f"Cannot find plugin path {path} from environment variable PHARAOH_PLUGINS!"
                 raise FileNotFoundError(msg)
