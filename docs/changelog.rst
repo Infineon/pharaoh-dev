@@ -1,10 +1,11 @@
 Release History
 ===============
 
-Unreleased
-----------
+0.12.0
+------
 
--   Add a plugin hook for selecting a custom Pharaoh project class.
+-   Load multiple plugin directories without registration collisions by @UmutAlisoglu
+-   Add a plugin hook for selecting the project class by @UmutAlisoglu
 
 
 0.11.0
