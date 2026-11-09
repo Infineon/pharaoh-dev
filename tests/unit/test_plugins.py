@@ -77,3 +77,43 @@ def test_missing_keyword_template_is_not_hidden_by_cache():
             pm.pharaoh_find_asset_render_template(template_name="missing_template")
     finally:
         clear_cache()
+
+
+def test_multiple_plugin_directories(tmp_path, monkeypatch):
+    first = tmp_path / "first"
+    second = tmp_path / "second"
+    for directory, marker in ((first, "first"), (second, "second")):
+        directory.mkdir()
+        (directory / "plugin.py").write_text(
+            "from pharaoh.plugins.api import impl\n"
+            "@impl\n"
+            "def pharaoh_collect_default_settings():\n"
+            f"    return {{'directory': '{marker}'}}\n"
+        )
+    monkeypatch.setenv("PHARAOH_PLUGINS", f"{first};{second}")
+    try:
+        manager = PharaohPluginManager()
+        settings = manager.pharaoh_collect_default_settings()
+        assert {entry["directory"] for entry in settings if isinstance(entry, dict)} == {"first", "second"}
+        assert manager.pm.get_plugin("plugin").__file__ == str(first / "plugin.py")
+        manager.reload_plugins()
+        settings = manager.pharaoh_collect_default_settings()
+        assert len([entry for entry in settings if isinstance(entry, dict)]) == 2
+    finally:
+        clear_cache()
+
+
+def test_duplicate_plugin_directory_is_loaded_once(tmp_path, monkeypatch):
+    (tmp_path / "plugin.py").write_text(
+        "from pharaoh.plugins.api import impl\n"
+        "@impl\n"
+        "def pharaoh_collect_default_settings():\n"
+        "    return {'directory': 'only'}\n"
+    )
+    monkeypatch.setenv("PHARAOH_PLUGINS", f"{tmp_path};{tmp_path}/../{tmp_path.name}")
+    try:
+        manager = PharaohPluginManager()
+        settings = manager.pharaoh_collect_default_settings()
+        assert len([entry for entry in settings if isinstance(entry, dict)]) == 1
+    finally:
+        clear_cache()
