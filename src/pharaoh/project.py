@@ -69,17 +69,18 @@ def get_project(lookup_path: str | Path | None = None) -> PharaohProject:
         msg = "Unsupported value for argument 'lookup_path'."
         raise ValueError(msg)
 
+    project_class = PM.pharaoh_get_project_class()
     path = Path(lookup_path).absolute()
     if path.is_file():
         path = path.parent
     while True:
-        if (path / PharaohProject.PROJECT_SETTINGS_YAML).exists():
-            return PharaohProject(project_root=path)
+        if (path / project_class.PROJECT_SETTINGS_YAML).exists():
+            return project_class(project_root=path)
 
         if path == path.parent:
             # We reached the path's anchor level
             msg = (
-                f"Cannot find a Pharaoh project file {PharaohProject.PROJECT_SETTINGS_YAML} in "
+                f"Cannot find a Pharaoh project file {project_class.PROJECT_SETTINGS_YAML} in "
                 f"{lookup_path} or one of its parent directories!"
             )
             raise LookupError(msg)

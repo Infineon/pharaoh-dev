@@ -136,7 +136,7 @@ def new(
     \b
         pharaoh new -t pharaoh_testing.simple -c "{'a': 1}" --settings ../my_settings.yaml
     """
-    from pharaoh.project import PharaohProject
+    project_class = PM.pharaoh_get_project_class()
 
     kwargs = {
         "project_root": Path(ctx.obj["project_path"]),
@@ -149,7 +149,7 @@ def new(
     if settings:
         kwargs["custom_settings"] = settings
 
-    p = PharaohProject(**kwargs)  # type: ignore[arg-type]
+    p = project_class(**kwargs)  # type: ignore[arg-type]
     p.save_settings(include_env=True)
     ctx.obj["project"] = p
 

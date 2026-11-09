@@ -20,6 +20,7 @@ from pharaoh import project
 from pharaoh.assetlib import patches
 from pharaoh.assetlib.context import context_stack
 from pharaoh.assetlib.finder import Asset
+from pharaoh.plugins.plugin_manager import PM
 from pharaoh.templating.second_level.sphinx_ext.asset_tmpl import find_asset_template
 from pharaoh.util.contextlib_chdir import chdir
 from pharaoh.util.json_encoder import CustomJSONEncoder
@@ -45,7 +46,7 @@ def generate_assets(project_root: Path, asset_src: Path, component_name: str = "
         log.addHandler(logging.handlers.QueueHandler(mp_log_queue))
 
     # Also forbid the project instance to add loggers we just removed
-    proj = project.PharaohProject(project_root=project_root, logging_add_filehandler=False)
+    proj = PM.pharaoh_get_project_class()(project_root=project_root, logging_add_filehandler=False)
     context_stack.reset()
 
     try:
@@ -115,11 +116,11 @@ def generate_assets(project_root: Path, asset_src: Path, component_name: str = "
                 "metadata": {},
                 "source": f"""
 import os
-from pharaoh.api import PharaohProject
+from pharaoh.plugins.plugin_manager import PM
 from pharaoh.assetlib.api import metadata_context
 from pharaoh.assetlib.patches import patch_3rd_party_libraries
 
-proj = PharaohProject(project_root="{project_root.as_posix()}")
+proj = PM.pharaoh_get_project_class()(project_root="{project_root.as_posix()}")
 patcher = patch_3rd_party_libraries()
 patcher.__enter__()
 metadata_context(
